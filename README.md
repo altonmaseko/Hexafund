@@ -1,8 +1,8 @@
 # Funding-Website
 
-An website where funding managers post advertisements about available funding opportunities. 
-Funding opportunnites: Bursary, Funding Events, Funging Business.
+A website where funding managers post advertisements about available funding opportunities. 
+Funding opportunnites: Bursary, Funds for Events, Funds for Business.
 
-Applicants is anyone who visits the website, creates a profile and seeks money for studying, their event, or business.
+An applicant is anyone who visits the website, creates a profile and seeks money for studying, their event, or their business.
 
 Funding managers and Applicants must be logged in before using website.
