@@ -19,7 +19,6 @@ const logoutRouter = require("./routers/logoutRouter")
 // END: Routers
 
 const app = express()
-connectDB()
 
 
 app.use(cors())
@@ -43,14 +42,15 @@ app.all("*", (req, res) => {
 })
 
 
+const PORT = process.env.PORT
+app.listen(PORT, () => {
+    console.log(`server listening on port: ${PORT}...`)
+})
 
-const PORT = process.env.PORT || 3000
+
+connectDB()
 mongoose.connection.once("connected", async () => {
     console.log("SUCCESSFULLY CONNECTED TO DATABASE")
-    app.listen(PORT, () => {
-        console.log("server listening on port 3000...")
-    })
-
 })
 mongoose.connection.on("disconnected", () => {
     console.log("Lost connection to database")
