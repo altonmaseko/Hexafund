@@ -7,7 +7,7 @@ require("dotenv").config()
 const verifyAccessToken = require("./middleware/verifyAccessToken")
 
 const cors = require("cors")
-app.use(cors())
+
 
 // Routers
 
@@ -21,6 +21,8 @@ const logoutRouter = require("./routers/logoutRouter")
 const app = express()
 connectDB()
 
+
+app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
