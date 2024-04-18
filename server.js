@@ -6,6 +6,9 @@ const connectDB = require("./config/connectDB")
 require("dotenv").config()
 const verifyAccessToken = require("./middleware/verifyAccessToken")
 
+const cors = require("cors")
+app.use(cors())
+
 // Routers
 
 const registerRouter = require("./routers/registerRouter")
@@ -21,6 +24,8 @@ connectDB()
 app.use(cookieParser())
 app.use(express.json())
 
+app.use(express.static("./frontend"))
+
 // Dont need an access token to do these:
 app.use("/register", registerRouter)
 app.use("/login", loginRouter)
@@ -30,8 +35,6 @@ app.use("/logout", logoutRouter)
 app.use(verifyAccessToken) //if access token is invalid, code will not continue ahead of this
 
 app.use("/", require("./middleware/errorHandler"))
-
-app.use(express.static("./frontend"))
 
 app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
