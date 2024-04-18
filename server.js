@@ -26,7 +26,7 @@ app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
-app.use(express.static("./frontend"))
+app.use(express.static("./frontend")) //serve the front end
 
 // Dont need an access token to do these:
 app.use("/register", registerRouter)
