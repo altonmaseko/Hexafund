@@ -34,7 +34,7 @@ app.use("/logout", logoutRouter)
 
 app.use(verifyAccessToken) //if access token is invalid, code will not continue ahead of this
 
-app.use("/", require("./middleware/errorHandler"))
+app.use(require("./middleware/errorHandler.js"))
 
 app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
