@@ -2,7 +2,9 @@ const bcrypt = require("bcrypt")
 
 const User = require("../models/User")
 
-const registerController = async (req, res, next) => {
+const asyncWrapper = require("../middleware/asyncWrapper")
+
+const registerController = asyncWrapper(async (req, res) => {
 
     const { name, password, email, company, role } = req.body
 
@@ -40,6 +42,6 @@ const registerController = async (req, res, next) => {
 
     res.status(201).json({ message: `${name} has been successfully registered.`, status: 201 })
     
-}
+})
 
 module.exports = registerController

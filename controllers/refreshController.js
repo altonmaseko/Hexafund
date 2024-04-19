@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken")
 const User = require("../models/User")
 
-const refreshController = async (req, res) => {
+const asyncWrapper = require("../middleware/asyncWrapper")
+
+const refreshController = asyncWrapper(async (req, res) => {
 
     const cookies = req.cookies
 
@@ -58,6 +60,6 @@ const refreshController = async (req, res) => {
         }
     )
 
-}
+})
 
 module.exports = refreshController

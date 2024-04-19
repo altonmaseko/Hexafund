@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser")
 const connectDB = require("./config/connectDB")
 require("dotenv").config()
 const verifyAccessToken = require("./middleware/verifyAccessToken")
-
 const cors = require("cors")
 
 

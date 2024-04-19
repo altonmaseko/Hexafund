@@ -2,9 +2,11 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
+const asyncWrapper = require("../middleware/asyncWrapper")
+
 const User = require("../models/User")
 
-const loginController = async (req, res, next) => {
+const loginController = asyncWrapper(async (req, res) => {
 
     const { name, password } = req.body
 
@@ -53,7 +55,7 @@ const loginController = async (req, res, next) => {
 
     res.cookie("jwt", refreshToken, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }) //24 hours in milliseconds
     
-    res.json({ accessToken })
-}
+    res.status(200).json({ accessToken })
+})
 
 module.exports = loginController

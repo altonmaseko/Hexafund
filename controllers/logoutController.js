@@ -1,6 +1,10 @@
 
 const User = require("../models/User")
-const logoutController = async (req, res) => {
+
+const asyncWrapper = require("../middleware/asyncWrapper")
+
+
+const logoutController = asyncWrapper(async (req, res) => {
 
     const cookies = req.cookies
 
@@ -35,6 +39,6 @@ const logoutController = async (req, res) => {
     res.clearCookie("jwt", { httpOnly: true })
     res.status(200).json({message: "Logged out successfully", status: 200})
 
-}
+})
 
 module.exports = logoutController
