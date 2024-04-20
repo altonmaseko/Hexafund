@@ -1,4 +1,4 @@
-# Funding Website
+# Funding Requests Management Website 
 
 # About
 This project aims to equip the organisations with a central place to advertise all their funding opportunities and manage all the applications they get for funding. This project should cater for at least three types of funding opportunities, namely: Educational (bursaries and scholarships), business, and events.
