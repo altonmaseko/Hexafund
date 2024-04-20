@@ -1,4 +1,4 @@
-name: Run Jest
+name: Test backend
 
 on:
   pull_request:
@@ -17,5 +17,5 @@ jobs:
         with:
           node-version: "18"
       - run: npm install
-      - run: npm run test
+      - run: npm run jest
 

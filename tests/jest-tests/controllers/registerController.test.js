@@ -1,7 +1,7 @@
 
 
-const registerController = require("../../controllers/registerController")
-const User = require("../../models/User")
+const registerController = require("../../../controllers/registerController")
+const User = require("../../../models/User")
 const bcrypt = require("bcrypt")
 
 // jest.mock("../../models/User.js")
