@@ -13,10 +13,10 @@ const registerController = asyncWrapper(async (req, res) => {
         return
     }
 
-    const duplicateUser = await User.findOne({ name }).exec()
+    const duplicateUser = await User.findOne({ email }).exec()
 
     if (duplicateUser) {
-        res.status(409).json({ message: `The name: '${duplicateUser.name}' is already taken :) `, status: 409 })
+        res.status(409).json({ message: `The email: '${duplicateUser.email}' is already taken :) `, status: 409 })
         return
     }
 
@@ -40,7 +40,7 @@ const registerController = asyncWrapper(async (req, res) => {
     }
 
 
-    res.status(201).json({ message: `${name} has been successfully registered.`, status: 201 })
+    res.status(201).json({ message: `${email} has been successfully registered.`, status: 201 })
     
 })
 

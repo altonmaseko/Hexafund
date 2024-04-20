@@ -8,14 +8,14 @@ const User = require("../models/User")
 
 const loginController = asyncWrapper(async (req, res) => {
 
-    const { name, password } = req.body
+    const { email, password } = req.body
 
-    if (!name || !password) {
-        res.status(400).json({ message: "Please enter username AND password AND email", status: 400 })
+    if (!email || !password) {
+        res.status(400).json({ message: "Please enter email AND password", status: 400 })
         return
     }
 
-    let user = await User.findOne({ name }).exec()
+    let user = await User.findOne({ email }).exec()
 
     if (!user) {
         res.status(404).json({message: "Invalid username or password", status: 404}) //404 not found
@@ -31,7 +31,7 @@ const loginController = asyncWrapper(async (req, res) => {
 
     //create access and refresh tokens
 
-    const email = user.email
+    const name = user.name
 
     const accessToken = jwt.sign(
         {
