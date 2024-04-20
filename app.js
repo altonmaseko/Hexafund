@@ -69,7 +69,6 @@ app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}...`)
 })
 
-
 connectDB()
 mongoose.connection.once("connected", async () => {
     console.log("SUCCESSFULLY CONNECTED TO DATABASE")
