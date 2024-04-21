@@ -1,5 +1,5 @@
 // imports
-import { roles } from "../constants/index";
+const { roles } = require("../constants/index");
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
