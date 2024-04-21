@@ -16,8 +16,6 @@ const asyncWrapper = require("../middleware/asyncWrapper");
 const registerController = asyncWrapper(async (req, res) => {
     const { name, email, password, company, role } = req.body;
 
-    let { name, password, email, company, role } = req.body
-
     if (!name || !password || !email) {
         res.status(400).json({ message: "Please ensure you have entered your Name, Email and Password", status: 400 });
         return;
@@ -36,30 +34,34 @@ const registerController = asyncWrapper(async (req, res) => {
 
     //Role of user depends on existence of company
     if (company) {
-        if (role === "fund manager"){
-            role = "pending"
-        }
-        const user = await User.create({ //funding manager
-            name,
+        await User.create({
+            name: name,
+            email: email,
             password: encryptedPassword,
-            email,
-            company,
-            role
-        })
-        console.log(user)
-
+            role: role
+        });
+        const newUser = await User.findOne({ email: email }).exec();
+        await FundingManager.create({
+            user: newUser._id,
+            name: name,
+            email: email,
+            company: company
+        });
     } else {
-        const user = await User.create({ //the applicant
-            name,
-            password: encryptedPassword,
-            email,
-            role
-        })
-        console.log(user)
+        await User.create({
+            name: name,
+            email: email,
+            password: encryptedPassword
+        });
+        const newUser = await User.findOne({ email: email }).exec();
+        await Applicant.create({
+            user: newUser._id,
+            name: name,
+            email: email
+        });
     }
 
     res.status(201).json({ message: `${email} has been successfully registered.`, status: 201 });
-    
 });
 
 module.exports = registerController;
