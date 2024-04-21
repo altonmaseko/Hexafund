@@ -1,7 +1,4 @@
-
-
 axios.defaults.baseURL = "https://funding-website.azurewebsites.net/"
-
 
 document.getElementById("submit_button").addEventListener("click", async(event)=>{
 
@@ -10,7 +7,6 @@ document.getElementById("submit_button").addEventListener("click", async(event)=
     let password = document.getElementById("password_input").value;
 
     try {
-
         console.log({email,password})
         const response = await axios.post("/login", {email, password})
         console.log(response.data)
@@ -21,13 +17,8 @@ document.getElementById("submit_button").addEventListener("click", async(event)=
         document.cookie = `accessToken=${accessToken}; path=/`;
         document.cookie = `email=${email}; path=/`;
 
-
-        window.location.href = "/home"
-
+        window.location.href = "/home";
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-})
-
-
-
+});

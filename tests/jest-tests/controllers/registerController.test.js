@@ -126,9 +126,13 @@ describe("Testing the register controller", () => {
         });
         jest.spyOn(User, "findOne").mockImplementation(userFindOneMock);
 
+        /*const applicantCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "applicant_id",
+        });*/
         const applicantCreateMock = jest.fn().mockResolvedValueOnce({
             _id: "applicant_id",
         });
+
         jest.spyOn(Applicant, "create").mockImplementation(applicantCreateMock);
         
         const encryptedPassword = 'encryptedPassword';
@@ -143,12 +147,15 @@ describe("Testing the register controller", () => {
             email: req.body.email,
             password: encryptedPassword,
         });
+
         expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
+
         expect(applicantCreateMock).toHaveBeenCalledWith({
             user_id: expect.any(String), 
             name: req.body.name,
             email: req.body.email
         });
+        
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith(expectedResponse);
     });

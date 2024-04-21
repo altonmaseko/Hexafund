@@ -16,7 +16,8 @@ const asyncWrapper = require("../middleware/asyncWrapper");
 const registerController = asyncWrapper(async (req, res) => {
     const { name, email, password, company, role } = req.body;
 
-    //Only name, email and password are required
+    let { name, password, email, company, role } = req.body
+
     if (!name || !password || !email) {
         res.status(400).json({ message: "Please ensure you have entered your Name, Email and Password", status: 400 });
         return;
@@ -35,33 +36,26 @@ const registerController = asyncWrapper(async (req, res) => {
 
     //Role of user depends on existence of company
     if (company) {
-        await User.create({
-            name: name,
-            email: email,
+        if (role === "fund manager"){
+            role = "pending"
+        }
+        const user = await User.create({ //funding manager
+            name,
             password: encryptedPassword,
-            role: role
-        });
-        const newUser = await User.findOne({ email: email }).exec();
+            email,
+            company,
+            role
+        })
+        console.log(user)
 
-        await FundingManager.create({
-            user_id: newUser._id,
-            name: name,
-            email: email,
-            company: company
-        });
     } else {
-        await User.create({ 
-            name: name,
-            email: email,
-            password: encryptedPassword
-        });
-        const newUser = await User.findOne({ email: email }).exec();
-
-        await Applicant.create({
-            user_id: newUser._id,
-            name: name,
-            email: email
-        });
+        const user = await User.create({ //the applicant
+            name,
+            password: encryptedPassword,
+            email,
+            role
+        })
+        console.log(user)
     }
 
     res.status(201).json({ message: `${email} has been successfully registered.`, status: 201 });
