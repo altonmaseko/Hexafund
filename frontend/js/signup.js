@@ -1,15 +1,11 @@
 // Get the element by its ID
 const element = document.getElementById('drop_down');
 
-
 axios.defaults.baseURL = "https://funding-website.azurewebsites.net/"
-
-
 
 // Add event listener for the select tag
 element.addEventListener('change', function (event) {
     const selectedIndex = event.target.selectedIndex;
-
 
     /* 
     * TODO:
@@ -20,7 +16,6 @@ element.addEventListener('change', function (event) {
 
     * These changes make things a bit easier and a little more efficient
     */
-
 
     // Check if the form already has a company input field
     let existingInput = document.getElementById('company_input');
@@ -33,7 +28,6 @@ element.addEventListener('change', function (event) {
             input.id = 'company_input';
             input.name = 'Company_Name';
             input.placeholder = 'Company name...';
-
 
             const refElement = document.getElementById("drop_down_label");
             const form = document.getElementById("login");
