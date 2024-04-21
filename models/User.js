@@ -1,5 +1,5 @@
 // imports
-const { roles } = require("../constants/index");
+const { PLATFORM_ADMIN, FUNDING_MANAGER, APPLICANT } = require("../constants/roles");
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
@@ -17,8 +17,8 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: [roles.PLATFORM_ADMIN, roles.FUNDING_MANAGER, roles.APPLICANT],
-        default: roles.APPLICANT
+        enum: [PLATFORM_ADMIN, FUNDING_MANAGER, APPLICANT],
+        default: APPLICANT
     },
     refreshToken: {
         type: String
