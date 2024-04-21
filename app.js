@@ -8,7 +8,6 @@ const verifyAccessToken = require("./middleware/verifyAccessToken")
 const cors = require("cors")
 const User = require("./models/User.js")
 
-
 // Routers
 
 const registerRouter = require("./routers/registerRouter")
@@ -25,7 +24,7 @@ app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
-app.use(express.static("./frontend/no-verification")) //serve the front end
+app.use(express.static("./frontend")) //serve the front end
 app.get("/")
 
 // Dont need an access token to do these:
@@ -37,19 +36,38 @@ app.use("/logout", logoutRouter)
 app.use(verifyAccessToken) //if access token is invalid, code will not continue ahead of this
 
 // PLACE HOLDER
+
 app.get("/home", async (req, res) => {
     const email = req.cookies.email
-console.log(`email: ${email}`)
+
+    console.log(`email: ${email}`)
+
     const user = await User.findOne({ email })
 
     console.log(`applicant? ${user?.role}`)
 
     if (user?.role === "applicant") {
+
         res.status(200).sendFile(path.join(__dirname, "frontend", "applicant.html"))
-    } else if (user?.role === "fund manager" || user?.role === "pending"){
+
+    } else if (user?.role === "fund manager") {
+
         res.status(200).sendFile(path.join(__dirname, "frontend", "fund-manager.html"))
-    } else {
+
+    } else if (user?.role === "pending") {
+
+        res.status(200).sendFile(path.join(__dirname, "frontend", "pendingVerification", "pendingVerification.html"))
+
+    } else if (user?.role === "admin") {
+        
+        console.log("admin page")
+        
+        res.status(200).sendFile(path.join(__dirname, "frontend", "RequestsPageAdminSide", "PlatformManagerReqLists.html"))
+
+    } else  {
+        
         res.status(401).send("PLEASE LOG IN FIRST")
+
     }
 
 })

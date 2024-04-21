@@ -4,7 +4,6 @@ const element = document.getElementById('drop_down');
 axios.defaults.baseURL = "https://funding-website.azurewebsites.net/"
 
 
-
 // Add event listener for the select tag
 element.addEventListener('change', function (event) {
     const selectedIndex = event.target.selectedIndex;
@@ -49,12 +48,16 @@ signUpBtn.addEventListener('click', async function (event) {
     const name = "test"
     const email = document.getElementById("email_input").value
     const password = document.getElementById("password_input").value
+    const role = document.getElementById("drop_down").value
+    const company = document.getElementById("company_input")?.value
 
     // TRYING AXIOS
     const body = {
         name: name,
         password: password,
-        email: email
+        email: email,
+        role,
+        company
     }
 
     try {
@@ -62,7 +65,9 @@ signUpBtn.addEventListener('click', async function (event) {
         const response = await axios.post("/register", body)
         console.log(response.data)
 
+        setTimeout(() => {
         window.location.href = "../login_page.html"
+        }, 5000);
 
     } catch (error) {
         console.log(error.response)

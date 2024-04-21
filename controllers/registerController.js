@@ -6,7 +6,7 @@ const asyncWrapper = require("../middleware/asyncWrapper")
 
 const registerController = asyncWrapper(async (req, res) => {
 
-    const { name, password, email, company, role } = req.body
+    let { name, password, email, company, role } = req.body
 
     if (!name || !password || !email) {
         res.status(400).json({ message: "Please enter username AND password AND email", status: 400 })
@@ -24,19 +24,26 @@ const registerController = asyncWrapper(async (req, res) => {
 
 
     if (company) {
-        await User.create({ //funding manager
+        if (role === "fund manager"){
+            role = "pending"
+        }
+        const user = await User.create({ //funding manager
             name,
             password: encryptedPassword,
             email,
             company,
             role
         })
+        console.log(user)
+
     } else {
-        await User.create({ //the applicant
+        const user = await User.create({ //the applicant
             name,
             password: encryptedPassword,
-            email
+            email,
+            role
         })
+        console.log(user)
     }
 
 

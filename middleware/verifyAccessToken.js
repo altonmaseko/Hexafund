@@ -6,7 +6,7 @@ const verifyAccessToken = async (req, res, next) => {
 
     const authHeader = req.headers.Authorization || req.headers.authorization
 
-    const cookieAccessToken = req.cookies.accessToken
+    let cookieAccessToken = req.cookies.accessToken
 
     let accessToken
 

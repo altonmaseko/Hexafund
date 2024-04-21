@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["fund manager", "applicant", "pending"],
+        enum: ["fund manager", "applicant", "pending", "admin"],
         default: "applicant"
     },
     refreshToken: {
