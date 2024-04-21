@@ -22,12 +22,13 @@ const registerController = asyncWrapper(async (req, res) => {
         return;
     }
 
-    const duplicateUser = await User.findOne({ email: email }).exec();
+
+    const duplicateUser = await User.findOne({ email }).exec()
 
     //Check if email is already taken
     if (duplicateUser) {
-        res.status(409).json({ message: `The email: '${duplicateUser.email}' is already taken :)`, status: 409 });
-        return;
+        res.status(409).json({ message: `The email: '${duplicateUser.email}' is already taken :) `, status: 409 })
+        return
     }
 
     //Encrypt password
@@ -65,7 +66,9 @@ const registerController = asyncWrapper(async (req, res) => {
         });
     }
 
-    res.status(201).json({ message: `${email} has been successfully registered.`, status: 201 });
-});
+    res.status(201).json({ message: `${email} has been successfully registered.`, status: 201 })
+    
+})
+
 
 module.exports = registerController;
