@@ -27,7 +27,7 @@ const registerController = asyncWrapper(async (req, res) => {
 
     //Check if email is already taken
     if (duplicateUser) {
-        res.status(409).json({ message: `The email: '${duplicateUser.email}' is already taken :) `, status: 409 })
+        res.status(409).json({ message: `The email: '${duplicateUser.email}' is already taken :)`, status: 409 })
         return
     }
 

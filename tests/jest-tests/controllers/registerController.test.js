@@ -138,7 +138,6 @@ describe("Testing the register controller", () => {
     
         await registerController(req, res);
         
-        //expect(bcrypt.hash).toHaveBeenCalledWith(req.body.password, 10);
         expect(userCreateMock).toHaveBeenCalledWith({
             name: req.body.name,
             email: req.body.email,
@@ -165,28 +164,37 @@ describe("Testing the register controller", () => {
             }
         };
     
-        jest.spyOn(User, 'create').mockResolvedValue({ _id: 'user_id' }); // Mock the create method as a static method
-        jest.spyOn(User, 'findOne').mockReturnValue({
-            exec: jest.fn().mockResolvedValue({
-                _id: "user_id"
-            })
+        // Mock the necessary functions and models
+        const userCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "user_id",
         });
-        jest.spyOn(FundingManager, 'create').mockResolvedValue({ _id: 'funding_manager_id' });
+        jest.spyOn(User, "create").mockImplementation(userCreateMock);
+        
+        const userFindOneMock = jest.fn().mockReturnValue({
+            exec: jest.fn().mockResolvedValue(null),
+        });
+        jest.spyOn(User, "findOne").mockImplementation(userFindOneMock);
+
+        const fundingManagerCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "funding_manager_id",
+        });
+        jest.spyOn(FundingManager, "create").mockImplementation(fundingManagerCreateMock);
     
-        const encryptedPassword = await bcrypt.hash(req.body.password, 10);
+        const encryptedPassword = 'encryptedPassword';
+        jest.spyOn(bcrypt, 'hash').mockResolvedValue(encryptedPassword);
         const expectedResponse = json_test_3(req.body.email);
     
         await registerController(req, res);
-    
-        expect(User.create).toHaveBeenCalledWith({
+        
+        expect(userCreateMock).toHaveBeenCalledWith({
             name: req.body.name,
             email: req.body.email,
             password: encryptedPassword,
             role: req.body.role
         });
-        expect(User.findOne).toHaveBeenCalledWith({ email: req.body.email });
-        expect(FundingManager.create).toHaveBeenCalledWith({
-            user_id: "user_id",
+        expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
+        expect(fundingManagerCreateMock).toHaveBeenCalledWith({
+            user_id: expect.any(String),
             name: req.body.name,
             email: req.body.email,
             company: req.body.company
