@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "jest": "jest --verbose ./tests/jest-tests",
-    "start": "node app.js"
+    "start": "node app.js",
+    "playwright-local":"node playwright-local-server.js"
   },
   "author": "",
   "license": "ISC",

@@ -30,17 +30,14 @@ module.exports = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
-  projects: [
-    /* This configuration will run tests in desktop browsers */
-    {
-      name: 'Desktop Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    },
-    {
-      name: 'Desktop Firefox',
-      use: { ...devices['Desktop Firefox'], channel: 'firefox' },
-    }
-  ],
+
+  /* Configuration for the Playwright web server */
+  webServer: {
+    command: 'node playwright-local-server.js', // Command to start the web server
+    port: 3000, // Port on which the web server is running
+    timeout: 30000, // Timeout for the web server to start
+    reuseExistingServer: false, // Reuse an existing server if available
+  },
 
 
 });
