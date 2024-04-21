@@ -18,11 +18,6 @@ const logoutController = asyncWrapper(async (req, res) => {
 
     const refreshToken = cookies.jwt;
 
-    if (!refreshToken) {
-        res.status(204).json({message: "User never logged in", status: 204});
-        return;
-    }
-
     const user = await User.findOne({ refreshToken: refreshToken }).exec();
 
     if (!user.refreshToken) {
@@ -31,6 +26,7 @@ const logoutController = asyncWrapper(async (req, res) => {
         return;
     }
 
+    // refresh token is present. clear it and return status 200
     user.refreshToken = "";
     await user.save();
 

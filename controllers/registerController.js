@@ -53,8 +53,7 @@ const registerController = asyncWrapper(async (req, res) => {
         await User.create({ 
             name: name,
             email: email,
-            password: encryptedPassword,
-            role: role
+            password: encryptedPassword
         });
         const newUser = await User.findOne({ email: email }).exec();
 

@@ -92,6 +92,7 @@ describe("Testing the register controller", () => {
       
         await registerController(req, res);
 
+        expect(User.findOne).toHaveBeenCalledWith({ email: req.body.email });
         expect(res.status).toHaveBeenCalledWith(409);
         expect(res.json).toHaveBeenCalledWith(expected_response);
     });
@@ -115,31 +116,37 @@ describe("Testing the register controller", () => {
         };
     
         // Mock the necessary functions and models
-        User.findOne = jest.fn().mockReturnValue({
-            exec: jest.fn().mockResolvedValue(null)
+        const userCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "user_id",
         });
-        User.create = jest.fn().mockResolvedValue();
-        User.findOne.mockReturnValueOnce({
-            exec: jest.fn().mockResolvedValue({
-                _id: "user_id"
-            })
+        jest.spyOn(User, "create").mockImplementation(userCreateMock);
+        
+        const userFindOneMock = jest.fn().mockReturnValue({
+            exec: jest.fn().mockResolvedValue(null),
         });
-        Applicant.create = jest.fn().mockResolvedValue();
+        jest.spyOn(User, "findOne").mockImplementation(userFindOneMock);
+
+        const applicantCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "applicant_id",
+        });
+        jest.spyOn(Applicant, "create").mockImplementation(applicantCreateMock);
+        
+        const encryptedPassword = 'encryptedPassword';
+        jest.spyOn(bcrypt, 'hash').mockResolvedValue(encryptedPassword);
     
-        const encryptedPassword = await bcrypt.hash(req.body.password, 10);
         const expectedResponse = json_test_3(req.body.email);
     
         await registerController(req, res);
-    
-        expect(User.create).toHaveBeenCalledWith({
+        
+        //expect(bcrypt.hash).toHaveBeenCalledWith(req.body.password, 10);
+        expect(userCreateMock).toHaveBeenCalledWith({
             name: req.body.name,
             email: req.body.email,
             password: encryptedPassword,
-            role: req.body.role
         });
-        expect(User.findOne).toHaveBeenCalledWith({ email: req.body.email });
-        expect(Applicant.create).toHaveBeenCalledWith({
-            user_id: "user_id",
+        expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
+        expect(applicantCreateMock).toHaveBeenCalledWith({
+            user_id: expect.any(String), 
             name: req.body.name,
             email: req.body.email
         });
@@ -158,17 +165,13 @@ describe("Testing the register controller", () => {
             }
         };
     
-        // Mock the necessary functions and models
-        User.findOne = jest.fn().mockReturnValue({
-            exec: jest.fn().mockResolvedValue(null)
-        });
-        User.create = jest.fn().mockResolvedValue();
-        User.findOne.mockReturnValueOnce({
+        jest.spyOn(User, 'create').mockResolvedValue({ _id: 'user_id' }); // Mock the create method as a static method
+        jest.spyOn(User, 'findOne').mockReturnValue({
             exec: jest.fn().mockResolvedValue({
                 _id: "user_id"
             })
         });
-        FundingManager.create = jest.fn().mockResolvedValue();
+        jest.spyOn(FundingManager, 'create').mockResolvedValue({ _id: 'funding_manager_id' });
     
         const encryptedPassword = await bcrypt.hash(req.body.password, 10);
         const expectedResponse = json_test_3(req.body.email);

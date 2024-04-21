@@ -48,8 +48,10 @@ const loginController = asyncWrapper(async (req, res) => {
         { expiresIn: "1d" } //TODO: change expiration time
     );
 
-    user.refreshToken = refreshToken;
-    await user.save();
+    // await user.updateOne({ refreshToken: refreshToken });
+    await User.updateOne({ email: email }, { refreshToken: refreshToken });
+    // user.refreshToken = refreshToken;
+    // await user.save();
 
     //TODO: change max age
     res.cookie("jwt", refreshToken, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }); //24 hours in milliseconds
