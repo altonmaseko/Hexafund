@@ -1,7 +1,13 @@
-const mongoose = require("mongoose")
+// imports
+const { PLATFORM_ADMIN, FUNDING_MANAGER, APPLICANT } = require("../constants/roles");
+const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
     name: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true
     },
@@ -9,20 +15,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email:{
-        type: String
-    },
-    company: {
-        type: String
-    },
     role: {
         type: String,
-        enum: ["fund manager", "applicant", "pending", "admin"],
-        default: "applicant"
+        enum: [PLATFORM_ADMIN, FUNDING_MANAGER, APPLICANT],
+        default: APPLICANT
     },
     refreshToken: {
         type: String
     }
-})
+});
 
-module.exports = mongoose.model("User", UserSchema)
+module.exports = mongoose.model("User", UserSchema);
