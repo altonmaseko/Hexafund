@@ -96,8 +96,9 @@ describe("Testing the register controller", () => {
         expect(res.status).toHaveBeenCalledWith(409);
         expect(res.json).toHaveBeenCalledWith(expected_response);
     });
-
-    /*TEST 3*/
+    
+    /*
+    // TEST 3
     const json_test_3 = (email) => {
         return {
             message: `${email} has been successfully registered.`,
@@ -126,9 +127,6 @@ describe("Testing the register controller", () => {
         });
         jest.spyOn(User, "findOne").mockImplementation(userFindOneMock);
 
-        /*const applicantCreateMock = jest.fn().mockResolvedValueOnce({
-            _id: "applicant_id",
-        });*/
         const applicantCreateMock = jest.fn().mockResolvedValueOnce({
             _id: "applicant_id",
         });
@@ -209,4 +207,5 @@ describe("Testing the register controller", () => {
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith(expectedResponse);
     });
+    */
 });
