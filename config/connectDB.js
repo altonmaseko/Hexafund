@@ -1,12 +1,12 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb://localhost:27017/FundingRequestsManagement") //TEMPORARY LOCAL DATABASE
-        // await mongoose.connect(process.env.CONNECTION_URI)
+        // await mongoose.connect("mongodb://localhost:27017/FundingRequestsManagement"); //TEMPORARY LOCAL DATABASE
+        await mongoose.connect(process.env.CONNECTION_URI); //PRODUCTION DATABASE
     } catch (error) {
-        console.log(error)
+        console.log(error.message);
     }
 }
 
-module.exports = connectDB
+module.exports = connectDB;

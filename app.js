@@ -49,7 +49,7 @@ app.get("/home", async (req, res) => {
     if (user?.role === "Applicant") 
     {
         console.log("applicant home page");
-        res.status(200).sendFile(path.join(__dirname, "frontend/Applicant-Pages", "home-page.html"));
+        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
     } 
     else if (user?.role === "Funding Manager") 
     {
@@ -59,18 +59,18 @@ app.get("/home", async (req, res) => {
         if (fundingManager?.account_details.account_active) 
         {
             console.log("funding manager home page");
-            res.status(200).sendFile(path.join(__dirname, "frontend/Funding-Manager-Pages", "home-page.html"));
+            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "home-page.html"));
         } 
         else 
         {
             console.log("funding manager awaiting approval page");
-            res.status(200).sendFile(path.join(__dirname, "frontend/Funding-Manager-Pages", "awaiting-approval.html"))
+            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"))
         }
     } 
     else 
     {
         console.log("admin page");
-        res.status(200).sendFile(path.join(__dirname, "frontend/Platform-Admin-Pages", "approval-dashboard.html"));
+        res.status(200).sendFile(path.join(__dirname, "frontend", "Platform-Admin-Pages", "approval-dashboard.html"));
     } 
 });
 // END: PLACE HOLDER
