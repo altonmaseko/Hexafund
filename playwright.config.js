@@ -30,6 +30,18 @@ module.exports = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
+  projects: [
+    /* This configuration will run tests in desktop browsers */
+    {
+      name: 'Desktop Chrome',
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    },
+    {
+      name: 'Desktop Firefox',
+      use: { ...devices['Desktop Firefox'], channel: 'firefox' },
+    }
+  ],
+
 
 });
 
