@@ -10,7 +10,7 @@ const verifyAccessToken = async (req, res, next) => {
 
     let accessToken;
 
-    const cookieAccessToken = req.cookies.accessToken
+    let cookieAccessToken = req.cookies.accessToken
 
     let accessToken
 
