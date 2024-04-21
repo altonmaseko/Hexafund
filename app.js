@@ -41,6 +41,9 @@ app.get("/home", async (req, res) => {
 
     const user = await User.findOne({ email: email });
 
+    if(!user) 
+        return res.status(401).json({ message: "PLEASE LOG IN FIRST" });
+
     console.log(`applicant? ${user?.role}`);
 
     if (user?.role === "Applicant") 
@@ -64,14 +67,11 @@ app.get("/home", async (req, res) => {
             res.status(200).sendFile(path.join(__dirname, "frontend/Funding-Manager-Pages", "awaiting-approval.html"))
         }
     } 
-    else if (user?.role === "Admin") 
+    else 
     {
         console.log("admin page");
         res.status(200).sendFile(path.join(__dirname, "frontend/Platform-Admin-Pages", "approval-dashboard.html"));
     } 
-    else  {
-        res.status(401).json({ message: "PLEASE LOG IN FIRST" });
-    }
 });
 // END: PLACE HOLDER
 
