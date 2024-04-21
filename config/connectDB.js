@@ -5,7 +5,7 @@ const connectDB = async () => {
         // await mongoose.connect("mongodb://localhost:27017/FundingRequestsManagement"); //TEMPORARY LOCAL DATABASE
         await mongoose.connect(process.env.CONNECTION_URI); //PRODUCTION DATABASE
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 }
 
