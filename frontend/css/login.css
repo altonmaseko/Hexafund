@@ -1,7 +1,8 @@
 body {
     margin: 0;
 }
-section{
+
+section {
     color: white;
     background-color: rgba(150,187,186,255);
     background-size: cover;
@@ -12,7 +13,8 @@ section{
     min-height: 100vh;
     text-align: center;
 }
-article{
+
+article {
     border-radius: 10px;
     padding: 30px 40px;
     background-color: transparent;
@@ -22,15 +24,18 @@ article{
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
 }
-#login_title{
+
+#login_title {
     font-size: xxx-large;
 }
-#logo_image{
+
+#logo_image {
     border-radius: 40px;
     width: 555.5px;
     height: 444.4px;
 }
-#email_input{
+
+#email_input {
     border-radius: 40px;
     width: 500px;
     height: 60px;
@@ -39,9 +44,9 @@ article{
     font-size: large;
     color: white;
     border: 2px solid rgba(255, 255, 255, .2);
-
 }
-#password_input{
+
+#password_input {
     border-radius: 40px;
     width: 500px;
     height: 60px;
@@ -50,9 +55,9 @@ article{
     font-size: large;
     color: white;
     border: 2px solid rgba(255, 255, 255, .2);
-
 }
-#submit_button{
+
+#submit_button {
     color: white;
     background-color: #3c7474;
     border-radius: 15px;
@@ -60,6 +65,7 @@ article{
     height: 60px;
     width: 400px;
 }
+
 footer {
     background-color: rgba(0,62,64,255);
     padding: 20px;
