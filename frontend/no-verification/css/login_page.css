@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+}
+section{
+    color: white;
+    background-color: rgba(150,187,186,255);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+article{
+    border-radius: 10px;
+    padding: 30px 40px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    height: 500px;
+    width: 500px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+#login_title{
+    font-size: xxx-large;
+}
+#logo_image{
+    border-radius: 40px;
+    width: 555.5px;
+    height: 444.4px;
+}
+#email_input{
+    border-radius: 40px;
+    width: 500px;
+    height: 60px;
+    background-color: transparent;
+    padding-left: 10px;
+    font-size: large;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, .2);
+
+}
+#password_input{
+    border-radius: 40px;
+    width: 500px;
+    height: 60px;
+    background-color: transparent;
+    padding-left: 10px;
+    font-size: large;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, .2);
+
+}
+#submit_button{
+    color: white;
+    background-color: #3c7474;
+    border-radius: 15px;
+    font-size: large;
+    height: 60px;
+    width: 400px;
+}
+footer {
+    background-color: rgba(0,62,64,255);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}

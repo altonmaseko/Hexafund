@@ -1,11 +1,15 @@
 // Get the element by its ID
 const element = document.getElementById('drop_down');
 
-axios.defaults.baseURL = "https://funding-website.azurewebsites.net/";
+
+axios.defaults.baseURL = "https://funding-website.azurewebsites.net/"
+
+
 
 // Add event listener for the select tag
 element.addEventListener('change', function (event) {
     const selectedIndex = event.target.selectedIndex;
+
 
     /* 
     * TODO:
@@ -16,6 +20,7 @@ element.addEventListener('change', function (event) {
 
     * These changes make things a bit easier and a little more efficient
     */
+
 
     // Check if the form already has a company input field
     let existingInput = document.getElementById('company_input');
@@ -29,6 +34,7 @@ element.addEventListener('change', function (event) {
             input.name = 'Company_Name';
             input.placeholder = 'Company name...';
 
+
             const refElement = document.getElementById("drop_down_label");
             const form = document.getElementById("login");
             //TODO add padding or smth
@@ -37,41 +43,50 @@ element.addEventListener('change', function (event) {
     } else {
         // If the role changes away from fund manager, remove the company input field
         // TODO: Instead of removing it, just make it so that the user cannot use it
+
         if (existingInput) {
             existingInput.remove();
         }
     }
 });
 
-const signUpBtn = document.getElementById("submit_button");
+
+
+const signUpBtn = document.getElementById("submit_button")
+
 
 signUpBtn.addEventListener('click', async function (event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    const selectedIndex = document.getElementById('drop_down').selectedIndex;
-    const endpoint = "https://funding-website.azurewebsites.net/register";
+
+    const selectedIndex = document.getElementById('drop_down').selectedIndex
+    const endpoint = "https://funding-website.azurewebsites.net/register"
     //TODO get name element
-    const name = "test";
-    const email = document.getElementById("email_input").value;
-    const password = document.getElementById("password_input").value;
+    const name = "test"
+    const email = document.getElementById("email_input").value
+    const password = document.getElementById("password_input").value
 
     // TRYING AXIOS
     const body = {
         name: name,
         password: password,
         email: email
-    };
+
+    }
 
     try {
-        console.log(body);
-        const response = await axios.post("/register", body);
-        console.log(response.data);
+        console.log(body)
+        const response = await axios.post("/register", body)
+        console.log(response.data)
 
-        window.location.href = "../login_page.html";
+        window.location.href = "../login_page.html"
 
     } catch (error) {
-        console.log(error.response);
+        console.log(error.response)
     }
+
+
+
     // END: TRYING AXIOS
 
     // body

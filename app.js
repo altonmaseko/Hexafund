@@ -38,8 +38,10 @@ app.use(verifyAccessToken) //if access token is invalid, code will not continue 
 
 // PLACE HOLDER
 app.get("/home", async (req, res) => {
+    const email = req.cookies.email
+console.log(`email: ${email}`)
+    const user = await User.findOne({ email })
 
-    const user = await User.findOne({ name: req.userInfo.name })
     console.log(`applicant? ${user?.role}`)
 
     if (user?.role === "applicant") {
@@ -66,7 +68,6 @@ const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}...`)
 })
-
 
 connectDB()
 mongoose.connection.once("connected", async () => {
