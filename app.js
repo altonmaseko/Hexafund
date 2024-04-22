@@ -9,11 +9,18 @@ const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
 const User = require("./models/User.js");
 
+const { 
+    PLATFORM_ADMIN, 
+    FUNDING_MANAGER, 
+    APPLICANT 
+} = require("./constants/roles.js")
+
 // Routers
 const registerRouter = require("./routers/registerRouter");
 const loginRouter = require("./routers/loginRouter");
 const refreshRouter = require("./routers/refreshRouter");
 const logoutRouter = require("./routers/logoutRouter");
+const Applicant = require("./models/Applicant.js");
 // END: Routers
 
 const app = express();
@@ -23,7 +30,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(express.static("./frontend")); //serve the front end
-app.get("/");
 
 // Dont need an access token to do these:
 app.use("/register", registerRouter);
@@ -41,17 +47,18 @@ app.get("/home", async (req, res) => {
 
     const user = await User.findOne({ email: email });
 
-    if(!user) 
+    if(!user) {
         return res.status(401).json({ message: "PLEASE LOG IN FIRST" });
+    }
 
     console.log(`applicant? ${user?.role}`);
 
-    if (user?.role === "Applicant") 
+    if (user?.role === APPLICANT) 
     {
         console.log("applicant home page");
         res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
     } 
-    else if (user?.role === "Funding Manager") 
+    else if (user?.role === FUNDING_MANAGER) 
     {
         const FundingManager = require("./models/FundingManager.js");
         const fundingManager = await FundingManager.findOne({ email: email });
@@ -67,7 +74,7 @@ app.get("/home", async (req, res) => {
             res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"))
         }
     } 
-    else 
+    else if ((user?.role === PLATFORM_ADMIN) )
     {
         console.log("admin page");
         res.status(200).sendFile(path.join(__dirname, "frontend", "Platform-Admin-Pages", "approval-dashboard.html"));
