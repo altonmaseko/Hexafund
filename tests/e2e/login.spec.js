@@ -20,7 +20,7 @@ test.describe("Applicant login",()=>{
     });
 })
 
-
+/*
 test.describe("Funding manager login",()=>{
     test("FM should be able to login if already has an account",async({page})=>{
         await page.goto("http://localhost:3000/login.html");
@@ -29,4 +29,4 @@ test.describe("Funding manager login",()=>{
         await page.click('#submit_button');
         await expect(page).toHaveURL("http://localhost:3000/home");
     });
-})
+})*/

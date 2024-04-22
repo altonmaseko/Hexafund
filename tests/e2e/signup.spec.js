@@ -1,10 +1,9 @@
 const { test, expect } = require('@playwright/test');
-const { v4: uuidv4 } = require('uuid');
 
 test.describe("Testing compontents",()=>{
     test("Dropdown should add/remove an extra field",async({page})=>{
         await page.goto("http://localhost:3000/signup.html");
-        await page.selectOption('#drop_down',{label:'Fund Manager'})
+        await page.selectOption('#drop_down',{label:'Funding Manager'})
         expect(await page.isVisible('input[name=Fund_Manager]'));
     });
 })

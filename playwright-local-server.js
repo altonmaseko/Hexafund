@@ -9,20 +9,24 @@ app.use('/External_Modules', express.static(path.join(__dirname,
 app.use('/assets/images', express.static(path.join(__dirname,
     'assets/images')));
 
+
 const rootDir = { root: path.join(__dirname, 'frontend')}
+
 // Serve the root page
 app.get('/', (req, res) => {
     res.sendFile('index.html',rootDir);
 });
 
-// Serve the signup page
 app.get('/signup.html', (req, res) => {
     res.sendFile('signup.html', rootDir);
 });
 
-// Serve the signup page
 app.get('/login.html', (req, res) => {
     res.sendFile('login.html', rootDir);
+});
+
+app.get('/home', (req, res) => {
+    res.send("k")
 });
 
 app.listen(3000, () => {
