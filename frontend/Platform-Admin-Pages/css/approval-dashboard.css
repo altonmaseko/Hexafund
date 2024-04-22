@@ -50,6 +50,12 @@ main {
     cursor: pointer;
 }
 
+#refresh-btn {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+}
+
 .approve-btn {
     background-color: #4CAF50;
     color: white;
