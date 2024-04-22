@@ -16,7 +16,9 @@ jobs:
       with:
         mongodb-version: 4.4.4
         mongodb-port: 27017
-        mongodb-db: FundingWebsite  
+        mongodb-db: FundingWebsite 
+      id: mongo-setup
+       
     - name: Use local MongoDB instance
       run: |
           MONGODB_URI="${{ steps.mongo-setup.outputs.mongodb-uri }}"
