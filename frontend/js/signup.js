@@ -75,7 +75,7 @@ signUpBtn.addEventListener('click', async function (event) {
         console.log(response.data)
 
         setTimeout(() => {
-        window.location.href = "../login_page.html"
+        window.location.href = "../login.html"
         }, 500);
 
     } catch (error) {
