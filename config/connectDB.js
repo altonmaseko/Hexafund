@@ -5,11 +5,11 @@ const connectDB = async () => {
         if (process.env.NODE_ENV === "development") {
             let connectionURI = "";
             if (process.env.CI) {
-                connectionURI = `mongodb://root:${process.env.MONGODB_ROOT_PASSWORD}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`;
+                connectionURI = `mongodb://127.0.0.1:27017/FundingRequestsManagement`;
             }else{
                 connectionURI = "mongodb://localhost:27017/FundingRequestsManagement"
             }
-            
+            //mongodb://127.0.0.1:27017
             await mongoose.connect(connectionURI);
         }
     } catch (error) {

@@ -28,7 +28,7 @@ async function initializeDatabase() {
     }
 
 
-    await User.deleteMany({});
+    //await User.deleteMany({});
 
     // Create an admin user
     await User.create({
