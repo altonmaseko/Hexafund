@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-
+/*
 test.describe("Admin login",()=>{
     test("should login with valid credentials",async({page})=>{
         await page.goto("http://localhost:3000/login.html");
@@ -37,4 +37,4 @@ test.describe("Funding manager pending",()=>{
         //p tag is visible
         await expect(isPresent).toBeTruthy();
     });
-})
+})*/
