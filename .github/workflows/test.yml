@@ -1,10 +1,9 @@
 name: Local MongoDB Workflow
 
 on:
-    workflow_dispatch:
-  #push:
-  #  branches:
-  #    - dev
+  push:
+    branches:
+      - dev
 
 jobs:
   local-mongodb:
