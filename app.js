@@ -89,7 +89,7 @@ app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
 });
 
-const PORT = 3500//process.env.PORT;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}...`)
 });
