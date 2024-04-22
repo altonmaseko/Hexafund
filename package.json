@@ -6,7 +6,8 @@
   "scripts": {
     "jest": "jest --verbose ./tests/jest-tests",
     "start": "node app.js",
-    "playwright-local":"node playwright-local-server.js"
+    "deploy": "git init && git add . && git commit ",
+    "playwright-local": "node playwright-local-server.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
     "playwright": "^1.43.1"
   },

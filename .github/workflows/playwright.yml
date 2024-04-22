@@ -11,10 +11,19 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.10.0
+      with:
+        mongodb-version: 4.4.4
+        mongodb-port: 27017
+        mongodb-db: FundingRequestsManagement 
+        
     - name: Install dependencies
       run: npm ci
+    #- name: Install Playwright Browsers
+    #  run: npx playwright install --with-deps
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
