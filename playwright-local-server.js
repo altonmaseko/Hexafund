@@ -19,11 +19,15 @@ const {
 
 // Initialize the database with an admin user
 async function initializeDatabase() {
+    await connectDB();
+
     // Delete all users (be cautious with this in a production environment)
     if (process.env.NODE_ENV !== "development") {
         console.log("Not in development mode, skipping database initialization");
         return;
     }
+
+
     await User.deleteMany({});
 
     // Create an admin user
@@ -134,7 +138,6 @@ app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}...`)
 });
 
-connectDB();
 initializeDatabase();
 
 mongoose.connection.once("connected", async () => {
