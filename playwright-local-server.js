@@ -97,7 +97,8 @@ app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.NODE_ENV === 'development' ? 3000 : process.env.PORT;
+
 app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}...`)
 });
