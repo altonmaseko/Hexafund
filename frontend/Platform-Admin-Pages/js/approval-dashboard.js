@@ -1,4 +1,4 @@
-const FundingManager = require("../../../models/FundingManager");
+const FundingManager = require("../../../models/FundingManager.js");
 
 const { FUNDING_MANAGER, PLATFORM_ADMIN } = require("./constants/roles")
 

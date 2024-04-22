@@ -16,6 +16,44 @@ const {
     APPLICANT 
 } = require("./constants/roles.js")
 
+
+// Initialize the database with an admin user
+async function initializeDatabase() {
+    // Delete all users (be cautious with this in a production environment)
+    if (process.env.NODE_ENV !== "development") {
+        return;
+    }
+    await User.deleteMany({});
+
+    // Create an admin user
+    await User.create({
+        name: "admin",
+        email: "admin@gmail.com",
+        password: await bcrypt.hash("admin123", 10),
+        role: PLATFORM_ADMIN,
+    });
+
+    await User.create({
+        name: "testapplicant",
+        email: "testapplicant@gmail.com",
+        password: await bcrypt.hash("applicant123", 10),
+        role: APPLICANT,
+    });
+
+
+    await User.create({
+        name: "testfund",
+        email: "testfund@gmail.com",
+        password: await bcrypt.hash("fund123", 10),
+        role: FUNDING_MANAGER,
+    });
+
+    console.log("Database initialized");
+}
+
+
+
+
 // Routers
 const registerRouter = require("./routers/registerRouter");
 const loginRouter = require("./routers/loginRouter");
@@ -40,19 +78,11 @@ app.use("/logout", logoutRouter);
 
 app.use(verifyAccessToken); //if access token is invalid, code will not continue ahead of this
 
+
 // PLACE HOLDER
 app.get("/home", async (req, res) => {
     const email = req.cookies.email;
-
     console.log(`email: ${email}`);
-    
-    await User.create({
-        name:"admin",
-        email:"admin@gmail.com",
-        password: await bcrypt.hash("admin123",10),
-        role:"Platform Admin"
-    });
-
     const user = await User.findOne({ email: email });
 
     if(!user) {
@@ -104,6 +134,8 @@ app.listen(PORT, () => {
 });
 
 connectDB();
+initializeDatabase();
+
 mongoose.connection.once("connected", async () => {
     console.log("SUCCESSFULLY CONNECTED TO DATABASE")
 });
