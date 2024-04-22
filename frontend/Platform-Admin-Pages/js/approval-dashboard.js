@@ -1,7 +1,5 @@
 import FundingManager from "../../../models/FundingManager";
 
-const { FUNDING_MANAGER, PLATFORM_ADMIN } = require("./constants/roles")
-
 document.addEventListener("DOMContentLoaded", (event) => {
     let requests_section = document.getElementsByClassName("requests")[0];
     let refresh_button = document.getElementById("refresh-button");
