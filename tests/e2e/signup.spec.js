@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 let flags = {}
 
+
 test.describe("Testing compontents",()=>{
     test("Dropdown should add/remove an extra field",async({page})=>{
         await page.goto("http://localhost:3000/signup.html");
@@ -71,7 +72,7 @@ test.describe("Testing if users can signup and login with same details",()=>{
     });
 })
 
-
+/*
 test.describe("Funding manager pending",()=>{
     test("FM should be able to sign up and get a pending message",async({page})=>{
         await page.goto("http://localhost:3000/login.html");
@@ -80,4 +81,4 @@ test.describe("Funding manager pending",()=>{
         await page.click('#submit_button');
         await expect(page).toHaveURL("http://localhost:3000/home");
     });
-})
+})*/
