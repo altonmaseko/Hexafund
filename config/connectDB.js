@@ -9,6 +9,7 @@ const connectDB = async () => {
             }else{
                 connectionURI = "mongodb://localhost:27017/FundingRequestsManagement"
             }
+            
             await mongoose.connect(connectionURI);
         }
     } catch (error) {

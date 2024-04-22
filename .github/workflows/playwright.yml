@@ -16,13 +16,7 @@ jobs:
       with:
         mongodb-version: 4.4.4
         mongodb-port: 27017
-        mongodb-db: FundingWebsite 
-      id: mongo-setup
-       
-    - name: Use local MongoDB instance
-      run: |
-          MONGODB_URI="${{ steps.mongo-setup.outputs.mongodb-uri }}"
-          echo "Using local MongoDB instance with URI: $MONGODB_URI"
+        mongodb-db: FundingRequestsManagement 
         
     - name: Install dependencies
       run: npm ci
