@@ -21,6 +21,7 @@ const {
 async function initializeDatabase() {
     // Delete all users (be cautious with this in a production environment)
     if (process.env.NODE_ENV !== "development") {
+        console.log("Not in development mode, skipping database initialization");
         return;
     }
     await User.deleteMany({});

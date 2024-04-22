@@ -4,6 +4,9 @@ on:
     branches: [dev]
 jobs:
   test:
+    strategy:
+      matrix:
+        mongodb-version: [4.4]
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -14,7 +17,10 @@ jobs:
     - name: Start MongoDB
       uses: supercharge/mongodb-github-action@1.10.0
       with:
-        mongodb-version: 4.4.4
+        mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-port: 27017
+        mongodb-database: FundingWebsite
+        
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
