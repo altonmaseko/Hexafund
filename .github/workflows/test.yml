@@ -1,6 +1,7 @@
 name: Local MongoDB Workflow
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
