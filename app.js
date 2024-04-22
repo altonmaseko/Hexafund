@@ -47,8 +47,8 @@ app.get("/home", async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if(!user) {
-        alert("User does not exist");
-        return res.status(401).json({ message: "User does not exist" });
+        alert("Please login to continue.");
+        return res.status(401).json({ message: "Please login to continue" });
     }
 
     console.log(`applicant? ${user?.role}`);
@@ -71,6 +71,7 @@ app.get("/home", async (req, res) => {
         else 
         {
             console.log("funding manager awaiting approval page");
+            alert(fundingManager.account_details.reason);
             res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"))
         }
     } 
@@ -88,7 +89,7 @@ app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
 });
 
-const PORT = process.env.PORT;
+const PORT = 3500//process.env.PORT;
 app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}...`)
 });
