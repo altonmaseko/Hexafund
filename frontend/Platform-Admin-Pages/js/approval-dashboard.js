@@ -1,6 +1,4 @@
-const FundingManager = require("../../../models/FundingManager.js");
-
-const { FUNDING_MANAGER, PLATFORM_ADMIN } = require("./constants/roles")
+import FundingManager from "../../../models/FundingManager";
 
 document.addEventListener("DOMContentLoaded", (event) => {
     let requests_section = document.getElementsByClassName("requests")[0];

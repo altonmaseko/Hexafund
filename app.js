@@ -7,20 +7,19 @@ const connectDB = require("./config/connectDB");
 require("dotenv").config();
 const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
-const User = require("./models/User.js");
+const User = require("./models/User");
 
 const { 
     PLATFORM_ADMIN, 
     FUNDING_MANAGER, 
     APPLICANT 
-} = require("./constants/roles.js")
+} = require("./constants/roles")
 
 // Routers
 const registerRouter = require("./routers/registerRouter");
 const loginRouter = require("./routers/loginRouter");
 const refreshRouter = require("./routers/refreshRouter");
 const logoutRouter = require("./routers/logoutRouter");
-const Applicant = require("./models/Applicant.js");
 // END: Routers
 
 const app = express();
@@ -48,7 +47,8 @@ app.get("/home", async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if(!user) {
-        return res.status(401).json({ message: "PLEASE LOG IN FIRST" });
+        alert("User does not exist");
+        return res.status(401).json({ message: "User does not exist" });
     }
 
     console.log(`applicant? ${user?.role}`);
@@ -82,7 +82,7 @@ app.get("/home", async (req, res) => {
 });
 // END: PLACE HOLDER
 
-app.use(require("./middleware/errorHandler.js"));
+app.use(require("./middleware/errorHandler"));
 
 app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
@@ -94,7 +94,7 @@ app.listen(PORT, () => {
 });
 
 connectDB();
-mongoose.connection.once("connected", async () => {
+mongoose.connection.on("connected", async () => {
     console.log("SUCCESSFULLY CONNECTED TO DATABASE")
 });
 mongoose.connection.on("disconnected", () => {
