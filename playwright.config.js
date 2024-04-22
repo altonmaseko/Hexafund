@@ -26,7 +26,6 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
@@ -38,7 +37,5 @@ module.exports = defineConfig({
     timeout: 30000, // Timeout for the web server to start
     reuseExistingServer: false, // Reuse an existing server if available
   },
-
-
 });
 
