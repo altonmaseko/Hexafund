@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const ApplicantSchema = new mongoose.Schema({
-    user_id: {
-        type: String,
-        required: true
-    },
     name: {
         type: String,
         required: true
@@ -14,12 +10,9 @@ const ApplicantSchema = new mongoose.Schema({
         required: true
     },
     account_details: {
-        type: Object,
-        default: {
-            account_active: { type: Boolean, default: true },
-            reason: { type: String, default: "" },
-            infractions: { type: Number, default: 0 }
-        }
+        account_active: { type: Boolean, default: true },
+        reason: { type: String, default: "" },
+        infractions: { type: Number, default: 0 }
     },
     applications: {
         type: Array,

@@ -1,7 +1,8 @@
 // Get the element by its ID
 const element = document.getElementById('drop_down');
 
-axios.defaults.baseURL = "https://funding-website.azurewebsites.net/"
+axios.defaults.baseURL = "https://funding-website.azurewebsites.net/" // PRODUCTION URL
+// axios.defaults.baseURL = "http://localhost:3000/" // LOCAL URL
 
 // Add event listener for the select tag
 element.addEventListener('change', function (event) {
@@ -79,7 +80,7 @@ signUpBtn.addEventListener('click', async function (event) {
         }, 500);
 
     } catch (error) {
-        console.log(error.response)
+        console.log(error.response.data)
     }
 
 
