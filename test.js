@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:42069/test-db?replicaSet=test-rs';
+const mongoUri = process.env.CONNECTION_URI;
 
 async function connectAndExit() {
     try {
