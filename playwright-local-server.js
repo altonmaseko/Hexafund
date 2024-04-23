@@ -128,16 +128,13 @@ app.all("*", (req, res) => {
 
 const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
-    initializeDatabase()
-    
-    mongoose.connection.on("connected", async () => {
-        console.log("SUCCESSFULLY CONNECTED TO DATABASE");
+connectDB();
+mongoose.connection.on("connected", async () => {
+    console.log("SUCCESSFULLY CONNECTED TO DATABASE");
+    app.listen(PORT, () => {
+        console.log(`server listening on port: ${PORT}...`)
     });
-    mongoose.connection.on("disconnected", () => {
-        console.log("Lost connection to database")
-    });
-    connectDB();
-
-    console.log(`server listening on port: ${PORT}...`)
+});
+mongoose.connection.on("disconnected", () => {
+    console.log("Lost connection to database")
 });
