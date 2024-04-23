@@ -1,9 +1,7 @@
 name: Playwright Tests
 on:
-  workflow_dispatch:
-
-  #push:
-  #  branches: [dev]
+  push:
+    branches: [dev]
 jobs:
   test:
     timeout-minutes: 60
@@ -13,21 +11,26 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+        
     - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.10.0
+      uses: supercharge/mongodb-github-action@1.6.0
       with:
         mongodb-version: 4.4.4
-        mongodb-port: 27017
-        mongodb-db: FundingRequestsManagement 
+        mongodb-replica-set: test-rs
+        mongodb-port: 42069
     
     - name: Install dependencies
       run: npm ci
+
     #- name: Install Playwright Browsers
     #  run: npx playwright install --with-deps
+
     - name: Install Playwright Browsers
       run: npx playwright install
+
     - name: Run Playwright tests
       run: npx playwright test
+
     - uses: actions/upload-artifact@v4
       if: always()
       with:

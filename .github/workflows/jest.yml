@@ -1,7 +1,9 @@
 name: Jest Tests
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - dev
 
 jobs:
   unit-test:
