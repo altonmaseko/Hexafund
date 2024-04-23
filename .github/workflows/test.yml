@@ -1,17 +1,27 @@
 name: Local MongoDB Workflow
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   local-mongodb:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Adjust as needed based on the runner
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      # Install MongoDB shell
+      - name: Install MongoDB shell
+        run: |
+          # Add the MongoDB repository
+          wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+          echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+          sudo apt-get update
+          sudo apt-get install -y mongodb-org-shell
 
       - name: Setup local MongoDB instance
         uses: supercharge/mongodb-github-action@1.10.0
