@@ -7,7 +7,8 @@
     "jest": "jest --verbose ./tests/jest-tests",
     "start": "node app.js",
     "deploy": "git init && git add . && git commit ",
-    "playwright-local": "node playwright-local-server.js"
+    "playwright-server": "node playwright-local-server.js",
+    "playwright": "npx playwright test"
   },
   "author": "",
   "license": "ISC",
