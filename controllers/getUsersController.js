@@ -1,6 +1,5 @@
 
 
-const jwt = require("jsonwebtoken");
 const asyncWrapper = require("../middleware/asyncWrapper");
 
 const {
@@ -54,7 +53,7 @@ const getApplicants = asyncWrapper(async (req, res) => {
 
 const getFundingManagers = asyncWrapper(async (req, res) => {
 
-    let fundingManagers = await Applicant.find({})
+    let fundingManagers = await FundingManager.find({})
 
     const query = req.query
     console.log(query)
