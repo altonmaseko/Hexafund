@@ -47,7 +47,6 @@ app.use(verifyAccessToken); //if access token is invalid, code will not continue
 // Initialize the database with an admin user
 async function initializeDatabase() {
 
-
     await User.deleteMany({});
     // Create an admin user
     await User.create({
@@ -56,6 +55,8 @@ async function initializeDatabase() {
         password: await bcrypt.hash("admin123", 10),
         role: PLATFORM_ADMIN,
     });
+
+    console.log("CREATED")
 
     await User.create({
         name: "testapplicant",
@@ -129,6 +130,7 @@ const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
     initializeDatabase()
+    
     mongoose.connection.on("connected", async () => {
         console.log("SUCCESSFULLY CONNECTED TO DATABASE");
     });

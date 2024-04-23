@@ -17,6 +17,7 @@ async function connectAndExit() {
             name: String,
             email: String,
             password: String,
+            role : String
         });
 
         // Create a model based on the schema
@@ -27,6 +28,7 @@ async function connectAndExit() {
             name: 'John Doe',
             email: 'john@example.com',
             password: 'password123',
+            role: 'APPLICANT'
         });
 
         // Save the user to the database
