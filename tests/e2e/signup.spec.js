@@ -36,7 +36,8 @@ test.describe("Testing if users can signup and login with same details",()=>{
         await page.fill('#email_input',user);
         await page.fill('#password_input',pass);
         await page.click('#submit_button');
-        await expect(page). toHaveURL("http://localhost:3000/home");
+
+        await expect(page).toHaveURL("http://localhost:3000/home");
     });
 
 
@@ -70,9 +71,8 @@ test.describe("Testing if users can signup and login with same details",()=>{
         //should go to login
         await expect(page). toHaveURL("http://localhost:3000/home");
     });
-})
+});
 
-/*
 test.describe("Funding manager pending",()=>{
     test("FM should be able to sign up and get a pending message",async({page})=>{
         await page.goto("http://localhost:3000/login.html");
@@ -81,4 +81,4 @@ test.describe("Funding manager pending",()=>{
         await page.click('#submit_button');
         await expect(page).toHaveURL("http://localhost:3000/home");
     });
-})*/
+})

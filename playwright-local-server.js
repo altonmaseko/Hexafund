@@ -7,29 +7,48 @@ const connectDB = require("./config/connectDB");
 require("dotenv").config();
 const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
-const User = require("./models/User.js");
+const User = require("./models/User");
 const bcrypt = require("bcrypt");
 
 const { 
     PLATFORM_ADMIN, 
     FUNDING_MANAGER, 
     APPLICANT 
-} = require("./constants/roles.js")
+} = require("./constants/roles")
 
+// Routers
+const registerRouter = require("./routers/registerRouter");
+const loginRouter = require("./routers/loginRouter");
+const refreshRouter = require("./routers/refreshRouter");
+const logoutRouter = require("./routers/logoutRouter");
+const userRouter = require("./routers/userRouter.js")
+// END: Routers
+
+const app = express();
+
+app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
+
+app.use(express.static("./frontend")); //serve the front end
+
+// Dont need an access token to do these:
+app.use("/register", registerRouter);
+app.use("/login", loginRouter);
+app.use("/refresh", refreshRouter); //Need a refresh token to create new access token. If no refresh token, wont continue.
+app.use("/logout", logoutRouter);
+
+app.use("/api/v1", userRouter); //handle getting users request
+
+// -----------------------------------
+
+app.use(verifyAccessToken); //if access token is invalid, code will not continue ahead of this
 
 // Initialize the database with an admin user
 async function initializeDatabase() {
-    await connectDB();
-
-    // Delete all users (be cautious with this in a production environment)
-    if (process.env.NODE_ENV !== "development") {
-        console.log("Not in development mode, skipping database initialization");
-        return;
-    }
 
 
-    //await User.deleteMany({});
-
+    await User.deleteMany({});
     // Create an admin user
     await User.create({
         name: "admin",
@@ -56,43 +75,17 @@ async function initializeDatabase() {
     console.log("Database initialized");
 }
 
-
-
-
-// Routers
-const registerRouter = require("./routers/registerRouter");
-const loginRouter = require("./routers/loginRouter");
-const refreshRouter = require("./routers/refreshRouter");
-const logoutRouter = require("./routers/logoutRouter");
-const Applicant = require("./models/Applicant.js");
-// END: Routers
-
-const app = express();
-
-app.use(cors());
-app.use(cookieParser());
-app.use(express.json());
-
-app.use(express.static("./frontend")); //serve the front end
-
-// Dont need an access token to do these:
-app.use("/register", registerRouter);
-app.use("/login", loginRouter);
-app.use("/refresh", refreshRouter); //Need a refresh token to create new access token. If no refresh token, wont continue.
-app.use("/logout", logoutRouter);
-
-app.use(verifyAccessToken); //if access token is invalid, code will not continue ahead of this
-
-
 // PLACE HOLDER
 app.get("/home", async (req, res) => {
     const email = req.cookies.email;
+
     console.log(`email: ${email}`);
+
     const user = await User.findOne({ email: email });
 
     if(!user) {
-        alert("user dne");
-        return res.status(401).json({ message: "user dne" });
+        alert("Please login to continue.");
+        return res.status(401).json({ message: "Please login to continue" });
     }
 
     console.log(`applicant? ${user?.role}`);
@@ -126,22 +119,21 @@ app.get("/home", async (req, res) => {
 });
 // END: PLACE HOLDER
 
-app.use(require("./middleware/errorHandler.js"));
+app.use(require("./middleware/errorHandler"));
 
 app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
 });
 
-const PORT = process.env.NODE_ENV === 'development' ? 3000 : process.env.PORT;
+const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
-    console.log(`server listening on port: ${PORT}...`)
-});
-
-initializeDatabase();
-
-mongoose.connection.once("connected", async () => {
-    console.log("SUCCESSFULLY CONNECTED TO DATABASE")
+connectDB();
+mongoose.connection.on("connected", async () => {
+    initializeDatabase()
+    console.log("SUCCESSFULLY CONNECTED TO DATABASE");
+    app.listen(PORT, () => {
+        console.log(`server listening on port: ${PORT}...`)
+    });
 });
 mongoose.connection.on("disconnected", () => {
     console.log("Lost connection to database")
