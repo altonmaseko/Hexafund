@@ -33,11 +33,10 @@ module.exports = defineConfig({
 
   /* Configuration for the Playwright web server */
   webServer: {
-    command: 'NODE_ENV=development node playwright-local-server.js', // Command to start the web server
+    command: 'node playwright-local-server.js', // Command to start the web server
     port: 3000, // Port on which the web server is running
     timeout: 30000, // Timeout for the web server to start
     reuseExistingServer: false, // Reuse an existing server if available
-
   },
 });
 
