@@ -37,7 +37,6 @@ module.exports = defineConfig({
     port: 3000, // Port on which the web server is running
     timeout: 30000, // Timeout for the web server to start
     reuseExistingServer: false, // Reuse an existing server if available
-    url: 'http://localhost:3000',
   },
 });
 
