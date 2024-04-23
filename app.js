@@ -9,6 +9,7 @@ const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
 const User = require("./models/User");
 
+
 const { 
     PLATFORM_ADMIN, 
     FUNDING_MANAGER, 
@@ -20,6 +21,7 @@ const registerRouter = require("./routers/registerRouter");
 const loginRouter = require("./routers/loginRouter");
 const refreshRouter = require("./routers/refreshRouter");
 const logoutRouter = require("./routers/logoutRouter");
+const userRouter = require("./routers/userRouter.js")
 // END: Routers
 
 const app = express();
@@ -35,6 +37,10 @@ app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/refresh", refreshRouter); //Need a refresh token to create new access token. If no refresh token, wont continue.
 app.use("/logout", logoutRouter);
+
+app.use("/api/v1", userRouter); //handle getting users request
+
+// -----------------------------------
 
 app.use(verifyAccessToken); //if access token is invalid, code will not continue ahead of this
 
