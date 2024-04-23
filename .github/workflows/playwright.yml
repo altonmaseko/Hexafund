@@ -8,7 +8,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
-      CONNECTION_URI: 'mongodb://localhost:42069/test-db?replicaSet=test-rs'
+      CONNECTION_URI: 'mongodb://localhost:42069/test-db'
       PORT: 3000
     steps:
     - uses: actions/checkout@v4
@@ -20,13 +20,12 @@ jobs:
       uses: supercharge/mongodb-github-action@1.6.0
       with:
         mongodb-version: 4.4.4
-        mongodb-replica-set: test-rs
         mongodb-port: 42069
     
     - name: Install dependencies
       run: npm ci
 
-      
+
     - name : testing server
       run: node test.js
       
