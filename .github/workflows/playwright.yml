@@ -22,6 +22,9 @@ jobs:
         mongodb-replica-set: test-rs
         mongodb-port: 42069
     
+    - name : testing server
+      run: node test.js
+      
     - name: Install dependencies
       run: npm ci
 

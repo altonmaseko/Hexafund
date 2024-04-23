@@ -1,31 +1,48 @@
-// Import Express and Axios
-const express = require('express');
-const axios = require('axios');
+const mongoose = require('mongoose');
 
-// Create an instance of an Express app
-const app = express();
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:42069/test-db?replicaSet=test-rs';
 
-// Define a route handler for the `/index` endpoint
-app.get('/index', (req, res) => {
-    // Determine the base URL based on the environment
-    if (process.env.NODE_ENV === 'development') {
-        axios.defaults.baseURL = 'http://localhost:3000/';
-    } else {
-        axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/';
+async function connectAndExit() {
+    try {
+        // Connect to MongoDB
+        await mongoose.connect(mongoUri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
+        console.log('Connected to MongoDB');
+
+        // Define the user schema
+        const userSchema = new mongoose.Schema({
+            name: String,
+            email: String,
+            password: String,
+        });
+
+        // Create a model based on the schema
+        const User = mongoose.model('User', userSchema);
+
+        // Create a new user
+        const newUser = new User({
+            name: 'John Doe',
+            email: 'john@example.com',
+            password: 'password123',
+        });
+
+        // Save the user to the database
+        await newUser.save();
+        console.log('User created:', newUser);
+
+        const queryFilter = { name: 'John Doe' }; // For example, find a user with name 'John Doe'
+        const users = await User.find(queryFilter);
+        console.log('Users found:', users);
+
+        // Close the MongoDB connection
+        await mongoose.disconnect();
+        console.log('Disconnected from MongoDB');
+    } catch (err) {
+        console.error('Error connecting to MongoDB:', err);
     }
+}
 
-    // Get the current environment from process.env.NODE_ENV
-    const currentEnvironment = process.env.NODE_ENV || 'not set';
-
-    // Send a response with the current environment
-    res.send(`The current environment is: ${currentEnvironment} 
-    with ${axios.defaults.baseURL} as the base URL`);
-});
-
-// Define the port on which the app will listen
-const PORT = process.env.PORT || 3000;
-
-// Start the server and listen on the specified port
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+connectAndExit();
