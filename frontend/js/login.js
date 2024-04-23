@@ -1,7 +1,6 @@
-const axios =  require('axios');
+axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/';
+// axios.defaults.baseURL = 'http://localhost:3000/';
 
-// axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/';
-axios.defaults.baseURL = 'http://localhost:3000/';
 
 document.getElementById("submit_button").addEventListener("click", async(event)=>{
 
