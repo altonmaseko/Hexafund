@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CONNECTION_URI: 'mongodb://localhost:42069/test-db?replicaSet=test-rs'
+      PORT: 3000
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
