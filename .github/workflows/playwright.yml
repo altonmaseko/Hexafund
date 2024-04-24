@@ -4,28 +4,23 @@ on:
   push:
     branches: [dev]
 jobs:
-  startMongodb:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.6.0
-      with:
-        mongodb-version: 4.4.4
-        mongodb-port: 42069
-    
-
   run_tests:
-    needs: [startMongodb]
     runs-on: ubuntu-latest
     env:
       CONNECTION_URI: 'mongodb://localhost:42069/'
       PORT: 3000
     steps:
+
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
          node-version: 16
-        
+      
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+         mongodb-version: 4.4.4
+         mongodb-port: 42069
       - name: Install dependencies
         run: npm ci
 
