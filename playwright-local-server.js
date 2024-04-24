@@ -4,7 +4,9 @@ const path = require("path");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/connectDB");
-require("dotenv").config();
+if (process.env.CI != true){
+    require("dotenv").config();
+}
 const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
 const User = require("./models/User");
@@ -130,6 +132,7 @@ const PORT = process.env.PORT;
 
 connectDB();
 mongoose.connection.on("connected", async () => {
+    await initializeDatabase()
     console.log("SUCCESSFULLY CONNECTED TO DATABASE");
     app.listen(PORT, () => {
         console.log(`server listening on port: ${PORT}...`)
