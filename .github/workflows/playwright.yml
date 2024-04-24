@@ -12,12 +12,13 @@ jobs:
       with:
         mongodb-version: 4.4.4
         mongodb-port: 42069
+    
 
   run_tests:
     needs: [startMongodb]
     runs-on: ubuntu-latest
     env:
-      CONNECTION_URI: 'mongodb://localhost:42069/test-db'
+      CONNECTION_URI: 'mongodb://localhost:42069/'
       PORT: 3000
     steps:
       - uses: actions/checkout@v4
