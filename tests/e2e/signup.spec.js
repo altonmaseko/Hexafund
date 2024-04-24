@@ -1,21 +1,12 @@
 const { test, expect } = require('@playwright/test');
 const { v4: uuidv4 } = require('uuid');
 
-let flags = {}
 
 
 test.describe("Testing compontents",()=>{
     test("Dropdown should add/remove an extra field",async({page})=>{
         await page.goto("signup.html");
         await page.selectOption('#drop_down',{label:'Funding Manager'})
-
-        if (await page.isVisible('input[name=Fund_Manager]')){
-            flags["FM_INPUT"] = true;
-        }
-        else{
-            flags["FM_INPUT"] = false;
-        }
-
         expect(await page.isVisible('input[name=Fund_Manager]'));
     });
 })
@@ -46,10 +37,6 @@ test.describe("Testing if users can signup and login with same details",()=>{
         const user = uuidv4()+"@gmail.com"
         const pass = uuidv4();
         const company = "testcompany"
-
-        if (flags["FM_INPUT"] == false){
-            test.skip();
-        }
 
         await page.goto("signup.html");
         await page.selectOption('#drop_down',{label:'Funding Manager'})
