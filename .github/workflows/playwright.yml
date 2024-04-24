@@ -38,6 +38,9 @@ jobs:
       CONNECTION_URI: 'mongodb://localhost:42069/test-db'
       PORT: 3000
     steps:
+      - name: Install dependencies
+        run: npm ci
+        
       - name: Install Playwright Browsers
         run: npx playwright install
 
