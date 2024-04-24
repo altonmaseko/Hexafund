@@ -28,7 +28,7 @@ jobs:
         run: npx playwright install
 
       - name: Run tests
-        run: npx playwright test
+        run: echo $CONNECTION_URI && npx playwright test --project=playwright.config.ts --headed
 
     #- uses: actions/upload-artifact@v4
     #  if: always()
