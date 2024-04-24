@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Install Playwright Browsers
-        run: npx playwright install
+      - name: Run server
+        run: node playwright-local-server.js
   
   run_tests:
     needs: [startMongodb]
