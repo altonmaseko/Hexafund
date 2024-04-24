@@ -13,7 +13,7 @@ jobs:
         mongodb-version: 4.4.4
         mongodb-port: 42069
 
-  run_server: 
+  run_tests:
     needs: [startMongodb]
     runs-on: ubuntu-latest
     env:
@@ -27,20 +27,7 @@ jobs:
         
       - name: Install dependencies
         run: npm ci
-      
-      - name: Run server
-        run: node playwright-local-server.js
-  
-  run_tests:
-    needs: [startMongodb]
-    runs-on: ubuntu-latest
-    env:
-      CONNECTION_URI: 'mongodb://localhost:42069/test-db'
-      PORT: 3000
-    steps:
-      - name: Install dependencies
-        run: npm ci
-        
+
       - name: Install Playwright Browsers
         run: npx playwright install
 
