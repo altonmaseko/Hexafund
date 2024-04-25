@@ -10,6 +10,8 @@ if (process.env.CI != true){
 const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
 const User = require("./models/User");
+const FundingManager = require("./models/FundingManager");
+const Applicant = require("./models/Applicant");
 const { SHA256 } = require("crypto-js");
 
 const { 
@@ -61,18 +63,26 @@ async function initializeDatabase() {
     console.log("CREATED")
 
     await User.create({
-        name: "testapplicant",
-        email: "testapplicant@gmail.com",
+        name: "applicant",
+        email: "test-applicant@gmail.com",
         password: SHA256("applicant123").toString(),
         role: APPLICANT,
     });
-
+    await Applicant.create({
+        name: "applicant",
+        email: "test-applicant@gmail.com",
+    });
 
     await User.create({
-        name: "testfund",
-        email: "testfund@gmail.com",
+        name: "fund",
+        email: "test-fund@gmail.com",
         password: SHA256("fund123").toString(),
         role: FUNDING_MANAGER,
+    });
+    await FundingManager.create({
+        name: "fund",
+        email: "test-fund@gmail.com",
+        company: "Test-Company"
     });
 
     console.log("Database initialized");
