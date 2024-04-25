@@ -64,7 +64,7 @@ async function initializeDatabase() {
 
     await User.create({
         name: "applicant",
-        email: "test-applicant@gmail.com",
+        email: "testapplicant@gmail.com",
         password: SHA256("applicant123").toString(),
         role: APPLICANT,
     });
