@@ -3,8 +3,8 @@ const { test, expect } = require('@playwright/test');
 test.describe("Admin login",()=>{
     test("should login with valid credentials",async({page})=>{
         await page.goto("login.html");
-        await page.fill('#email_input',"admin-banzi@gmail.com");
-        await page.fill('#password_input',"admin-banzi");
+        await page.fill('#email_input',"admin@gmail.com");
+        await page.fill('#password_input',"admin123");
         await page.click('#submit_button');
         await expect(page).toHaveURL("home");
     });

@@ -11,10 +11,12 @@ test.describe("Testing compontents",()=>{
 
 test.describe("Testing if users can signup and login with same details",()=>{
     test("Applicant signup",async({page})=>{
+        const name = uuidv4();
         const user = uuidv4()+"@gmail.com"
         const pass = uuidv4();
 
         await page.goto("signup.html");
+        await page.fill('#name_input',name);
         await page.fill('#email_input',user);
         await page.fill('#password_input',pass);
         await page.fill('#confirm_password_input',pass);
@@ -29,13 +31,15 @@ test.describe("Testing if users can signup and login with same details",()=>{
     });
 
     test("FM signup",async({page})=>{
+        const name = uuidv4();
         const user = uuidv4()+"@gmail.com"
         const pass = uuidv4();
-        const company = "testcompany"
+        const company = uuidv4()+"testcompany"
 
         await page.goto("signup.html");
         await page.selectOption('#drop_down',{label:'Funding Manager'})
 
+        await page.fill('#name_input',name);
         await page.fill('#email_input',user);
         await page.fill('#password_input',pass);
         await page.fill('#confirm_password_input',pass);
@@ -57,7 +61,7 @@ test.describe("Testing if users can signup and login with same details",()=>{
 test.describe("Funding manager pending",()=>{
     test("FM should be able to sign up and get a pending message",async({page})=>{
         await page.goto("login.html");
-        await page.fill('#email_input',"testfund@gmail.com");
+        await page.fill('#email_input',"test-fund@gmail.com");
         await page.fill('#password_input',"fund123");
         await page.click('#submit_button');
         await expect(page).toHaveURL("home");
