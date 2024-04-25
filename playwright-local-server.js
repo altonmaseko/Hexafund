@@ -4,67 +4,28 @@ const path = require("path");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/connectDB");
-require("dotenv").config();
+if (process.env.CI != true){
+    require("dotenv").config();
+}
 const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
-const User = require("./models/User.js");
-const bcrypt = require("bcrypt");
+const User = require("./models/User");
+const FundingManager = require("./models/FundingManager");
+const Applicant = require("./models/Applicant");
+const { SHA256 } = require("crypto-js");
 
 const { 
     PLATFORM_ADMIN, 
     FUNDING_MANAGER, 
     APPLICANT 
-} = require("./constants/roles.js")
-
-
-// Initialize the database with an admin user
-async function initializeDatabase() {
-    await connectDB();
-
-    // Delete all users (be cautious with this in a production environment)
-    if (process.env.NODE_ENV !== "development") {
-        console.log("Not in development mode, skipping database initialization");
-        return;
-    }
-
-
-    //await User.deleteMany({});
-
-    // Create an admin user
-    await User.create({
-        name: "admin",
-        email: "admin@gmail.com",
-        password: await bcrypt.hash("admin123", 10),
-        role: PLATFORM_ADMIN,
-    });
-
-    await User.create({
-        name: "testapplicant",
-        email: "testapplicant@gmail.com",
-        password: await bcrypt.hash("applicant123", 10),
-        role: APPLICANT,
-    });
-
-
-    await User.create({
-        name: "testfund",
-        email: "testfund@gmail.com",
-        password: await bcrypt.hash("fund123", 10),
-        role: FUNDING_MANAGER,
-    });
-
-    console.log("Database initialized");
-}
-
-
-
+} = require("./constants/roles")
 
 // Routers
 const registerRouter = require("./routers/registerRouter");
 const loginRouter = require("./routers/loginRouter");
 const refreshRouter = require("./routers/refreshRouter");
 const logoutRouter = require("./routers/logoutRouter");
-const Applicant = require("./models/Applicant.js");
+const userRouter = require("./routers/userRouter.js")
 // END: Routers
 
 const app = express();
@@ -81,18 +42,63 @@ app.use("/login", loginRouter);
 app.use("/refresh", refreshRouter); //Need a refresh token to create new access token. If no refresh token, wont continue.
 app.use("/logout", logoutRouter);
 
+app.use("/api/v1", userRouter); //handle getting users request
+
+// -----------------------------------
+
 app.use(verifyAccessToken); //if access token is invalid, code will not continue ahead of this
 
+// Initialize the database with an admin user
+async function initializeDatabase() {
+
+    await User.deleteMany({});
+    // Create an admin user
+    await User.create({
+        name: "admin",
+        email: "admin@gmail.com",
+        password: SHA256("admin123").toString(),
+        role: PLATFORM_ADMIN,
+    });
+
+    console.log("CREATED")
+
+    await User.create({
+        name: "applicant",
+        email: "test-applicant@gmail.com",
+        password: SHA256("applicant123").toString(),
+        role: APPLICANT,
+    });
+    await Applicant.create({
+        name: "applicant",
+        email: "test-applicant@gmail.com",
+    });
+
+    await User.create({
+        name: "fund",
+        email: "test-fund@gmail.com",
+        password: SHA256("fund123").toString(),
+        role: FUNDING_MANAGER,
+    });
+    await FundingManager.create({
+        name: "fund",
+        email: "test-fund@gmail.com",
+        company: "Test-Company"
+    });
+
+    console.log("Database initialized");
+}
 
 // PLACE HOLDER
 app.get("/home", async (req, res) => {
     const email = req.cookies.email;
+
     console.log(`email: ${email}`);
+
     const user = await User.findOne({ email: email });
 
     if(!user) {
-        alert("user dne");
-        return res.status(401).json({ message: "user dne" });
+        alert("Please login to continue.");
+        return res.status(401).json({ message: "Please login to continue" });
     }
 
     console.log(`applicant? ${user?.role}`);
@@ -114,8 +120,16 @@ app.get("/home", async (req, res) => {
         } 
         else 
         {
-            console.log("funding manager awaiting approval page");
-            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"))
+            if(fundingManager?.account_details.reason === "Account Request Denied")
+            {
+                console.log("funding manager request-denied page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "request-denied.html"));;
+            }
+            else
+            {
+                console.log("funding manager awaiting approval page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"));
+            }
         }
     } 
     else if ((user?.role === PLATFORM_ADMIN) )
@@ -126,22 +140,21 @@ app.get("/home", async (req, res) => {
 });
 // END: PLACE HOLDER
 
-app.use(require("./middleware/errorHandler.js"));
+app.use(require("./middleware/errorHandler"));
 
 app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")
 });
 
-const PORT = process.env.NODE_ENV === 'development' ? 3000 : process.env.PORT;
+const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
-    console.log(`server listening on port: ${PORT}...`)
-});
-
-initializeDatabase();
-
-mongoose.connection.once("connected", async () => {
-    console.log("SUCCESSFULLY CONNECTED TO DATABASE")
+connectDB();
+mongoose.connection.on("connected", async () => {
+    await initializeDatabase()
+    console.log("SUCCESSFULLY CONNECTED TO DATABASE");
+    app.listen(PORT, () => {
+        console.log(`server listening on port: ${PORT}...`)
+    });
 });
 mongoose.connection.on("disconnected", () => {
     console.log("Lost connection to database")

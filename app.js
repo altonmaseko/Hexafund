@@ -9,7 +9,6 @@ const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
 const User = require("./models/User");
 
-
 const { 
     PLATFORM_ADMIN, 
     FUNDING_MANAGER, 
@@ -53,8 +52,8 @@ app.get("/home", async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if(!user) {
-        alert("User does not exist");
-        return res.status(401).json({ message: "User does not exist" });
+        alert("Please login to continue.");
+        return res.status(401).json({ message: "Please login to continue" });
     }
 
     console.log(`applicant? ${user?.role}`);
@@ -76,8 +75,16 @@ app.get("/home", async (req, res) => {
         } 
         else 
         {
-            console.log("funding manager awaiting approval page");
-            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"))
+            if(fundingManager?.account_details.reason === "Account Request Denied")
+            {
+                console.log("funding manager request-denied page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "request-denied.html"));;
+            }
+            else
+            {
+                console.log("funding manager awaiting approval page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"));
+            }
         }
     } 
     else if ((user?.role === PLATFORM_ADMIN) )
@@ -95,13 +102,13 @@ app.all("*", (req, res) => {
 });
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
-    console.log(`server listening on port: ${PORT}...`)
-});
 
 connectDB();
 mongoose.connection.on("connected", async () => {
-    console.log("SUCCESSFULLY CONNECTED TO DATABASE")
+    console.log("SUCCESSFULLY CONNECTED TO DATABASE");
+    app.listen(PORT, () => {
+        console.log(`server listening on port: ${PORT}...`)
+    });
 });
 mongoose.connection.on("disconnected", () => {
     console.log("Lost connection to database")

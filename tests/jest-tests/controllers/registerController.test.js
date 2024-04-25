@@ -3,7 +3,7 @@ const registerController = require("../../../controllers/registerController");
 const User = require("../../../models/User");
 const Applicant = require("../../../models/Applicant");
 const FundingManager = require("../../../models/FundingManager");
-const bcrypt = require("bcrypt");
+const { SHA256 } = require("crypto-js");
 
 const res = {
     status: jest.fn(() => res),

@@ -7,7 +7,6 @@
  */
 
 // imports
-const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Applicant = require("../models/Applicant");
 const FundingManager = require("../models/FundingManager");
@@ -21,7 +20,7 @@ const registerController = asyncWrapper(async (req, res) => {
         return;
     }
 
-    const duplicateUser = await User.findOne({ email }).exec()
+    const duplicateUser = await User.findOne({ email: email }).exec();
 
     //Check if email is already taken
     if (duplicateUser) {
@@ -29,15 +28,12 @@ const registerController = asyncWrapper(async (req, res) => {
         return
     }
 
-    //Encrypt password
-    const encryptedPassword = await bcrypt.hash(password, 10);
-
     //Role of user depends on existence of company
     if (company) {
         await User.create({
             name: name,
             email: email,
-            password: encryptedPassword,
+            password: password,
             role: role
         });
         const newUser = await User.findOne({ email: email }).exec();
@@ -51,7 +47,7 @@ const registerController = asyncWrapper(async (req, res) => {
         await User.create({
             name: name,
             email: email,
-            password: encryptedPassword
+            password: password
         });
         const newUser = await User.findOne({ email: email }).exec();
         await Applicant.create({

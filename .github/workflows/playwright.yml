@@ -1,34 +1,41 @@
 name: Playwright Tests
 on:
+  workflow_dispatch:
   push:
     branches: [dev]
 jobs:
-  test:
-    timeout-minutes: 60
+  run_tests:
     runs-on: ubuntu-latest
+    env:
+      CONNECTION_URI: 'mongodb://localhost:42069/test-db'
+      PORT: 3000
+      ACCESS_TOKEN_SECRET: aca25f0df19dc5bae1a0b0a97d59381bc7b746e2cdc15545c6dcbc076009a6a6aa00ea31a0bdfc9a2b9a3b55773e58c80128
+      REFRESH_TOKEN_SECRET: e86db6e7af9379d2ef5b88b108167f3da65e2cd49f1f1d16c8a93541cf63edddcbea34744e2365713692c1229c9acec5f331
+      CI: true
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.10.0
-      with:
-        mongodb-version: 4.4.4
-        mongodb-port: 27017
-        mongodb-db: FundingRequestsManagement 
-        
-    - name: Install dependencies
-      run: npm ci
-    #- name: Install Playwright Browsers
-    #  run: npx playwright install --with-deps
-    - name: Install Playwright Browsers
-      run: npx playwright install
-    - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+         node-version: 16
+      
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+         mongodb-version: 4.4.4
+         mongodb-port: 42069
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install
+
+      - name: Run tests
+        run: echo $CONNECTION_URI && npx playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+         name: playwright-report
+         path: playwright-report/
+         retention-days: 30

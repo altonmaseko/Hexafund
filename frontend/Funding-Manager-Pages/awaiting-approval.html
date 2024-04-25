@@ -5,17 +5,27 @@
     <link rel="stylesheet" href="Funding-Manager-Pages/css/awaiting-approval.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awaiting Approval</title>
+    <script src="../js/logout.js" defer></script>
 </head>
 
 <body>
-    <section id="pending">
-        <div class="center-container">
-            <img id="logo" src="images/clock.png" alt="clock">
-            <p>Your account is under review and needs to be approved by a Platform Admin and this may take a while. You will recieve an email when verified.</p>
-        </div> 
+    <header>
+        <img id="logo" src="../images/hexaFundLogo.png" alt="Flag">
+        <h1>hexafund</h1> 
+        <nav>
+            <button id="AboutBut" >About Us</button>
+            <button id="SerBut">Services</button>
+            <button id="ConBut">Contact Us</button>
+            <button id="logout_button">Log Out</button>
+        </nav>
+    </header>
+    <section class="center-container">
+        <img id="logo" src="images/clock.png" alt="clock">
+        <p>Your account is under review and needs to be approved by a Platform Admin and this may take a while. You will recieve an email when verified.</p>
     </section>
     <footer>
         <p>©2024 HexaFund. All rights reserved.</p>
     </footer>
+    <script src="External_Modules/axios.min.js"></script>
 </body>
 </html>
