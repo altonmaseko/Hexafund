@@ -70,7 +70,7 @@ signUpBtn.addEventListener('click', async function (event) {
         console.log(response.data);
 
         setTimeout(() => {
-            window.location.href = "../index.html"
+            window.location.href = "../login.html"
         }, 500);
 
     } catch (error) {
