@@ -1,8 +1,8 @@
 // imports
 const loginController = require("../../../controllers/loginController");
 const User = require("../../../models/User");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { SHA256 } = require("crypto-js");
 
 const res = {
   status: jest.fn(() => res),
@@ -83,12 +83,10 @@ describe("Testing the login controller", () => {
     User.findOne = jest.fn().mockReturnValue({
       exec: jest.fn().mockResolvedValue(existingUser)
     });
-    jest.spyOn(bcrypt, "compare").mockResolvedValue(false);
 
     await loginController(req, res);
 
     expect(User.findOne).toHaveBeenCalledWith({ email: req.body.email });
-    expect(bcrypt.compare).toHaveBeenCalledWith(req.body.password, existingUser.password);
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
       message: "Invalid email or password",
@@ -116,7 +114,6 @@ describe("Testing the login controller", () => {
     jest.spyOn(User, "updateOne").mockReturnValue({
       updateOne: jest.fn().mockResolvedValue(true)
     });
-    jest.spyOn(bcrypt, "compare").mockResolvedValue(true);
 
     const refreshToken = 'validRefreshToken';
     jest.spyOn(jwt, "sign").mockReturnValue(refreshToken);
@@ -124,7 +121,6 @@ describe("Testing the login controller", () => {
     await loginController(req, res);
 
     expect(User.findOne).toHaveBeenCalledWith({ email: req.body.email });
-    expect(bcrypt.compare).toHaveBeenCalledWith(req.body.password, existingUser.password);
     expect(jwt.sign).toHaveBeenCalled();
     expect(User.updateOne).toHaveBeenCalledWith(
       { email: existingUser.email }, 

@@ -5,6 +5,10 @@ body {
     background-color: rgba(140, 187, 186, 255);
 }
 
+nav {
+    margin-right: 10px;
+}
+
 #logo {
     width: 150px;
     height: auto;
@@ -30,7 +34,7 @@ main {
     overflow-y: auto; /* Enable vertical scroll */
 }
 
-.requests {
+#requests {
     margin-top: 20px;
 }
 
@@ -54,6 +58,7 @@ main {
     background-color: #008CBA;
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 .approve-btn {

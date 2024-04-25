@@ -1,69 +1,62 @@
-import FundingManager from "../../../models/FundingManager";
+axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
+// axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
 
-document.addEventListener("DOMContentLoaded", (event) => {
-    let requests_section = document.getElementsByClassName("requests")[0];
-    let refresh_button = document.getElementById("refresh-button");
-    let fundingManagers = [];
+document.addEventListener("DOMContentLoaded", () => {
+    let requests_section = document.getElementById("requests");
+    let refresh_btn = document.getElementById("refresh-btn");
 
-    refresh_button.addEventListener("click", (event) => {
-        FundingManager.find({ "account_details.account_active": false, "account_details.reason": "" }).exec()
-            .then((managers) => {
-                fundingManagers = managers;
-                fundingManagers.forEach((manager) => {
-                    let request_card = document.createElement("section");
-                    request_card.classList.add("request-card");
+    const query_params = "?account_details.account_active=false&account_details.reason=Account pending approval from a Platform Admin";
+
+    refresh_btn.addEventListener("click", () => {
+        axios.get("/api/v1/funding-managers" + query_params).then((fundingManagers) => {
+            requests_section.innerHTML = "";
+            fundingManagers.data.forEach((manager) => {
+                let request_card = document.createElement("section");
+                request_card.classList.add("request-card");
         
-                    request_card.innerHTML = `
-                        <h3>${manager.name}</h3>
-                        <p>Email: ${manager.email}</p>
-                        <p>Role: ${FUNDING_MANAGER}</p>
-                        <div class="action-buttons">
-                            <button class="approve-btn" onclick="approve('${manager.email}')">Approve</button>
-                            <button class="deny-btn" onclick="deny('${manager.email}')">Deny</button>
-                        </div>
-                    `;
-        
-                    requests_section.appendChild(request_card);
+                request_card.innerHTML = `
+                    <h3>${manager.name}</h3>
+                    <p>Email: ${manager.email}</p>
+                    <p>Company: ${manager.company}</p>
+                    <div class="action-buttons">
+                        <button class="approve-btn">Approve</button>
+                        <button class="deny-btn">Deny</button>
+                    </div>
+                `;
+
+                let approve_btn = request_card.querySelector(".approve-btn");
+                let deny_btn = request_card.querySelector(".deny-btn");
+
+                approve_btn.addEventListener("click", () => {
+                    axios.post("/api/v1/funding-managers/" + manager.email, {
+                        account_details: {
+                            account_active: true,
+                            reason: "Account Approved"
+                        }
+                    }).then((response) => {
+                        refresh_btn.click();
+                        console.log(response.data);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
                 });
-            }).catch((err) => {
-                console.log(err);
+
+                deny_btn.addEventListener("click", () => {
+                    axios.post("/api/v1/funding-managers/" + manager.email, {
+                        account_details: {
+                            account_active: false,
+                            reason: "Account Request Denied"
+                        }
+                    }).then((response) => {
+                        refresh_btn.click();
+                        console.log(response.data);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                });
+        
+                requests_section.appendChild(request_card);
             });
+        });
     });
 });
-
-const approve = (email) => {
-    FundingManager.updateOne(
-        { "email": email }, 
-        {
-            $set: {
-                "account_details.account_active": true, 
-                "account_details.reason": `Account has been approved by a ${PLATFORM_ADMIN}`
-            } 
-        }
-    ).then(() => {
-        let approve_btn = document.getElementsByClassName("approve-btn")[0];
-        approve_btn.click();
-
-        console.log(`${email} has been approved`);
-    }).catch((err) => {
-        console.log(err);
-    });
-}
-
-const deny = (email) => {
-    FundingManager.updateOne(
-        { "email": email }, 
-        {
-            $set: { 
-                "account_details.reason": `Account has been denied by a ${PLATFORM_ADMIN}` 
-            }
-        }
-    ).then(() => {
-        let deny_btn = document.getElementsByClassName("deny-btn")[0];
-        deny_btn.click();
-
-        console.log(`${email} has been denied`);
-    }).catch((err) => {
-        console.log(err);
-    });
-}

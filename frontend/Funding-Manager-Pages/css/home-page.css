@@ -1,0 +1,49 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+nav {
+    margin-right: 10px;
+}
+
+header {
+    background-color: rgba(0, 62, 64, 255);
+    color: white;
+    display: flex;
+    padding: 0%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(150, 187, 186, 255);
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    width: 150px;
+    height: auto;
+    background-color: rgba(150, 187, 186, 255);
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+footer {
+    background-color: rgba(0, 62, 64, 255);
+    color: white;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-size: 14px; 
+    height: 50px; 
+}
