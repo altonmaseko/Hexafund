@@ -13,7 +13,7 @@ test.describe("Admin login",()=>{
 test.describe("Applicant login",()=>{
     test("Applicant should be able to login if already has an account",async({page})=>{
         await page.goto("login.html");
-        await page.fill('#email_input',"test-applicant@gmail.com");
+        await page.fill('#email_input',"testapplicant@gmail.com");
         await page.fill('#password_input',"applicant123");
         await page.click('#submit_button');
         await expect(page).toHaveURL("home");
