@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let deny_btn = request_card.querySelector(".deny-btn");
 
                 approve_btn.addEventListener("click", () => {
-                    axios.post("/api/v1/funding-managers/" + manager.email, {
+                    axios.put("/api/v1/funding-managers/" + manager.email, {
                         account_details: {
                             account_active: true,
                             reason: "Account Approved"
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 deny_btn.addEventListener("click", () => {
-                    axios.post("/api/v1/funding-managers/" + manager.email, {
+                    axios.put("/api/v1/funding-managers/" + manager.email, {
                         account_details: {
                             account_active: false,
                             reason: "Account Request Denied"

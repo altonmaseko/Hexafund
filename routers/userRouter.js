@@ -19,7 +19,7 @@ router.get(["/applicant", "/applicants"], getApplicants);
 router.get("/user", getUsers) //get all users
 
 // UPDATE
-router.post([
+router.put([
     "/funding_managers/:email",
     "/funding-managers/:email",
     "/fund_managers/:email",
@@ -27,6 +27,6 @@ router.post([
     "/fundingmanagers/:email",
     "/fund/:email"], updateFundingManagers);
 
-router.post(["/applicant/:email", "/applicants/:email"], updateApplicants);
+router.put(["/applicant/:email", "/applicants/:email"], updateApplicants);
 
 module.exports = router;
