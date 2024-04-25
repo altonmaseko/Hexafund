@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "jest": "jest --verbose ./tests/jest-tests",
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "deploy": "git init && git add . && git commit ",
     "playwright-server": "node playwright-local-server.js",
     "playwright": "npx playwright test"
