@@ -1,8 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const { v4: uuidv4 } = require('uuid');
 
-
-
 test.describe("Testing compontents",()=>{
     test("Dropdown should add/remove an extra field",async({page})=>{
         await page.goto("signup.html");
@@ -10,7 +8,6 @@ test.describe("Testing compontents",()=>{
         expect(await page.isVisible('input[name=Fund_Manager]'));
     });
 })
-
 
 test.describe("Testing if users can signup and login with same details",()=>{
     test("Applicant signup",async({page})=>{
@@ -23,15 +20,13 @@ test.describe("Testing if users can signup and login with same details",()=>{
         await page.fill('#confirm_password_input',pass);
         await page.click('#submit_button');
 
-        await page.goto("login.html");
+        await page.goto("index.html");
         await page.fill('#email_input',user);
         await page.fill('#password_input',pass);
         await page.click('#submit_button');
 
         await expect(page).toHaveURL("home");
     });
-
-
 
     test("FM signup",async({page})=>{
         const user = uuidv4()+"@gmail.com"
@@ -48,8 +43,7 @@ test.describe("Testing if users can signup and login with same details",()=>{
         await page.click('#submit_button');
         
         //should go to login screen
-        await expect(page).toHaveURL("login.html")
-
+        await expect(page).toHaveURL("index.html");
 
         await page.goto("login.html");
         await page.fill('#email_input',user);
@@ -62,7 +56,7 @@ test.describe("Testing if users can signup and login with same details",()=>{
 
 test.describe("Funding manager pending",()=>{
     test("FM should be able to sign up and get a pending message",async({page})=>{
-        await page.goto("login.html");
+        await page.goto("index.html");
         await page.fill('#email_input',"testfund@gmail.com");
         await page.fill('#password_input',"fund123");
         await page.click('#submit_button');

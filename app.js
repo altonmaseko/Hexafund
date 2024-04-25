@@ -9,7 +9,6 @@ const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
 const User = require("./models/User");
 
-
 const { 
     PLATFORM_ADMIN, 
     FUNDING_MANAGER, 
@@ -76,9 +75,16 @@ app.get("/home", async (req, res) => {
         } 
         else 
         {
-            console.log("funding manager awaiting approval page");
-            alert(fundingManager.account_details.reason);
-            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"))
+            if(fundingManager?.account_details.reason === "Account Request Denied")
+            {
+                console.log("funding manager request-denied page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "request-denied.html"));;
+            }
+            else
+            {
+                console.log("funding manager awaiting approval page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"));
+            }
         }
     } 
     else if ((user?.role === PLATFORM_ADMIN) )

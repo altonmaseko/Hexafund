@@ -10,7 +10,7 @@ if (process.env.CI != true){
 const verifyAccessToken = require("./middleware/verifyAccessToken");
 const cors = require("cors");
 const User = require("./models/User");
-const bcrypt = require("bcrypt");
+const { SHA256 } = require("crypto-js");
 
 const { 
     PLATFORM_ADMIN, 
@@ -54,7 +54,7 @@ async function initializeDatabase() {
     await User.create({
         name: "admin",
         email: "admin@gmail.com",
-        password: await bcrypt.hash("admin123", 10),
+        password: SHA256("admin123").toString(),
         role: PLATFORM_ADMIN,
     });
 
@@ -63,7 +63,7 @@ async function initializeDatabase() {
     await User.create({
         name: "testapplicant",
         email: "testapplicant@gmail.com",
-        password: await bcrypt.hash("applicant123", 10),
+        password: SHA256("applicant123").toString(),
         role: APPLICANT,
     });
 
@@ -71,7 +71,7 @@ async function initializeDatabase() {
     await User.create({
         name: "testfund",
         email: "testfund@gmail.com",
-        password: await bcrypt.hash("fund123", 10),
+        password: SHA256("fund123").toString(),
         role: FUNDING_MANAGER,
     });
 
@@ -110,8 +110,16 @@ app.get("/home", async (req, res) => {
         } 
         else 
         {
-            console.log("funding manager awaiting approval page");
-            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"))
+            if(fundingManager?.account_details.reason === "Account Request Denied")
+            {
+                console.log("funding manager request-denied page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "request-denied.html"));;
+            }
+            else
+            {
+                console.log("funding manager awaiting approval page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"));
+            }
         }
     } 
     else if ((user?.role === PLATFORM_ADMIN) )

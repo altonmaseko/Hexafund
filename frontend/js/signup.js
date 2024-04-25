@@ -1,9 +1,8 @@
-
 // Get the element by its ID
 const element = document.getElementById('drop_down');
 
-//axios.defaults.baseURL = "https://funding-website.azurewebsites.net/" // PRODUCTION URL
-axios.defaults.baseURL = "http://localhost:3000/" // LOCAL URL
+axios.defaults.baseURL = "https://funding-website.azurewebsites.net/" // PRODUCTION URL
+// axios.defaults.baseURL = "http://localhost:3000/" // LOCAL URL
 
 // Add event listener for the select tag
 element.addEventListener('change', function (event) {
@@ -35,7 +34,6 @@ element.addEventListener('change', function (event) {
             const form = document.getElementById("login");
             //TODO add padding or smth
             form.insertBefore(input, refElement);
-
         }
     } else {
         // If the role changes away from fund manager, remove the company input field
@@ -48,66 +46,35 @@ element.addEventListener('change', function (event) {
 
 const signUpBtn = document.getElementById("submit_button")
 
-
 signUpBtn.addEventListener('click', async function (event) {
-    event.preventDefault()
+    event.preventDefault();
 
-
-    const selectedIndex = document.getElementById('drop_down').selectedIndex
-    const endpoint = "https://funding-website.azurewebsites.net/register"
-    //TODO get name element
-    const name = "test"
-    const email = document.getElementById("email_input").value
-    const password = document.getElementById("password_input").value
-    const role = document.getElementById("drop_down").value
-    const company = document.getElementById("company_input")?.value
+    const name = document.getElementById("name_input").value;
+    const email = document.getElementById("email_input").value;
+    const password = CryptoJS.SHA256(document.getElementById("password_input").value).toString();
+    const role = document.getElementById("drop_down").value;
+    const company = document.getElementById("company_input")?.value;
 
     // TRYING AXIOS
     const body = {
         name: name,
         password: password,
         email: email,
-        role,
-        company
+        role: role,
+        company: company
     }
 
     try {
-        console.log(body)
-        const response = await axios.post("/register", body)
-        console.log(response.data)
+        console.log(body);
+        const response = await axios.post("/register", body);
+        console.log(response.data);
 
         setTimeout(() => {
-        window.location.href = "../login.html"
+            window.location.href = "../index.html"
         }, 500);
 
     } catch (error) {
-        console.log(error.response.data)
+        console.log(error.response.data);
     }
-
-
     // END: TRYING AXIOS
-
-    // body
-
-    // console.log("l")
-    // if (selectedIndex==0){
-    //     body = {
-    //         name: name,
-    //         password: password,
-    //         email: email
-    //     }   
-
-    //     fetch(endpoint,{
-    //         method:'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: body
-    //     }).then(response => response.json())
-    //     .then(data=>{
-    //         console.log("Response data:", data);
-    //     })
-
-    // }
-
 });
