@@ -1,10 +1,6 @@
-const asyncWrapper = require("../middleware/asyncWrapper");
-
-const { PLATFORM_ADMIN } = require("../constants/roles");
-
-const Applicant = require("../models/Applicant");
-const FundingManager = require("../models/FundingManager");
-const User = require("../models/User");
+const { asyncWrapper } = require("../middleware");
+const { roles } = require("../constants");
+const { Applicant, FundingManager, User } = require("../models");
 
 const getApplicants = asyncWrapper(async (req, res) => {
 
@@ -71,7 +67,7 @@ const getFundingManagers = asyncWrapper(async (req, res) => {
 
 const getAdmins = asyncWrapper(async (req, res) => {
 
-    const admins = await User.find({ role: PLATFORM_ADMIN });
+    const admins = await User.find({ role: roles.PLATFORM_ADMIN });
 
     const query = req.query;
 

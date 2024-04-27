@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { getAdmins, getApplicants, getFundingManagers, getUsers } = require("../controllers/getUsersController");
-const { updateApplicants, updateFundingManagers } = require("../controllers/updateUsersController")
+const { getUsersController, updateUsersController } = require("../controllers");
+const { getAdmins, getApplicants, getFundingManagers, getUsers } = getUsersController;
+const { updateApplicants, updateFundingManagers } = updateUsersController;
 
 // GET
 router.get(["/admin", "/platform_admin", "/platform-admin"], getAdmins);

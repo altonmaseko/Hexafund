@@ -1,6 +1,6 @@
 // imports
-const loginController = require("../../../controllers/loginController");
-const User = require("../../../models/User");
+const { loginController } = require("../../../controllers");
+const { User } = require("../../../models");
 const jwt = require("jsonwebtoken");
 const { SHA256 } = require("crypto-js");
 

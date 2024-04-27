@@ -1,7 +1,8 @@
-import images from './images';
-import roles from './roles';
+// imports
+const roles = require('./roles');
+const statuses = require('./statuses');
 
-export {
-    images,
+module.exports = {
+    statuses,
     roles
 };

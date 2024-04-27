@@ -7,10 +7,8 @@
  */
 
 // imports
-const User = require("../models/User");
-const Applicant = require("../models/Applicant");
-const FundingManager = require("../models/FundingManager");
-const asyncWrapper = require("../middleware/asyncWrapper");
+const { User, Applicant, FundingManager } = require("../models");
+const { asyncWrapper } = require("../middleware");
 
 const registerController = asyncWrapper(async (req, res) => {
     const { name, email, password, company, role } = req.body;

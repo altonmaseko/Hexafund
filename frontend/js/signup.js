@@ -14,6 +14,7 @@ element.addEventListener('change', function (event) {
     ** If the user selects 'Fund Manager', the 'company_input' field should then be usable
     ** If the user selects 'Applicant', the 'company_input' field should no longer be able to be interacted with
     ** The 'company_input' field should be a required field if the user selects 'Fund Manager'
+    ** Add data validation
 
     * These changes make things a bit easier and a little more efficient
     */
