@@ -1,9 +1,11 @@
 const PENDING = "Pending";
-const APPROVED = "Approved";
+const ACCEPTED = "Accepted";
 const REJECTED = "Rejected";
+const APPROVED = "Approved";
 
 module.exports = {
     PENDING,
     APPROVED,
-    REJECTED
+    REJECTED,
+    ACCEPTED
 };

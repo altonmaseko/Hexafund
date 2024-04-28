@@ -1,8 +1,11 @@
+// imports
 const express = require("express");
 const router = express.Router();
-const { getUsersController, updateUsersController } = require("../controllers");
+const { getUsersController, updateUsersController, deleteUsersController } = require("../controllers");
+
 const { getAdmins, getApplicants, getFundingManagers, getUsers } = getUsersController;
 const { updateApplicants, updateFundingManagers } = updateUsersController;
+const { selfDeleteUser } = deleteUsersController;
 
 // GET
 router.get(["/admin", "/platform_admin", "/platform-admin"], getAdmins);
@@ -29,5 +32,8 @@ router.post([
     "/fund/:email"], updateFundingManagers);
 
 router.post(["/applicant/:email", "/applicants/:email"], updateApplicants);
+
+// DELETE
+router.delete("/delete", selfDeleteUser);
 
 module.exports = router;

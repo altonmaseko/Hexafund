@@ -7,7 +7,7 @@
  */
 
 // imports
-const { User, Applicant, FundingManager } = require("../models");
+const { User, Applicant, FundingManager, Company } = require("../models");
 const { asyncWrapper } = require("../middleware");
 
 const registerController = asyncWrapper(async (req, res) => {
@@ -34,22 +34,27 @@ const registerController = asyncWrapper(async (req, res) => {
             password: password,
             role: role
         });
-        const newUser = await User.findOne({ email: email }).exec();
         await FundingManager.create({
-            user: newUser._id,
             name: name,
             email: email,
             company: company
         });
+
+        const newCompany = await Company.findOne({ name: company }).exec(); // all companies will have different names
+        if (!newCompany) { // if company does not exist, create it
+            await Company.create({
+                name: company
+            });
+        }
+        
+        await Company.updateOne({ name: company }, { $push: { funding_managers: email } });
     } else {
         await User.create({
             name: name,
             email: email,
             password: password
         });
-        const newUser = await User.findOne({ email: email }).exec();
         await Applicant.create({
-            user: newUser._id,
             name: name,
             email: email
         });
