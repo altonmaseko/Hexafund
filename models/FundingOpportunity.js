@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { fund_types } = require("../constants");
+const { statuses, fund_types } = require("../constants");
 
 const FundingOpportunitySchema = new mongoose.Schema({
     title: {
@@ -14,11 +14,19 @@ const FundingOpportunitySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    admin_status: {
+        type: String,
+        enum: [statuses.PENDING, statuses.ACCEPTED, statuses.REJECTED],
+        default: statuses.PENDING
+    },
     type: {
         type: String,
         enum: [fund_types.EDUCATIONAL, fund_types.BUSINESS, fund_types.EVENT],
         required: true
-    },
+    }
+
+    /*
+    // Features to be added later
     funding_amount: {
         type: Number,
         required: true
@@ -26,7 +34,13 @@ const FundingOpportunitySchema = new mongoose.Schema({
     deadline: {
         type: Date,
         required: true
+    },
+    status: {
+        type: String,
+        enum: [statuses.ACTIVE, statuses.INACTIVE],
+        default: statuses.ACTIVE
     }
+    */
     //funding_amount history will be added later
 });
 
