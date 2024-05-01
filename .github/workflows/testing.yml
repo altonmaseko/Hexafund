@@ -41,7 +41,7 @@ jobs:
       - name: Upload Code Coverage
         uses: actions/upload-artifact@v2
         with:
-          name: coverage
+          name: playwright-coverage
           path: playwright-coverage/
           retention-days: 30
 
