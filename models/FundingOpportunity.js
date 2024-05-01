@@ -23,6 +23,11 @@ const FundingOpportunitySchema = new mongoose.Schema({
         type: String,
         enum: [fund_types.EDUCATIONAL, fund_types.BUSINESS, fund_types.EVENT],
         required: true
+    },
+    funding_opportunity_id: {
+        type: mongoose.Schema.Types.ObjectId, // Use ObjectId type
+        index: true, // Optional: Add an index for faster lookups
+        auto: true // Automatically generate an ObjectId
     }
 
     /*
