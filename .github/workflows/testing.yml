@@ -62,3 +62,6 @@ jobs:
 
       - name: Run Jest tests
         run: npm run jest
+
+      - name: Code coverage
+        run: npx jest --coverage
