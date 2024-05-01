@@ -6,7 +6,7 @@ const FundingOpportunity = require("../models/FundingOpportunity")
 
 const getFunding = asyncWrapper(async (req, res) => {
 
-    let fundingOpportunities = await Advert.find({});
+    let fundingOpportunities = await FundingOpportunity.find({});
 
     const query = req.query; // when browser url is ...?property=value&property2=value
     
