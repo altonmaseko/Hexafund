@@ -1,4 +1,5 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect } from "../e2e/_shared/app-fixtures";
+
 
 test.describe("Admin login",()=>{
     test("should login with valid credentials",async({page})=>{

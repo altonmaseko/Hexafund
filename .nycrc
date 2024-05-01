@@ -1,8 +1,0 @@
-{
-    "extends": "@cspotcode/nyc/playwright",
-    "all": true,
-    "reporter": ["text", "html"],
-    "include": ["tests/e2e/*.js"],
-    "instrument": true,
-    "sourceMap": true
-}
