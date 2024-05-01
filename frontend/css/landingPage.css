@@ -24,7 +24,7 @@ body {
 .container {
   min-height: 100vh;
   background-image: linear-gradient(rgba(16,42,48,255), rgba(10, 36, 47, 0.9))
-    ,url("business-funding.jpg"); 
+    ,url("../images/business-funding.jpg"); 
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
