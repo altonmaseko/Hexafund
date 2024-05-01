@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { PLATFORM_ADMIN } = require("../constants/roles");
+const { roles } = require("../constants");
 
 const FundingManagerSchema = new mongoose.Schema({
     name: {
@@ -16,9 +16,8 @@ const FundingManagerSchema = new mongoose.Schema({
     },
     account_details: {
         account_active: { type: Boolean, default: false },
-        reason: { type: String, default: `Account pending approval from a ${PLATFORM_ADMIN}` },
+        reason: { type: String, default: `Account pending approval from a ${roles.PLATFORM_ADMIN}` },
         infractions: { type: Number, default: 0 }
-
     }
 });
 

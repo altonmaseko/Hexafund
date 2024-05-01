@@ -1,7 +1,10 @@
-import images from './images';
-import roles from './roles';
+// imports
+const roles = require('./roles');
+const statuses = require('./statuses');
+const fund_types = require('./fund_types');
 
-export {
-    images,
-    roles
+module.exports = {
+    statuses,
+    roles,
+    fund_types
 };

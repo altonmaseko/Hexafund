@@ -1,1 +1,2 @@
---> Add validation to the frontend
+--> Add validation to the frontend (must tell user if there is an issue: must look good)
+--> Add alerts for important information (incorrect pass/email etc)

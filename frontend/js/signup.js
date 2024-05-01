@@ -1,8 +1,8 @@
 // Get the element by its ID
 const element = document.getElementById('drop_down');
 
-axios.defaults.baseURL = "https://funding-website.azurewebsites.net/" // PRODUCTION URL
-// axios.defaults.baseURL = "http://localhost:3000/" // LOCAL URL
+//axios.defaults.baseURL = "https://funding-website.azurewebsites.net/" // PRODUCTION URL
+ axios.defaults.baseURL = "http://localhost:3000/" // LOCAL URL
 
 // Add event listener for the select tag
 element.addEventListener('change', function (event) {
@@ -14,6 +14,7 @@ element.addEventListener('change', function (event) {
     ** If the user selects 'Fund Manager', the 'company_input' field should then be usable
     ** If the user selects 'Applicant', the 'company_input' field should no longer be able to be interacted with
     ** The 'company_input' field should be a required field if the user selects 'Fund Manager'
+    ** Add data validation
 
     * These changes make things a bit easier and a little more efficient
     */

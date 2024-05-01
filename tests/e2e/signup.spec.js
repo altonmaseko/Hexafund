@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect } from "../e2e/_shared/app-fixtures";
 const { v4: uuidv4 } = require('uuid');
 
 test.describe("Testing compontents",()=>{

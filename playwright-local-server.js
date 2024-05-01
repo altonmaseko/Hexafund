@@ -7,25 +7,19 @@ const connectDB = require("./config/connectDB");
 if (process.env.CI != true){
     require("dotenv").config();
 }
-const verifyAccessToken = require("./middleware/verifyAccessToken");
+const { verifyAccessToken, errorHandler } = require("./middleware");
 const cors = require("cors");
-const User = require("./models/User");
-const FundingManager = require("./models/FundingManager");
-const Applicant = require("./models/Applicant");
+const { User, FundingManager, Applicant } = require("./models");
 const { SHA256 } = require("crypto-js");
-
-const { 
-    PLATFORM_ADMIN, 
-    FUNDING_MANAGER, 
-    APPLICANT 
-} = require("./constants/roles")
+const { roles } = require("./constants");
 
 // Routers
-const registerRouter = require("./routers/registerRouter");
-const loginRouter = require("./routers/loginRouter");
-const refreshRouter = require("./routers/refreshRouter");
-const logoutRouter = require("./routers/logoutRouter");
-const userRouter = require("./routers/userRouter.js")
+const { registerRouter, 
+    loginRouter, 
+    refreshRouter, 
+    logoutRouter, 
+    userRouter 
+} = require("./routers");
 // END: Routers
 
 const app = express();
@@ -57,16 +51,16 @@ async function initializeDatabase() {
         name: "admin",
         email: "admin@gmail.com",
         password: SHA256("admin123").toString(),
-        role: PLATFORM_ADMIN,
+        role: roles.PLATFORM_ADMIN,
     });
 
     console.log("CREATED")
 
     await User.create({
         name: "applicant",
-        email: "test-applicant@gmail.com",
+        email: "testapplicant@gmail.com",
         password: SHA256("applicant123").toString(),
-        role: APPLICANT,
+        role: roles.APPLICANT,
     });
     await Applicant.create({
         name: "applicant",
@@ -77,7 +71,7 @@ async function initializeDatabase() {
         name: "fund",
         email: "test-fund@gmail.com",
         password: SHA256("fund123").toString(),
-        role: FUNDING_MANAGER,
+        role: roles.FUNDING_MANAGER,
     });
     await FundingManager.create({
         name: "fund",
@@ -103,12 +97,12 @@ app.get("/home", async (req, res) => {
 
     console.log(`applicant? ${user?.role}`);
 
-    if (user?.role === APPLICANT) 
+    if (user?.role === roles.APPLICANT) 
     {
         console.log("applicant home page");
         res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
     } 
-    else if (user?.role === FUNDING_MANAGER) 
+    else if (user?.role === roles.FUNDING_MANAGER) 
     {
         const FundingManager = require("./models/FundingManager.js");
         const fundingManager = await FundingManager.findOne({ email: email });
@@ -132,7 +126,7 @@ app.get("/home", async (req, res) => {
             }
         }
     } 
-    else if ((user?.role === PLATFORM_ADMIN) )
+    else if ((user?.role === roles.PLATFORM_ADMIN) )
     {
         console.log("admin page");
         res.status(200).sendFile(path.join(__dirname, "frontend", "Platform-Admin-Pages", "approval-dashboard.html"));
@@ -140,7 +134,7 @@ app.get("/home", async (req, res) => {
 });
 // END: PLACE HOLDER
 
-app.use(require("./middleware/errorHandler"));
+app.use(errorHandler);
 
 app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")

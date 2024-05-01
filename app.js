@@ -5,22 +5,18 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/connectDB");
 require("dotenv").config();
-const verifyAccessToken = require("./middleware/verifyAccessToken");
+const { verifyAccessToken, errorHandler } = require("./middleware");
 const cors = require("cors");
-const User = require("./models/User");
-
-const { 
-    PLATFORM_ADMIN, 
-    FUNDING_MANAGER, 
-    APPLICANT 
-} = require("./constants/roles")
+const { User } = require("./models");
+const { roles } = require("./constants");
 
 // Routers
-const registerRouter = require("./routers/registerRouter");
-const loginRouter = require("./routers/loginRouter");
-const refreshRouter = require("./routers/refreshRouter");
-const logoutRouter = require("./routers/logoutRouter");
-const userRouter = require("./routers/userRouter.js")
+const { registerRouter, 
+    loginRouter, 
+    refreshRouter, 
+    logoutRouter, 
+    userRouter 
+} = require("./routers");
 // END: Routers
 
 const app = express();
@@ -58,12 +54,12 @@ app.get("/home", async (req, res) => {
 
     console.log(`applicant? ${user?.role}`);
 
-    if (user?.role === APPLICANT) 
+    if (user?.role === roles.APPLICANT) 
     {
         console.log("applicant home page");
         res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
     } 
-    else if (user?.role === FUNDING_MANAGER) 
+    else if (user?.role === roles.FUNDING_MANAGER) 
     {
         const FundingManager = require("./models/FundingManager.js");
         const fundingManager = await FundingManager.findOne({ email: email });
@@ -87,7 +83,7 @@ app.get("/home", async (req, res) => {
             }
         }
     } 
-    else if ((user?.role === PLATFORM_ADMIN) )
+    else if ((user?.role === roles.PLATFORM_ADMIN) )
     {
         console.log("admin page");
         res.status(200).sendFile(path.join(__dirname, "frontend", "Platform-Admin-Pages", "approval-dashboard.html"));
@@ -95,7 +91,7 @@ app.get("/home", async (req, res) => {
 });
 // END: PLACE HOLDER
 
-app.use(require("./middleware/errorHandler"));
+app.use(errorHandler);
 
 app.all("*", (req, res) => {
     res.status(404).send("404 NOT FOUND")

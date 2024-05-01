@@ -1,7 +1,7 @@
 // imports
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const asyncWrapper = require("../middleware/asyncWrapper");
+const { User } = require("../models");
+const { asyncWrapper } = require("../middleware");
 
 const refreshController = asyncWrapper(async (req, res) => {
 

@@ -1,9 +1,8 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const asyncWrapper = require("../middleware/asyncWrapper");
-
-const User = require("../models/User");
+const { asyncWrapper } = require("../middleware");
+const { User } = require("../models");
 
 const loginController = asyncWrapper(async (req, res) => {
 

@@ -1,6 +1,6 @@
 // imports
-const logoutController = require("../../../controllers/logoutController");
-const User = require("../../../models/User");
+const { logoutController } = require("../../../controllers");
+const { User } = require("../../../models");
 
 const res = {
   status: jest.fn(() => res),
