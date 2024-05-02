@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approval Dashboard</title>
-    <link rel="stylesheet" href="Platform-Admin-Pages/css/approval-dashboard.css">
-    <script src="External_Modules/axios.min.js"></script>
-    <script type="module"  src="Platform-Admin-Pages/js/approval-dashboard.js" defer></script>
-    <script type="module"  src="js/logout.js" defer></script>
+
+    <!-- WHEN NAVIGATING FROM BACKEND, THIS WORKS: -->
+    <!-- <link rel="stylesheet" href="Platform-Admin-Pages/css/approval-dashboard.css"> -->
+    <!-- <script src="External_Modules/axios.min.js"></script> -->
+    <!-- <script type="module"  src="Platform-Admin-Pages/js/approval-dashboard.js" defer></script> -->
+    <!-- <script type="module"  src="js/logout.js" defer></script> -->
+
+    <!-- WHEN NAVIGATING FROM HTML PAGES, THIS WORKS: -->
+    <link rel="stylesheet" href="css/approval-dashboard.css">
+    <script src="../External_Modules/axios.min.js"></script>
+    <script type="module"  src="js/approval-dashboard.js" defer></script>
+    <script type="module"  src="../js/logout.js" defer></script>
 </head>
 <body>
     <header>
-        <img id="logo" src="images/hexaFundLogo.png" alt="Flag">
+        <img id="logo" src="../images/hexaFundLogo.png" alt="Flag">
         <h1>hexafund</h1> 
         <nav>
             <button id="AboutBut" >About Us</button>

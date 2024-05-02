@@ -90,7 +90,7 @@ app.get("/home", async (req, res) => {
     else if ((user?.role === roles.PLATFORM_ADMIN) )
     {
         console.log("admin page");
-        res.status(200).sendFile(path.join(__dirname, "frontend", "Platform-Admin-Pages", "approval-dashboard.html"));
+        res.status(200).sendFile(path.join(__dirname, "frontend", "Home-Pages", "AdminHome.html"));
     } 
 });
 // END: PLACE HOLDER
