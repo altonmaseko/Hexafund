@@ -1,5 +1,5 @@
-axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
-// axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
+// axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
+axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
 
 const requestSection = document.querySelector(".requests")
 
