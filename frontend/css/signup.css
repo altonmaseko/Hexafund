@@ -61,9 +61,21 @@ body {
 }
 
 
+
+/* .container {
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(16,42,48,255), rgba(10, 36, 47, 0.9))
+      ,url("../images/business-funding.jpg"); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  } */
+
+
 section {
     color: white;
     background-color: rgba(150,187,186,255);
+    /* background-color: rgba(10, 36, 47, 0.9); */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -120,10 +132,16 @@ article {
 #submit_button {
     color: white;
     background-color: #3c7474;
+    /* background-color: #00111b; */
     border-radius: 15px;
     font-size: large;
     height: 60px;
     width: 400px;
+}
+
+
+#submit_button:hover {
+    background-color: #3e8485;
 }
 
 footer {
