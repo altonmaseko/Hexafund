@@ -1,3 +1,17 @@
+//Validation for confirming password
+var password = document.getElementById("password_input")
+  , confirm_password = document.getElementById("confirm_password_input");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
 // Get the element by its ID
 const element = document.getElementById('drop_down');
 
