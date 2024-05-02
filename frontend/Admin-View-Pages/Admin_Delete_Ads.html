@@ -2,13 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Admin-View-Pages/css/Admin_Delete_Ads.css">
+    <!--PRODUCTION-->
+    <link rel="stylesheet" href="Admin-View-Pages/css/Admin_Delete_Ads.css">  
+    <script src="External_Modules/axios.min.js"></script>
+    <script defer src="Admin-View-Pages/js/adminDelete.js"></script> 
+
+
+    <!--LOCAL-->
+    <!-- <link rel="stylesheet" href="css/Admin_Delete_Ads.css">  -->
+    <!-- <script src="../External_Modules/axios.min.js"></script>   -->
+    <!-- <script defer src="js/adminDelete.js"></script>  -->
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin View/Del Ads</title>
 </head>
 <body>
     <header>
-        <img id="logo" src="hexaFundLogoNoBack.png" alt="logo">
+        <img id="logo" src="../images/hexaFundLogoNoBack.png" alt="logo">
         <h1>hexafund</h1> 
         <nav>
             <article>
@@ -23,17 +34,17 @@
     <h2>Funding Opportunities</h2>
     <div class="filter-bar">
         <select id="category-dropdown">
-            <option value="allOps">All Categories</option>
-            <option value="edOPs">Education</option>
-            <option value="busOPs">Business</option>
-            <option value="eventOps">Events</option>
+            <option value="All Options">All Categories</option>
+            <option value="Educational">Education</option>
+            <option value="Business">Business</option>
+            <option value="Event">Events</option>
         </select>
         <input type="text" id="search-bar" placeholder="Search...">
     </div>
     <div class="scrollable-container">
         <section class="requests">
             
-            <div class="request-card">
+            <!-- <div class="request-card">
                 <div class="card-left">
                     <img src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
                 </div>
@@ -80,7 +91,7 @@
                     <p id="description">Description: thisiswhere you can give etra infor </p>
                     <button class="delete-btn">Delete</button>
                 </div>
-            </div>
+            </div> -->
             <!-- dynamically added here from databases -->
         </section>
     </div>
