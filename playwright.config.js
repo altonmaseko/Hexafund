@@ -29,13 +29,14 @@ module.exports = defineConfig({
     ['monocart-reporter', {  
         name: "My Test Report",
         outputFile: './playwright-coverage/report.html',
-        coverage: {
+        consoleLog: true,
+        coverage: [{
           entryFilter: (entry) => true,
           sourceFilter: (sourcePath) => sourcePath.search(/src\/.+/) !== -1,
-        },
-    }
-  ]
-
+          }
+        ],
+      }
+    ],
   ],
   projects: [
     {
