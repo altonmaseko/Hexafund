@@ -9,6 +9,10 @@ body {
     overflow: hidden;
 }
 
+.nav {
+    display: flex;
+}
+
 .nav__logo {
     float: left;
 }
@@ -40,9 +44,8 @@ body {
 }
 
 .nav__links {
-    float: right;
     margin: 20px; 
-    padding: 0;
+    display: flex;
     list-style-type: none;
 }
 
