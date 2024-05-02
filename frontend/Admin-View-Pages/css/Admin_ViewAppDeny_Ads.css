@@ -37,7 +37,7 @@ h2 {
 }
 
 .card-right .button-container button:hover {
-    background-color: #45a049;
+    transform: scale(1.05);
 }
 
 .card-right .button-container .deny-btn {
@@ -85,12 +85,14 @@ h2 {
 /* Request card styles */
 .request-card {
     display: flex;
+    flex-direction: row;
     margin-bottom: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
-    height: 250px; /* Adjust the height as needed */
+
+    /* height: 250px; */
 }
 
 /* Card left styles (image) */
@@ -119,7 +121,7 @@ h2 {
 }
 /* Card right styles (content) */
 .card-right {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     padding: 10px;
     display: flex;
     flex-direction: column;
