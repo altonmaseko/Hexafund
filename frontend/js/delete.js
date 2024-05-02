@@ -1,5 +1,4 @@
-axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
-// axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
+
 
 // self-delete user
 // TODO: add some sort of warning before deleting the account

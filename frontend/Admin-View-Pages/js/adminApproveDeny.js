@@ -1,5 +1,4 @@
-// axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
-axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
+
 
 const requestSection = document.querySelector(".requests")
 
@@ -14,6 +13,11 @@ const loadOpportunities = async (query_params) => {
         return
     }
     const fundingOpportunities = response.data
+
+    if (fundingOpportunities.length <= 0){
+        alert("There are currently no funding opportunities.")
+        return
+    }
 
     fundingOpportunities.forEach((fundingOpportunity) => {
         let { title,

@@ -1,5 +1,3 @@
-axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
-// axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
 
 document.getElementById("logout_button").addEventListener("click", async (event) => {
 

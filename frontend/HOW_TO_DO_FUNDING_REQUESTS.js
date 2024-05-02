@@ -1,5 +1,3 @@
-// ALWAYS DO THIS FIRST:
-axios.defaults.baseURL = "https://funding-website.azurewebsites.net/" // PRODUCTION URL
 
 // how the funding opportunity object looks like:
 const obj = 

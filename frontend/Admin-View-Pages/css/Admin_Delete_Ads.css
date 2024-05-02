@@ -177,3 +177,8 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+#adminStatus {
+    font-size: 1.25em;
+    font-family: cursive;
+}

@@ -1,5 +1,3 @@
-// axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
-axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
 
 const requestSection = document.querySelector(".requests")
 
@@ -14,6 +12,11 @@ const loadOpportunities = async (query_params) => {
         return
     }
     const fundingOpportunities = response.data
+
+    if (fundingOpportunities.length <= 0) {
+        alert("There are currently no funding opportunities.")
+        return
+    }
 
     fundingOpportunities.forEach((fundingOpportunity) => {
         let { title,
@@ -33,7 +36,7 @@ const loadOpportunities = async (query_params) => {
         requestCard.classList.add("request-card")
         const requestCardInnerHTML = `<div class="card-left">
                     <img src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
-                </div>
+                    </div>
                 <div class="card-right">
                     <h3>
                         <span id="title">${title}</span>
@@ -43,6 +46,7 @@ const loadOpportunities = async (query_params) => {
                     </h3>
                     <p id="amount">Amount: R${funding_amount} [${available_slots} available]</p>
                     <p id="description">Description: ${description} </p>
+                    <span id="adminStatus">${admin_status}</span>
                     <button class="delete-btn">Delete</button>
                 </div>`
 
@@ -77,12 +81,11 @@ categoryDropDown.addEventListener("input", async (event) => {
     console.log(categoryDropDown.value)
 
     if (categoryDropDown.value === "All Options") {
-        const query_params = `?admin_status=Pending`
-        await loadOpportunities(query_params)
+        await loadOpportunities("")
         return
     }
 
-    const query_params = `?admin_status=Pending&type=${categoryDropDown.value}`
+    const query_params = `?type=${categoryDropDown.value}`
     await loadOpportunities(query_params)
 
 })

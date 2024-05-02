@@ -1,5 +1,4 @@
-axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
-// axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
+
 
 const requestSection = document.querySelector(".requests")
 
@@ -16,7 +15,7 @@ const loadOpportunities = async (query_params) => {
     }
     const fundingOpportunities = response.data
 
-    if (fundingOpportunities.length <= 0){
+    if (fundingOpportunities.length <= 0) {
         alert("There are currently no funding opportunities :(")
         return
     }
@@ -91,3 +90,17 @@ categoryDropDown.addEventListener("input", async (event) => {
 // When page loads:
 const query_params = `?admin_status=Approved`
 loadOpportunities(query_params)
+
+const cookies = document.cookie; // Get all cookies as a single string
+const cookieArray = cookies.split('; '); // Split into an array of individual cookies
+let userName;
+for (const cookie of cookieArray) {
+    const [name, value] = cookie.split('=');
+    console.log(value)
+    if (name === 'name') {
+        userName = value
+    }
+}
+
+document.querySelector(".welcome-h2").textContent = `Welcome, ${userName} :)`
+

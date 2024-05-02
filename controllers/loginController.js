@@ -46,7 +46,7 @@ const loginController = asyncWrapper(async (req, res) => {
     //TODO: change max age
     res.cookie("jwt", refreshToken, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }); //24 hours in milliseconds
     
-    res.status(200).json({ accessToken: accessToken });
+    res.status(200).json({ accessToken: accessToken, name:user.name });
 });
 
 module.exports = loginController;

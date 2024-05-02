@@ -59,7 +59,8 @@ app.get("/home", async (req, res) => {
     if (user?.role === roles.APPLICANT) 
     {
         console.log("applicant home page");
-        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
+        // res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
+        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-View-Ads", "Applicant_View_Ads.html"));
     } 
     else if (user?.role === roles.FUNDING_MANAGER) 
     {
@@ -69,7 +70,8 @@ app.get("/home", async (req, res) => {
         if (fundingManager?.account_details.account_active) 
         {
             console.log("funding manager home page");
-            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "home-page.html"));
+            // res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "home-page.html"));
+            res.status(200).sendFile(path.join(__dirname, "frontend", "FM-View-Ad-Status-Pages", "FM_View_Ad_Status.html"));
         } 
         else 
         {

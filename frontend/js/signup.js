@@ -15,9 +15,6 @@ confirm_password.onkeyup = validatePassword;
 // Get the element by its ID
 const element = document.getElementById('drop_down');
 
-//axios.defaults.baseURL = "https://funding-website.azurewebsites.net/" // PRODUCTION URL
- axios.defaults.baseURL = "http://localhost:3000/" // LOCAL URL
-
 // Add event listener for the select tag
 element.addEventListener('change', function (event) {
     const selectedIndex = event.target.selectedIndex;
