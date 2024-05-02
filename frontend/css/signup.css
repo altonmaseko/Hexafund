@@ -4,6 +4,7 @@ body {
 
 /*nav bar things*/ 
 .container {
+    background-image: none;
     background-color: #00111b;
     overflow: hidden;
 }
@@ -74,8 +75,8 @@ body {
 
 section {
     color: white;
-    background-color: rgba(150,187,186,255);
-    /* background-color: rgba(10, 36, 47, 0.9); */
+    /* background-color: rgba(150,187,186,255); */
+    background-image: linear-gradient(#00111b, #336380);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -108,7 +109,7 @@ article {
 
 #name_input, #email_input, #password_input, 
 #confirm_password_input, #company_input {
-    border-radius: 40px;
+    border-radius: 20px;
     width: 500px;
     height: 60px;
     background-color: transparent;
@@ -123,8 +124,8 @@ article {
 }
 
 #drop_down {
-    color: white;
-    background-color: #3c7474;
+    color: black;
+    /* background-color: #3c7474; */
     border-radius: 8px;
     font-size: large;
 }
@@ -132,7 +133,6 @@ article {
 #submit_button {
     color: white;
     background-color: #3c7474;
-    /* background-color: #00111b; */
     border-radius: 15px;
     font-size: large;
     height: 60px;
@@ -145,13 +145,19 @@ article {
 }
 
 footer {
-    background-color: rgba(0,62,64,255);
-    padding: 20px;
+    background-color:#001e30; 
+    padding: 10px;
     text-align: center;
     color: white;
+    height: 40px;
 }
+
 
 a:visited{
     text-decoration: none;
     color: white;
+}
+
+p a:hover {
+    color: #191d4f; 
 }
