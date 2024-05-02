@@ -9,7 +9,9 @@ const createFundingOpportunity = asyncWrapper(async (req, res) => {
         type, admin_status,
         funding_opportunity_id,
         funding_amount,
-        available_slots } = req.body;
+        available_slots,
+        deadline,
+    description } = req.body;
 
     if (!title || !company_name || !funding_manager_email || !type) {
         res.status(400).json({ message: "Please ensure you have entered the Title, Company Name, Funding Manager Email and Type", status: 400 });
@@ -32,7 +34,9 @@ const createFundingOpportunity = asyncWrapper(async (req, res) => {
         admin_status,
         funding_opportunity_id,
         funding_amount,
-        available_slots
+        available_slots,
+        deadline,
+        description
     })
 
     res.status(201).json({ message: `${title} has been successfully created.`, status: 201 });

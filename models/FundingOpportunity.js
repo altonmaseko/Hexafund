@@ -42,15 +42,16 @@ const FundingOpportunitySchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    status: {
-        type: String,
-        enum: [statuses.ACTIVE, statuses.INACTIVE],
-        default: statuses.ACTIVE
-    },
+    
     description: {
         type: String,
         default: "Apply for this funding Opportunity now! And start your journey of SUCCESS! You. Can. Do It."
     }
+    // status: {
+    //     type: String,
+    //     enum: [statuses.ACTIVE, statuses.INACTIVE],
+    //     default: statuses.ACTIVE
+    // },
     
     //funding_amount history will be added later
 });
