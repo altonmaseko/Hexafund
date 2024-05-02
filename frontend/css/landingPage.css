@@ -45,6 +45,7 @@ nav {
   align-items: center;
   gap: 10px;
   justify-content: flex-start;
+  padding-top: 10px;
 }
 
 .nav__logo img {
@@ -61,11 +62,12 @@ nav {
   margin-right: 50px;
 }
 
-/* .nav__links {
+.nav__links {
   list-style: none;
   position: absolute;
   width: 100%;
   padding: 2rem;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,13 +94,14 @@ nav {
 .nav__links a:hover {
   color: var(--primary-color);
 }
- */
+
 
 
 .container__content {
   /* text-align: center; */
   text-align: left;
   padding-left: 20px;
+  margin-top: 100px;
 }
 
 .container__content h1 {
@@ -131,22 +134,23 @@ nav {
 
 
   nav {
+    height: 50px;
     padding: 2rem 1rem;
     position: static;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-/* 
+
   .nav__bar {
     padding: 0;
     background-color: transparent;
-  } */
+  }
 
 
   .container__content a {
-    position: absolute; /* Position the link absolutely */
-    top: 55%; /* Move the link 50% down from the top */
+    position: absolute; 
+    top: 55%; 
     transform: translateY(-50%); /* Adjust to center vertically */
     right: 250px; /* Align the link to the right */
     color: rgb(32, 142, 232);
@@ -160,3 +164,16 @@ nav {
     transform: translateY(-50%); 
     left: 400px;
   } */
+
+  footer {
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    height: 50px;
+    position: absolute; /* Position the footer */
+    bottom: 0px;
+    width: 100%;
+}
