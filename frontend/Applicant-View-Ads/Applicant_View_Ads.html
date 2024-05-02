@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- PRODUCTION -->
     <link rel="stylesheet" href="Applicant-View-Ads/css/Applicant_View_Ads.css">
+    <script src="External_Modules/axios.min.js"></script>  
+    <script defer src="Applicant-View-Ads/js/applicantViewAds.js"></script>
+
+    <!-- LOCAL -->
+    <!-- <link rel="stylesheet" href="css/Applicant_View_Ads.css"> -->
+    <!-- <script src="../External_Modules/axios.min.js"></script>   -->
+    <!-- <script defer src="js/applicantViewAds.js"></script> -->
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Applicant View Ads</title>
 </head>
 <body>
     <header>
-        <img id="logo" src="hexaFundLogoNoBack.png" alt="logo">
+        <img id="logo" src="../images/hexaFundLogoNoBack.png" alt="logo">
         <h1>hexafund</h1> 
         <nav>
             <article>
@@ -23,10 +33,10 @@
     <h2>Funding Opportunities</h2>
     <div class="filter-bar">
         <select id="category-dropdown">
-            <option value="allOps">All Categories</option>
-            <option value="edOPs">Education</option>
-            <option value="busOPs">Business</option>
-            <option value="eventOps">Events</option>
+            <option value="All Options">All Categories</option>
+            <option value="Educational">Education</option>
+            <option value="Business">Business</option>
+            <option value="Event">Events</option>
         </select>
         <input type="text" id="search-bar" placeholder="Search...">
     </div>
