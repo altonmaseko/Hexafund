@@ -10,7 +10,8 @@ function deleteAllCookies() {
     }
 }
 
-document.getElementById("logout_button").addEventListener("click", async (event) => {
+
+document.getElementById("logout_button")?.addEventListener("click", async (event) => {
 
     event.preventDefault();
     try {

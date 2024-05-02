@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+a:any-link{
+    text-decoration: none;
+    color: white;
+}
+
+
 /* Body styles */
 body {
     font-family: Arial, sans-serif;
@@ -176,4 +182,15 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+}
+.nav-button:hover {
+    transform: scale(1.04);
 }

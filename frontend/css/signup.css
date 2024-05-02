@@ -1,5 +1,12 @@
 body {
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    max-height: 800px;
+    background: linear-gradient(#00111b, #336380);
+    /* background-color: red; */
+    /* display: none; */
 }
 
 /*nav bar things*/ 
@@ -22,7 +29,7 @@ body {
 }
 
 .nav__logo img {
-    width: 90px; 
+    width: auto; 
     height: 50px; 
     border-radius: 50%;
     /* margin-right: 10px; */
@@ -76,7 +83,7 @@ body {
 section {
     color: white;
     /* background-color: rgba(150,187,186,255); */
-    background-image: linear-gradient(#00111b, #336380);
+    /* background-image: linear-gradient(#00111b, #336380); */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -91,7 +98,6 @@ article {
     padding: 30px 40px;
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
-    height: auto;
     width: 500px;
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
@@ -104,14 +110,15 @@ article {
 #logo_image {
     border-radius: 40px;
     width: 555.5px;
-    height: 444.4px;
+    height: auto;    
 }
 
 #name_input, #email_input, #password_input, 
 #confirm_password_input, #company_input {
     border-radius: 20px;
     width: 500px;
-    height: 60px;
+    height: fit-content;
+    padding: 1rem;
     background-color: transparent;
     padding-left: 10px;
     font-size: large;
@@ -148,6 +155,9 @@ footer {
     background-color:#001e30; 
     padding: 10px;
     text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
     color: white;
     height: 40px;
 }
@@ -160,4 +170,9 @@ a:visited{
 
 p a:hover {
     color: #191d4f; 
+}
+
+.main {
+    /* margin-top: 2rem; */
+    height: 100%;
 }

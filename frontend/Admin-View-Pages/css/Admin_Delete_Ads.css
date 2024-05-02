@@ -182,3 +182,14 @@ footer {
     font-size: 1.25em;
     font-family: cursive;
 }
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+}
+.nav-button:hover {
+    transform: scale(1.04);
+}

@@ -1,5 +1,7 @@
 body {
-    margin: 0;
+    margin: 0px;
+    min-height: 100vh;
+    background-image: linear-gradient(#00111b, #336380);
 }
 
 /*nav bar things*/ 
@@ -22,7 +24,7 @@ body {
 }
 
 .nav__logo img {
-    width: 90px; 
+    width: auto ; 
     height: 50px; 
     border-radius: 50%;
     /* margin-right: 10px; */
@@ -66,7 +68,6 @@ body {
 
 section {
     color: white;
-    background-image: linear-gradient(#00111b, #336380);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -135,6 +136,9 @@ footer {
     text-align: center;
     color: white;
     height: 40px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
 }
 
 a:visited{
@@ -148,4 +152,8 @@ p a:hover {
 
 #submit_button:hover {
     background-color: #3e8485;
+}
+
+.main {
+    margin-top: 3rem;
 }
