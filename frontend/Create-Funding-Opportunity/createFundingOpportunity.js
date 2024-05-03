@@ -3,6 +3,9 @@ const sendButton = document.querySelector(".sendButton");
 
 let inputsValid = false
 
+let base64
+
+
 sendButton.addEventListener("click", function () {
     const fundTitle = document.getElementById("fundTitle").value;
     const companyName = document.getElementById("companyName").value;
@@ -52,8 +55,7 @@ const obj =
 
 document.querySelector(".sendButton").addEventListener("click", async () => {
 
-    if (!inputsValid)
-    {
+    if (!inputsValid) {
         return
     }
     // GET DATA
@@ -79,7 +81,8 @@ document.querySelector(".sendButton").addEventListener("click", async () => {
             funding_amount,
             available_slots,
             deadline,
-            description
+            description,
+            image_data: base64
         })
         console.log(response.data)
         alert(`CONGRATS! ${title} was created successfully`)
@@ -105,3 +108,33 @@ const clearForm = () => {
     document.querySelector("#description").textContent = "";
     document.getElementById("expiryDate").value = ""
 }
+
+
+// GETTING PICTURE
+
+let input = document.getElementById('picture');
+input.addEventListener('change', handleFiles, false);
+
+function handleFiles(e) {
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext('2d');
+    let img = new Image();
+
+
+
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+        base64 = canvas.toDataURL(); // Get the Base64 string
+        console.log(base64); // Log it (you can use it as needed)
+
+        // Display Image
+        let output = document.getElementById('output'); // Assuming you have an <img> element with id="output"
+        output.src = base64; // Set the image source to the Base64 string
+    };
+
+    img.src = URL.createObjectURL(e.target.files[0]); // Load the selected image
+
+   
+}
+
+

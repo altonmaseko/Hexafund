@@ -29,14 +29,14 @@ const loadOpportunities = async (query_params) => {
             deadline,
             description,
             funding_amount,
-            available_slots } = fundingOpportunity
+            available_slots, image_data } = fundingOpportunity
 
         deadline = deadline.slice(0, deadline.indexOf("T")) // Just get the day, month, year and skip the time
 
         const requestCard = document.createElement("div")
         requestCard.classList.add("request-card")
         const requestCardInnerHTML = `<div class="card-left">
-                    <img src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
+                    <img class="ad-image" src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
                 </div>
                 <div class="card-right">
                     <h3>
@@ -55,6 +55,14 @@ const loadOpportunities = async (query_params) => {
                 </div>`
 
         requestCard.innerHTML = requestCardInnerHTML
+
+        let adImage = requestCard.querySelector(".ad-image");
+        if (!image_data) {
+            adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"
+        } else {
+            adImage.src = image_data
+        }
+
         requestSection.appendChild(requestCard);
 
 

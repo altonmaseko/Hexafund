@@ -46,6 +46,9 @@ const FundingOpportunitySchema = new mongoose.Schema({
     description: {
         type: String,
         default: "Apply for this funding Opportunity now! And start your journey of SUCCESS! You. Can. Do It."
+    },
+    image_data: {
+        type: String, // Use Buffer for storing binary data
     }
     // status: {
     //     type: String,

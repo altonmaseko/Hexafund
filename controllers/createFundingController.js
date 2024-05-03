@@ -4,7 +4,7 @@ const { asyncWrapper } = require("../middleware");
 
 const createFundingOpportunity = asyncWrapper(async (req, res) => {
     console.log("create funding opportunity")
-    const { title,
+    let { title,
         company_name,
         funding_manager_email,
         type, admin_status,
@@ -12,7 +12,7 @@ const createFundingOpportunity = asyncWrapper(async (req, res) => {
         funding_amount,
         available_slots,
         deadline,
-    description } = req.body;
+    description, image_data } = req.body;
 
     if (!title || !company_name || !funding_manager_email || !type) {
         res.status(400).json({ message: "Please ensure you have entered the Title, Company Name, Funding Manager Email and Type", status: 400 });
@@ -37,7 +37,8 @@ const createFundingOpportunity = asyncWrapper(async (req, res) => {
         funding_amount,
         available_slots,
         deadline,
-        description
+        description,
+        image_data
     })
 
     res.status(201).json({ message: `${title} has been successfully created.`, status: 201 });
