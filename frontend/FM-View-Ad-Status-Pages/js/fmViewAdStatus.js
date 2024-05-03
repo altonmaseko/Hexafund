@@ -16,7 +16,7 @@ const loadOpportunities = async (query_params) => {
     const fundingOpportunities = response.data
 
     if (fundingOpportunities.length <= 0) {
-        alert("There are currently no funding opportunities :(")
+        alert("You have no funding opportunities here :(")
         return
     }
 
@@ -54,6 +54,8 @@ const loadOpportunities = async (query_params) => {
                     </div>
                 </div>`
 
+        requestCard.innerHTML = requestCardInnerHTML
+
         if (admin_status === "Approved") {
             requestCard.querySelector(".status-indicator").classList.add("approved")
         } else if (admin_status === "Rejected") {
@@ -62,7 +64,6 @@ const loadOpportunities = async (query_params) => {
             requestCard.querySelector(".status-indicator").classList.add("pending")
         }
 
-        requestCard.innerHTML = requestCardInnerHTML
         requestSection.appendChild(requestCard);
         
         // requestSection.appendChild(document.createElement("br"))
@@ -103,7 +104,6 @@ for (const cookie of cookieArray) {
 if (!userEmail)
 {
     alert("System has lost your details. This page will not work, sorry")
-    return
 }
 
 // When page loads:

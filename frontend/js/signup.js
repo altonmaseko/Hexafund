@@ -1,17 +1,57 @@
 //Validation for confirming password
-var password = document.getElementById("password_input")
-  , confirm_password = document.getElementById("confirm_password_input");
+let password = document.getElementById("password_input")
+let confirm_password = document.getElementById("confirm_password_input");
+let nameInput = document.getElementById("name_input")
+let emailInput = document.getElementById("email_input")
 
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
+let inputsValid = false;
+
+function validateInput() {
+    if (isValidEmail(emailInput.value) != "Correct") {
+        emailInput.setCustomValidity(isValidEmail(emailInput.value));
+        inputsValid = false;
+        return
+    }
+    if (!nameInput.value || !emailInput.value) {
+        confirm_password.setCustomValidity("Please Enter Name AND Email");
+        inputsValid = false;
+        return
+    }
+    if (!password.value) {
+        password.setCustomValidity("Please enter password");
+        inputsValid = false;
+        return
+    }
+    if (!isStrongPassword(password.value)) {
+        password.setCustomValidity("Your password is too weak. A strong password should have at least 8 characters, including uppercase letters, lowercase letters, digits, and special characters");
+        inputsValid = false;
+        return
+    }
+    if (password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+        inputsValid = false;
+        return
+    }
+
+
     confirm_password.setCustomValidity('');
-  }
+    inputsValid = true;
+
 }
 
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+
+emailInput.addEventListener("input", () => {
+    emailInput.setCustomValidity('');
+})
+nameInput.addEventListener("input", () => {
+    nameInput.setCustomValidity('');
+})
+password.addEventListener("input", () => {
+    password.setCustomValidity('');
+})
+confirm_password.addEventListener("input", () => {
+    confirm_password.setCustomValidity('');
+})
 
 // Get the element by its ID
 const element = document.getElementById('drop_down');
@@ -60,6 +100,10 @@ element.addEventListener('change', function (event) {
 const signUpBtn = document.getElementById("submit_button")
 
 signUpBtn.addEventListener('click', async function (event) {
+    validateInput()
+    if (!inputsValid) {
+        return
+    }
     event.preventDefault();
 
     const name = document.getElementById("name_input").value;
@@ -91,3 +135,33 @@ signUpBtn.addEventListener('click', async function (event) {
     }
     // END: TRYING AXIOS
 });
+
+function isStrongPassword(password) {
+    // Define the criteria for a strong password
+    const minLength = 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\-]/.test(password);
+
+    // Check if all criteria are met
+    return (
+        password.length >= minLength &&
+        hasUppercase &&
+        hasLowercase &&
+        hasDigit &&
+        hasSpecialChar
+    );
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!email.includes("@")) {
+        return "Email must contain an '@' symbol.";
+    } else if (email.startsWith("@") || email.endsWith("@")) {
+        return "The '@' symbol should not be the first or last character.";
+    } else {
+        return "Correct";
+    }
+}

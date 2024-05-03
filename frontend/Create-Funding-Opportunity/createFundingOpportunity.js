@@ -1,6 +1,8 @@
 
 const sendButton = document.querySelector(".sendButton");
 
+let inputsValid = false
+
 sendButton.addEventListener("click", function () {
     const fundTitle = document.getElementById("fundTitle").value;
     const companyName = document.getElementById("companyName").value;
@@ -12,10 +14,11 @@ sendButton.addEventListener("click", function () {
 
     if (!fundTitle || !companyName || category === "" || !amount || !count || !expiryDate || !description) {
         alert("Please fill in all fields.");
+        return
     }
-    else {
-        alert("Ad has been submitted")
-    }
+
+    inputsValid = true
+
 });
 
 let userEmail
@@ -31,17 +34,7 @@ for (const cookie of cookieArray) {
 
 if (!userEmail) {
     alert("System has lost your details. This page will not work, sorry")
-    return
 }
-
-const title = document.querySelector("#fundTitle").value;
-const company_name = document.querySelector("#companyName").value;
-const type = document.querySelector("#category").value;
-const funding_amount = document.querySelector("#amount").value;
-const available_slots = document.querySelector("#count").value;
-const deadline = document.querySelector("#expiryDate").value;
-const description = document.querySelector("#description").textContent;
-const funding_manager_email = userEmail
 
 
 
@@ -57,9 +50,28 @@ const obj =
     "description": "Supporting women pursuing tech careers."
 }
 
-document.querySelector(".sendButton").addEventListener("click", () => {
+document.querySelector(".sendButton").addEventListener("click", async () => {
+
+    if (!inputsValid)
+    {
+        return
+    }
+    // GET DATA
+    const title = document.querySelector("#fundTitle").value;
+    const company_name = document.querySelector("#companyName").value;
+    const type = document.querySelector("#category").value;
+    const funding_amount = document.querySelector("#amount").value;
+    const available_slots = document.querySelector("#count").value;
+    const description = document.querySelector("#description").textContent;
+    const funding_manager_email = userEmail
+    let deadline = document.getElementById("expiryDate").value
+    deadline = new Date(deadline)
+    // =======
+
+    console.log("Send Button Clicked")
+    let response
     try {
-        axios.post("/api/v1/funding-opportunity", {
+        response = await axios.post("/api/v1/funding-opportunity", {
             title,
             company_name,
             funding_manager_email,
@@ -69,7 +81,27 @@ document.querySelector(".sendButton").addEventListener("click", () => {
             deadline,
             description
         })
+        console.log(response.data)
+        alert(`CONGRATS! ${title} was created successfully`)
+        clearForm()
     } catch (error) {
-        alert("Sorry. Could not store ads")
+        const data = error.response
+        console.log(data)
+        if (data.status === 409) {
+            alert(`Sorry, ${title} already exists`)
+        } else {
+            alert(`Sorry, Could not submit ${title}`)
+        }
+        // window.location.href = "/"
     }
 })
+
+const clearForm = () => {
+    document.querySelector("#fundTitle").value = "";
+    document.querySelector("#companyName").value = "";
+    document.querySelector("#category").value = "";
+    document.querySelector("#amount").value = "";
+    document.querySelector("#count").value = "";
+    document.querySelector("#description").textContent = "";
+    document.getElementById("expiryDate").value = ""
+}

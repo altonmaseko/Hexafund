@@ -3,6 +3,7 @@ const { FundingOpportunity } = require("../models");
 const { asyncWrapper } = require("../middleware");
 
 const createFundingOpportunity = asyncWrapper(async (req, res) => {
+    console.log("create funding opportunity")
     const { title,
         company_name,
         funding_manager_email,

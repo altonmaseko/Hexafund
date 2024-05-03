@@ -17,7 +17,7 @@ const { asyncWrapper } = require("../middleware");
  */
 const selfDeleteUser = asyncWrapper(async (req, res) => {
     const refreshToken = req.cookies.jwt; // will always have value as this function will only be called if the user is logged in
-    
+
     const user = await User.findOne({ refreshToken: refreshToken }).exec();
     const email = user.email;
     const role = user.role;
@@ -25,26 +25,26 @@ const selfDeleteUser = asyncWrapper(async (req, res) => {
     res.clearCookie("jwt", { httpOnly: true });
     await User.deleteOne({ email: email });
 
-    switch(role) {
+    switch (role) {
         case roles.FUNDING_MANAGER:
             const fundingManager = await FundingManager.findOne({ email: email }).exec();
-            const company_name = fundingManager.company; 
+            const company_name = fundingManager.company;
 
             // delete all applications made to funding opportunities managed by the funding manager
             const funding_opps = await FundingOpportunity.find({ funding_manager_email: email }).exec();
-            if(funding_opps) {
+            if (funding_opps) {
                 const funding_opps_ids = funding_opps.map(funding_opp => funding_opp._id);
                 await Application.deleteMany({ funding_opportunity_id: { $in: funding_opps_ids } });
             }
-            
+
             // remove the funding manager from the company they work(ed) for
             await Company.updateOne({ name: company_name }, { $pull: { funding_managers: email } });
             // delete all funding opportunities managed by the funding manager
             await FundingOpportunity.deleteMany({ funding_manager_email: email }); //TODO: notify applicants
-            
+
             //check if company has any funding managers left
             const company = await Company.findOne({ name: company_name }).exec();
-            if(company.funding_managers.length === 0) {
+            if (company.funding_managers.length === 0) {
                 await Company.deleteOne({ name: company_name }); // delete the company
             }
 
@@ -55,7 +55,7 @@ const selfDeleteUser = asyncWrapper(async (req, res) => {
         case roles.APPLICANT:
             // delete all applications made by the applicant
             const applications = await Application.find({ applicant_email: email }).exec();
-            if(applications) {
+            if (applications) {
                 await Application.deleteMany({ applicant_email: email });
             }
 

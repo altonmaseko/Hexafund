@@ -71,7 +71,7 @@ app.get("/home", async (req, res) => {
         {
             console.log("funding manager home page");
             // res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "home-page.html"));
-            res.status(200).sendFile(path.join(__dirname, "frontend", "FM-View-Ad-Status-Pages", "FM_View_Ad_Status.html"));
+            res.status(200).sendFile(path.join(__dirname, "frontend", "Home-Pages", "FundingHome.html"));
         } 
         else 
         {
