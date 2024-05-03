@@ -26,6 +26,7 @@ document.getElementById("submit_button").addEventListener("click", async (event)
 
         window.location.href = "/home";
     } catch (error) {
+        alert(error.response.data.message)
         console.log(error);
     }
 });
