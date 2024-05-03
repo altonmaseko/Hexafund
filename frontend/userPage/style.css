@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(6, 37, 50, 0.9);
+    max-height: 100vh;
+    min-height: 100vh;
+    position: relative;
+    /* padding-bottom: 100px; */
+}
+
+.container {
+    background-color: #00111b;
+    overflow: hidden;
+}
+
+.nav__logo {
+    float: left;
+}
+
+.nav__logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.nav__logo img {
+    width: auto; 
+    height: 50px; 
+    border-radius: 50%;
+    /* margin-right: 10px; */
+}
+
+.nav__logo span {
+    /* font-weight: bold;
+    font-size: 20px; */
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    margin-left: -20px;
+    margin-top: -2px;
+}
+
+.nav__links {
+    float: right;
+    margin: 20px; 
+    padding: 0;
+    list-style-type: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav__links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nav__links li a:hover {
+    color: #3e8485;
+}
+
+.userInfo {
+    width: 400px;
+    margin: 50px;
+    margin-top: 100px;
+    float: left;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+}
+
+input[type="text"],
+textarea {
+    width: calc(100% - 30px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.deleteProfile {
+    background-color: #00111b;
+}
+
+button:hover {
+    background-color: #3e8485;
+}
+
+footer {
+    background-color: rgba(0, 62, 64, 255);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    height: 50px;
+    position: fixed; /* Position the footer */
+    bottom: 0px;
+    width: 100%;
+}
+
+.main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

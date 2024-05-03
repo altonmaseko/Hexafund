@@ -1,8 +1,5 @@
-const asyncWrapper = require("../middleware/asyncWrapper");
-
-const Applicant = require("../models/Applicant");
-const FundingManager = require("../models/FundingManager");
-const User = require("../models/User");
+const { asyncWrapper } = require("../middleware");
+const { User, Applicant, FundingManager } = require("../models");
 
 const updateApplicants = asyncWrapper(async (req, res) => {
 

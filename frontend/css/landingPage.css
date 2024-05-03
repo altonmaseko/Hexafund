@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #2a5981;
+  --text-dark: #0f172a;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(16,42,48,255), rgba(10, 36, 47, 0.9))
+    ,url("../images/business-funding.jpg"); 
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+nav {
+  position: fixed;
+  isolation: isolate;
+  top: 0;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: auto;
+  z-index: 9;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
+
+.nav__logo img {
+  max-width: 200px;
+  margin-right: -70px;
+  margin-bottom: 17px;
+}
+
+.nav__logo span {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  margin-right: 50px;
+}
+
+.nav__links {
+  list-style: none;
+  position: absolute;
+  width: 100%;
+  padding: 2rem;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  background-color: rgba(9, 24, 29, 0.9);
+  transform: translateY(-100%);
+  transition: 0.5s;
+  z-index: -1;
+  padding: 0;
+  width: unset;
+  position: static;
+  transform: none;
+  flex-direction: row;
+  background-color: transparent;
+}
+
+.nav__links a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+  transition: 0.3s;
+}
+
+.nav__links a:hover {
+  color: var(--primary-color);
+}
+
+
+
+.container__content {
+  /* text-align: center; */
+  text-align: left;
+  padding-left: 20px;
+  margin-top: 100px;
+}
+
+.container__content h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 5rem;
+  /* color: rgba(29,243,241,255); */
+  color: rgba(37, 150, 190);
+}
+.container__content h2 {
+  /* margin-inline: auto; */
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 1rem;
+  max-width: 450px;
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: white;
+}
+
+.container__content p {
+  /* margin-inline: auto; */
+  text-align: left;
+  padding-left:20px;
+  margin-bottom: 4rem;
+  max-width: 450px;
+  color: white;
+}
+
+
+  nav {
+    height: 50px;
+    padding: 2rem 1rem;
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav__bar {
+    padding: 0;
+    background-color: transparent;
+  }
+
+
+  .container__content a {
+    position: absolute; 
+    top: 55%; 
+    transform: translateY(-50%); /* Adjust to center vertically */
+    right: 250px; /* Align the link to the right */
+    color: rgb(32, 142, 232);
+    font-size: 25px;
+    text-decoration: underline;
+  }
+
+  /* .container__content img{
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%); 
+    left: 400px;
+  } */
+
+  footer {
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    height: 50px;
+    position: absolute; /* Position the footer */
+    bottom: 0px;
+    width: 100%;
+}

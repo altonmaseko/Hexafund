@@ -1,5 +1,4 @@
-axios.defaults.baseURL = 'https://funding-website.azurewebsites.net/'; // PRODUCTION URL
-// axios.defaults.baseURL = 'http://localhost:3000/'; // LOCAL URL
+
 
 document.addEventListener("DOMContentLoaded", () => {
     let requests_section = document.getElementById("requests");
@@ -60,3 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+

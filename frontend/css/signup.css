@@ -2,35 +2,87 @@ body {
     margin: 0;
 }
 
-nav {
-    margin-right: 10px;
+/*nav bar things*/ 
+.container {
+    background-image: none;
+    background-color: #00111b;
+    overflow: hidden;
 }
 
-#logo {
-    width: 150px;
-    height: auto;
-    background-color: rgba(150, 187, 186, 255);
+.nav__logo {
+    float: left;
 }
 
-header {
-    background-color: rgba(0, 62, 64, 255);
+.nav__logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    margin-right: 700px;
+}
+
+.nav__logo img {
+    width: 90px; 
+    height: 50px; 
+    border-radius: 50%;
+    /* margin-right: 10px; */
+}
+
+.nav__logo span {
+    /* font-weight: bold;
+    font-size: 20px; */
+    font-size: 1.75rem;
+    font-weight: 500;
     color: white;
     display: flex;
-    padding: 0%;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px; 
+    margin-left: -20px;
+    margin-top: 10px;
 }
+
+.nav__links {
+    float: right;
+    margin: 20px; 
+    padding: 0;
+    list-style-type: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav__links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nav__links li a:hover {
+    color: #3e8485;
+}
+
+
+
+/* .container {
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(16,42,48,255), rgba(10, 36, 47, 0.9))
+      ,url("../images/business-funding.jpg"); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  } */
+
 
 section {
     color: white;
-    background-color: rgba(150,187,186,255);
+    /* background-color: rgba(150,187,186,255); */
+    background-image: linear-gradient(#00111b, #336380);
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     text-align: center;
 }
 
@@ -57,7 +109,7 @@ article {
 
 #name_input, #email_input, #password_input, 
 #confirm_password_input, #company_input {
-    border-radius: 40px;
+    border-radius: 20px;
     width: 500px;
     height: 60px;
     background-color: transparent;
@@ -72,8 +124,8 @@ article {
 }
 
 #drop_down {
-    color: white;
-    background-color: #3c7474;
+    color: black;
+    /* background-color: #3c7474; */
     border-radius: 8px;
     font-size: large;
 }
@@ -87,14 +139,25 @@ article {
     width: 400px;
 }
 
+
+#submit_button:hover {
+    background-color: #3e8485;
+}
+
 footer {
-    background-color: rgba(0,62,64,255);
-    padding: 20px;
+    background-color:#001e30; 
+    padding: 10px;
     text-align: center;
     color: white;
+    height: 40px;
 }
+
 
 a:visited{
     text-decoration: none;
     color: white;
+}
+
+p a:hover {
+    color: #191d4f; 
 }

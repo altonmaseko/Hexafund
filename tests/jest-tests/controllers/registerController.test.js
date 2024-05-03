@@ -1,8 +1,6 @@
 // imports
-const registerController = require("../../../controllers/registerController");
-const User = require("../../../models/User");
-const Applicant = require("../../../models/Applicant");
-const FundingManager = require("../../../models/FundingManager");
+const { registerController } = require("../../../controllers");
+const { User, Applicant, FundingManager } = require("../../../models");
 const { SHA256 } = require("crypto-js");
 
 const res = {

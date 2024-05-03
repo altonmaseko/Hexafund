@@ -1,6 +1,6 @@
 // imports
-const User = require("../models/User");
-const asyncWrapper = require("../middleware/asyncWrapper");
+const { User } = require("../models");
+const { asyncWrapper } = require("../middleware");
 
 const logoutController = asyncWrapper(async (req, res) => {
 

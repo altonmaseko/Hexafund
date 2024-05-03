@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,32 @@
 </head>
 
 <body>
+    <section class="container">
+        <nav class="nav">
+            <div class="nav__logo">
+                <a href="#" class="nav__logo">
+                    <img src="images/hexa2.png" alt="logo" />
+                    <span>hexafund</span>
+                </a>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li id="aboutUs"><a href="#">About Us</a></li>
+                <li id="services"><a href="#">Services</a></li>
+                <li id="contactUs"><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </section>
+
+
+
     <section>
-        <img id="logo_image" src="images/hexaFundLogo.png" alt="logo"/>
-        <article>
+        <img id="logo_image" src="images/hexaLogoNoBack2.png" alt="logo" />
+        <article class="main">
             <form id="login">
                 <h1 id="login_title">Login</h1>
-                <input type="text" id="email_input" name="Email" placeholder="Email"><br><br>
-                <input type="password" id="password_input" name="Password" placeholder="Password"><br><br>
-                <button type="submit" id="submit_button" > Submit</button><br><br>
+                <input type="email" id="email_input" name="Email" placeholder="Email" required><br><br>
+                <input type="password" id="password_input" name="Password" placeholder="Password" required><br><br>
+                <button type="submit" id="submit_button"> Submit</button><br><br>
                 <p>Don't have an account? <a href="signup.html">Click here!</a></p>
             </form>
         </article>
@@ -26,6 +45,7 @@
 
     <script src="External_Modules/axios.min.js"></script>
     <script src="External_Modules/crypto-js.min.js"></script>
-    <script defer src="js/login.js" ></script>
+    <script type="module" defer src="js/login.js"></script>
 </body>
+
 </html>

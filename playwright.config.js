@@ -1,5 +1,6 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+const path = require('path');
 
 /**
  * Read environment variables from file.
@@ -17,12 +18,36 @@ module.exports = defineConfig({
   
   
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
+    headless: true,
   },
   
+  reporter: [
+    ['list'],
+    ['monocart-reporter', {  
+        name: "My Test Report",
+        outputFile: './playwright-coverage/report.html',
+        consoleLog: true,
+        coverage: [{
+          entryFilter: (entry) => true,
+          sourceFilter: (sourcePath) => sourcePath.search(/src\/.+/) !== -1,
+          }
+        ],
+      }
+    ],
+  ],
+  projects: [
+    {
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "firefox",
+      use: { ...devices["Desktop Firefox"] },
+    }
+  ],
   webServer: {
         command: 'node playwright-local-server.js',
         url: 'http://localhost:3000',
