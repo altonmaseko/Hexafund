@@ -1,10 +1,7 @@
-const asyncWrapper = require("../middleware/asyncWrapper");
+const { asyncWrapper } = require("../middleware");
+const { FundingOpportunity } = require("../models");
 
-const { PLATFORM_ADMIN } = require("../constants/roles");
-
-const FundingOpportunity = require("../models/FundingOpportunity")
-
-const getFunding = asyncWrapper(async (req, res) => {
+const getFundingController = asyncWrapper(async (req, res) => {
 
     let fundingOpportunities = await FundingOpportunity.find({});
 
@@ -36,6 +33,4 @@ const getFunding = asyncWrapper(async (req, res) => {
     res.status(200).json( fundingOpportunities );
 });
 
-module.exports = { 
-    getFunding
-};
+module.exports = getFundingController;

@@ -1,6 +1,15 @@
-body, html {
-    height: 100%;
-    margin: 0;
+body {
+    max-height: 600px;
+    margin: 0px;
+}
+
+a:any-link {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: rgba(0, 100, 64, 255);
 }
 
 nav {
@@ -35,7 +44,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    margin-top: 140px;
 }
 
 footer {
@@ -46,4 +55,27 @@ footer {
     align-items: center; 
     font-size: 14px; 
     height: 50px; 
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.big-button {
+    font-size: 2em;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.big-button:hover {
+    transform: scale(1.04);
+}
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+}
+.nav-button:hover {
+    transform: scale(1.04);
 }

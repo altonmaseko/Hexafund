@@ -2,13 +2,13 @@
 const { FundingOpportunity } = require("../models");
 const { asyncWrapper } = require("../middleware");
 
-const createFundingOpportunity = asyncWrapper(async (req, res) => {
-    console.log("create funding opportunity")
-    let { title,
+const createFundingController = asyncWrapper(async (req, res) => {
+    console.log("create funding opportunity");
+
+    const { title,
         company_name,
         funding_manager_email,
         type, admin_status,
-        funding_opportunity_id,
         funding_amount,
         available_slots,
         deadline,
@@ -19,7 +19,7 @@ const createFundingOpportunity = asyncWrapper(async (req, res) => {
         return;
     }
 
-    const duplicateFundingOpportunity = await FundingOpportunity.findOne({ title }).exec();
+    const duplicateFundingOpportunity = await FundingOpportunity.findOne({ title: title }).exec();
 
     //Check if funding opportunity already exists
     if (duplicateFundingOpportunity) {
@@ -28,20 +28,19 @@ const createFundingOpportunity = asyncWrapper(async (req, res) => {
     }
 
     await FundingOpportunity.create({
-        title,
-        company_name,
-        funding_manager_email,
-        type,
-        admin_status,
-        funding_opportunity_id,
-        funding_amount,
-        available_slots,
-        deadline,
-        description,
-        image_data
-    })
+        title: title,
+        company_name: company_name,
+        funding_manager_email: funding_manager_email,
+        type: type,
+        admin_status: admin_status,
+        funding_amount: funding_amount,
+        available_slots: available_slots,
+        deadline: deadline,
+        description: description,
+        image_data: image_data
+    });
 
     res.status(201).json({ message: `${title} has been successfully created.`, status: 201 });
 });
 
-module.exports = { createFundingOpportunity };
+module.exports = createFundingController;

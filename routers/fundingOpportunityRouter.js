@@ -1,28 +1,28 @@
 const express = require("express");
 const router = express.Router();
-const {getFunding} = require("../controllers/getFundingController")
-const {updateFunding} = require("../controllers/updateFundingController")
-const {deleteFunding} = require("../controllers/deleteFundingController")
-const {createFundingOpportunity} = require("../controllers/createFundingController")
+const { getFundingController, 
+    createFundingController,
+    updateFundingController, 
+    deleteFundingController } = require("../controllers");
 
 // GET
 router.get([
     "/funding-opportunities",
-    "/funding-opportunity"], getFunding);
+    "/funding-opportunity"], getFundingController);
 
 // UPDATE
 router.put([
     "/funding-opportunities/:funding_opportunity_id",
-    "/funding-opportunity/:funding_opportunity_id"], updateFunding);
+    "/funding-opportunity/:funding_opportunity_id"], updateFundingController);
 
 // DELETE
 router.delete([
     "/funding-opportunities/:funding_opportunity_id",
-    "/funding-opportunity/:funding_opportunity_id"], deleteFunding);
+    "/funding-opportunity/:funding_opportunity_id"], deleteFundingController);
 
 // CREATE
 router.post([
     "/funding-opportunities",
-    "/funding-opportunity"], createFundingOpportunity);
+    "/funding-opportunity"], createFundingController);
 
 module.exports = router;

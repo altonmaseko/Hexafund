@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="css/delete-opportunities-dashboard.css"> 
+    <script src="../External_Modules/axios.min.js"></script>  
+    <script type="module" src="js/delete-opportunities-dashboard.js" defer></script> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin View/Del Ads</title>
+</head>
+<body>
+    <header>
+        <img id="logo" src="../images/hexaFundLogoNoBack.png" alt="logo">
+        <h1>hexafund</h1> 
+        <nav>
+            <article>
+                <button class="nav-button" id="AboutBut" >About Us</button>
+                <button class="nav-button" id="SerBut">Services</button>
+                <button class="nav-button" id="ConBut">Contacts Us</button>
+            </article>
+        </nav>
+    </header>
+</body>
+<main>
+    <h2>Delete Any Funding Opportunity</h2>
+    <div class="filter-bar">
+        <select id="category-dropdown">
+            <option value="All Options">All Categories</option>
+            <option value="Educational">Education</option>
+            <option value="Business">Business</option>
+            <option value="Event">Events</option>
+        </select>
+        <input type="text" id="search-bar" placeholder="Search...">
+    </div>
+    <div class="scrollable-container">
+        <section class="requests">
+            
+            <!-- <div class="request-card">
+                <div class="card-left">
+                    <img src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
+                </div>
+                <div class="card-right">
+                    <h3>
+                        <span id="title">Title: Funding Opportunity Title</span>
+                        <span id="expDate">Expiry Date: 2024-05-31</span>
+                        <span id="compName">Company Name: MasterMaths</span>
+                        <span id="category">Category: Education</span>
+                    </h3>
+                    <p id="amount">Amount: $100,000</p>
+                    <p id="description">Description: thisiswhere you can give etra infor </p>
+                    <button class="delete-btn">Delete</button>
+                </div>
+            </div>
+            <div class="request-card">
+                <div class="card-left">
+                    <img src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
+                </div>
+                <div class="card-right">
+                    <h3>
+                        <span id="title">Title: Funding Opportunity Title</span>
+                        <span id="expDate">Expiry Date: 2024-05-31</span>
+                        <span id="compName">Company Name: Tesla </span>
+                        <span id="category">Category: Business</span>
+                    </h3>
+                    <p id="amount">Amount: R100,000</p>
+                    <p id="description">Description: thisiswhere you can give etra infor </p>
+                    <button class="delete-btn">Delete</button>
+                </div>
+            </div>
+            <div class="request-card">
+                <div class="card-left">
+                    <img src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
+                </div>
+                <div class="card-right">
+                    <h3>
+                        <span id="title">Title: Funding Opportunity Title</span>
+                        <span id="expDate">Expiry Date: 2024-05-31</span>
+                        <span id="compName">Company Name: FNB</span>
+                        <span id="category">Category: EVents</span>
+                    </h3>
+                    <p id="amount">Amount: R100,000</p>
+                    <p id="description">Description: thisiswhere you can give etra infor </p>
+                    <button class="delete-btn">Delete</button>
+                </div>
+            </div> -->
+            <!-- dynamically added here from databases -->
+        </section>
+    </div>
+</main>
+<footer>
+    <p>©2024 HexaFund. All rights reserved.</p>
+</footer>
+</html>

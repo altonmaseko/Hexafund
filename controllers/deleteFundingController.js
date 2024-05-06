@@ -1,10 +1,7 @@
-const asyncWrapper = require("../middleware/asyncWrapper");
+const { asyncWrapper } = require("../middleware");
+const { FundingOpportunity } = require("../models");
 
-const { PLATFORM_ADMIN } = require("../constants/roles");
-
-const FundingOpportunity = require("../models/FundingOpportunity")
-
-const deleteFunding = asyncWrapper(async (req, res) => {
+const deleteFundingController = asyncWrapper(async (req, res) => {
 
     const { funding_opportunity_id } = req.params;
 
@@ -13,11 +10,9 @@ const deleteFunding = asyncWrapper(async (req, res) => {
         return;
     }
 
-    await FundingOpportunity.deleteOne({funding_opportunity_id});
+    await FundingOpportunity.deleteOne({ _id: funding_opportunity_id });
 
     res.status(200).json({ message: "successfully deleted", success: true });
 });
 
-module.exports = { 
-    deleteFunding,
-};
+module.exports = deleteFundingController;

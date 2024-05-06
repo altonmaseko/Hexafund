@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexafund</title>
+    <link rel="stylesheet" href="Platform-Admin-Pages/css/home-page.css">
+    <script type="module" src="../js/logout.js" defer></script>
+</head>
+<body>
+    <header>
+        <img id="logo" src="../images/hexaFundLogo.png" alt="Flag">
+        <h1>hexafund</h1> 
+        <nav>
+            <button class="nav-button" id="AboutBut" >About Us</button>
+            <button class="nav-button" id="SerBut">Services</button>
+            <button class="nav-button" id="ConBut">Contact Us</button>
+            <button class="nav-button" id="logout_button">Log Out</button>
+        </nav>
+    </header>
+    <section class="center-container">
+        <button id="view_fms_btn" class="view_fms_btn big-button"><a href="Platform-Admin-Pages/manager-approval-dashboard.html">View Funding Manager requests</a></button>
+        <button id="view_requests_btn" class="view_requests_btn home-page-button big-button"><a href="Platform-Admin-Pages/opportunity-approval-dashboard.html">View Funding Advert Requests</a></button>
+        <button id="view_accepted_btn" class="view_accepted_btn big-button"><a href="Platform-Admin-Pages/delete-opportunities-dashboard.html">View All Adverts</a></button>
+    </section>
+    <footer>
+        <p>©2024 Hexafund. All rights reserved.</p>
+    </footer>
+    <script src="../External_Modules/axios.min.js"></script>
+</body>
+</html>

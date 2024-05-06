@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <!-- LOCAL -->
+    <link rel="stylesheet" href="css/opportunity-approval-dashboard.css">
+    <script src="../External_Modules/axios.min.js"></script>
+    <script type="module" src="js/opportunity-approval-dashboard.js" defer></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunity Approval Dashboard</title>
+</head>
+<body>
+    <header>
+        <img id="logo" src="../images/hexaFundLogoNoBack.png" alt="logo">
+        <h1>hexafund</h1> 
+        <nav>
+            <article>
+                <button class="nav-button" id="AboutBut" >About Us</button>
+                <button class="nav-button" id="SerBut">Services</button>
+                <button class="nav-button" id="ConBut">Contacts Us</button>
+            </article>
+        </nav>
+    </header>
+</body>
+<main>
+    <h2>Approve/Deny Funding Opportunities</h2>
+    <div class="filter-bar">
+        <select id="category-dropdown">
+            <option value="All Options">All Categories</option>
+            <option value="Educational">Education</option>
+            <option value="Business">Business</option>
+            <option value="Event">Events</option>
+        </select>
+        <input type="text" id="search-bar" placeholder="Search...">
+    </div>
+    <div class="scrollable-container">
+        <section class="requests">
+        </section>
+    </div>
+</main>
+<footer>
+    <p>©2024 HexaFund. All rights reserved.</p>
+</footer>
+</html>

@@ -1,10 +1,7 @@
-
 const sendButton = document.querySelector(".sendButton");
 
-let inputsValid = false
-
-let base64
-
+let inputsValid = false;
+let base64;
 
 sendButton.addEventListener("click", function () {
     const fundTitle = document.getElementById("fundTitle").value;
@@ -21,7 +18,6 @@ sendButton.addEventListener("click", function () {
     }
 
     inputsValid = true
-
 });
 
 let userEmail
@@ -38,8 +34,6 @@ for (const cookie of cookieArray) {
 if (!userEmail) {
     alert("System has lost your details. This page will not work, sorry")
 }
-
-
 
 const obj =
 {
@@ -109,9 +103,7 @@ const clearForm = () => {
     document.getElementById("expiryDate").value = ""
 }
 
-
 // GETTING PICTURE
-
 let input = document.getElementById('picture');
 input.addEventListener('change', handleFiles, false);
 
@@ -119,8 +111,6 @@ function handleFiles(e) {
     let canvas = document.createElement('canvas');
     let ctx = canvas.getContext('2d');
     let img = new Image();
-
-
 
     img.onload = function () {
         ctx.drawImage(img, 0, 0);
@@ -133,8 +123,4 @@ function handleFiles(e) {
     };
 
     img.src = URL.createObjectURL(e.target.files[0]); // Load the selected image
-
-   
 }
-
-
