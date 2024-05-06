@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
     let requests_section = document.getElementById("requests");
     let refresh_btn = document.getElementById("refresh-btn");
@@ -59,5 +57,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-
-

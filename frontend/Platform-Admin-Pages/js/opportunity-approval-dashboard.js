@@ -1,5 +1,3 @@
-const { statuses } = require("../../../constants");
-
 const requestSection = document.querySelector(".requests");
 
 const loadOpportunities = async (query_params) => {
@@ -13,6 +11,7 @@ const loadOpportunities = async (query_params) => {
         return;
     }
     const fundingOpportunities = response.data;
+    console.log(fundingOpportunities);
 
     if (fundingOpportunities.length <= 0){
         alert("There are currently no funding opportunities.");
@@ -22,8 +21,6 @@ const loadOpportunities = async (query_params) => {
     fundingOpportunities.forEach((fundingOpportunity) => {
         let { _id, title,
             company_name,
-            funding_manager_email,
-            admin_status,
             type,
             deadline,
             description,
@@ -74,7 +71,7 @@ const loadOpportunities = async (query_params) => {
 
             try {
                 await axios.put(`/api/v1/funding-opportunity/${_id}`, {
-                    admin_status: statuses.APPROVED
+                    admin_status: "Approved"
                 });
                 requestCard.remove();
             } catch (error) {
@@ -88,7 +85,7 @@ const loadOpportunities = async (query_params) => {
 
             try {
                 await axios.put(`/api/v1/funding-opportunity/${_id}`, {
-                    admin_status: statuses.REJECTED
+                    admin_status: "Rejected"
                 });
                 requestCard.remove();
             } catch (error) {
@@ -107,15 +104,17 @@ categoryDropDown.addEventListener("input", async (event) => {
     console.log(categoryDropDown.value);
 
     if (categoryDropDown.value === "All Options") {
-        const query_params = `?admin_status=${statuses.PENDING}`;
+        const query_params = "?admin_status=Pending";
         await loadOpportunities(query_params);
         return;
     }
 
-    const query_params = `?admin_status=${statuses.PENDING}&type=${categoryDropDown.value}`;
+    const query_params = `?admin_status=Pending&type=${categoryDropDown.value}`;
     await loadOpportunities(query_params);
 });
 
-// When page loads:
-const query_params = `?admin_status=${statuses.PENDING}`;
-loadOpportunities(query_params);
+// when page loads
+document.addEventListener("DOMContentLoaded", async () => {
+    const query_params = "?admin_status=Pending";
+    await loadOpportunities(query_params);
+});
