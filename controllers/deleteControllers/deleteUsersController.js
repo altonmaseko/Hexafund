@@ -5,9 +5,9 @@
  */
 
 // imports
-const { User, FundingManager, Applicant, Company, FundingOpportunity, Application } = require("../models");
-const { roles } = require("../constants");
-const { asyncWrapper } = require("../middleware");
+const { User, FundingManager, Applicant, Company, FundingOpportunity, Application } = require("../../models");
+const { roles } = require("../../constants");
+const { asyncWrapper } = require("../../middleware");
 
 /**
  * @function: Deletes the user from the database and clears the jwt cookie

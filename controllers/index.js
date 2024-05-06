@@ -3,19 +3,21 @@ const loginController = require("./loginController");
 const registerController = require("./registerController");
 const logoutController = require("./logoutController");
 const refreshController = require("./refreshController");
-const createFundingController = require("./createFundingController");
+
+// create controllers
+const createFundingController = require("./createControllers/createFundingController");
 
 // get controllers
-const getUsersController = require("./getUsersController");
-const getFundingController = require("./getFundingController");
+const getUsersController = require("./getControllers/getUsersController");
+const getFundingController = require("./getControllers/getFundingController");
 
 // update controllers
-const updateUsersController = require("./updateUsersController");
-const updateFundingController = require("./updateFundingController");
+const updateUsersController = require("./updateControllers/updateUsersController");
+const updateFundingController = require("./updateControllers/updateFundingController");
 
 // delete controllers
-const deleteUsersController = require("./deleteUsersController");
-const deleteFundingController = require("./deleteFundingController");
+const deleteUsersController = require("./deleteControllers/deleteUsersController");
+const deleteFundingController = require("./deleteControllers/deleteFundingController");
 
 module.exports = {
     loginController,

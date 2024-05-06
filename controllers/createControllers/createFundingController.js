@@ -1,6 +1,6 @@
 
-const { FundingOpportunity } = require("../models");
-const { asyncWrapper } = require("../middleware");
+const { FundingOpportunity } = require("../../models");
+const { asyncWrapper } = require("../../middleware");
 
 const createFundingController = asyncWrapper(async (req, res) => {
     console.log("create funding opportunity");
