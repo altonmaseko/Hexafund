@@ -16,7 +16,8 @@ const { registerRouter,
     refreshRouter, 
     logoutRouter, 
     userRouter,
-    fundingOpportunityRouter
+    fundingOpportunityRouter,
+    applicationRouter
 } = require("./routers");
 // END: Routers
 
@@ -34,7 +35,7 @@ app.use("/login", loginRouter);
 app.use("/refresh", refreshRouter); //Need a refresh token to create new access token. If no refresh token, wont continue.
 app.use("/logout", logoutRouter);
 
-app.use("/api/v1", [userRouter, fundingOpportunityRouter]); //handle getting, updating users request
+app.use("/api/v1", [userRouter, fundingOpportunityRouter, applicationRouter]); //handle getting, updating users request
 
 
 // -----------------------------------
