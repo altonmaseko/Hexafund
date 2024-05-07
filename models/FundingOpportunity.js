@@ -21,7 +21,7 @@ const FundingOpportunitySchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: [fund_types.EDUCATIONAL, fund_types.BUSINESS, fund_types.EVENT],
+        enum: [fund_types.EDUCATIONAL, fund_types.BUSINESS, fund_types.EVENT], //Values: Educational, Business or Event
         required: true
     },
     funding_opportunity_id: {
