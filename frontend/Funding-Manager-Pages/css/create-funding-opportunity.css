@@ -1,0 +1,108 @@
+body {
+    background-image: linear-gradient(rgba(6, 37, 50, 0.9), rgba(6, 37, 50, 0.9));
+    color: white;
+  }
+  
+  
+  .nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .nav__logo img {
+    max-width: 200px;
+    margin-right: -70px;
+    margin-bottom: 17px;
+    text-decoration: none;
+  }
+  
+  .nav__logo span {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    text-decoration: none;
+  }
+  
+  .containerInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 850px;
+    margin-top: -20px;
+    margin-bottom: -10px;
+    width: 300px;
+    padding: 20px;
+    /*Note */
+    border: 1px solid grey;
+    border-radius: 1rem;
+  }
+  
+  /* .containerImage{
+      width: 300px;
+      padding: 20px;
+      border: 1px solid grey;
+  } */
+  
+  .containerImage img {
+    max-width: 100%;
+    /* Ensures the image doesn't exceed the width of its container */
+    /* Maintains the aspect ratio of the image */
+    border: 1px solid black;
+    border-radius: 1rem;
+  }
+  
+  .containerImage {
+    width: 550px;
+    height: 400px;
+    padding: 40px;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin-top: -500px;
+    margin-left: 100px;
+  }
+  
+  .containerImage h1 {
+    padding-left: 250px;
+  }
+  
+  .sendButton {
+    height: 50px;
+  }
+  
+  .sendButton:hover {
+    background-color: #c2ddfa;
+  }
+  
+  .uploadAdButton {
+    height: 30px;
+    margin-left: 250px;
+  }
+  
+  .uploadAdButton:hover {
+    background-color: #c2ddfa;
+  }
+  .output {
+    width: 600px;
+    height: auto;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  #picture {
+    padding: 0.2rem;
+    font-size: 1.2rem;
+  }
+  #picture:hover {
+    font-family: cursive;
+  }
+  
+  input {
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    padding: 0.2rem;
+  }

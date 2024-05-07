@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/create-funding-opportunity.css">
+    <script src="../External_Modules/axios.min.js"></script>
+    <script type="module" src="js/create-funding-opportunity.js" defer></script>
+
+    <title>Hexafund</title>
+</head>
+<body>
+    <section class="containerLogo">
+        <nav>
+            <div class="nav__logo">
+                <a href="#" class="nav__logo">
+                <img src="../images/hexa2.png" alt="logo"/>
+                <span>hexafund</span>
+                </a>
+            </div>
+        </section> 
+
+    <section class="containerInfo">
+        <label for="fundTitle">Fund Title:</label>
+        <input type="text" style="width: 150px;" id="fundTitle" name="Name" placeholder="Fund Title" ><br> 
+        <label for="companyName">Funder:</label>
+        <input type="text" style="width: 150px;"  id="companyName" name="CompanyName"  placeholder="Company Name"> <br>
+        <label for="category">Category:</label>
+        <select name="category" style="width: 150px;" id="category">
+            <option value="">Select Type of Fund</option>
+            <option selected value="Educational">Educational</option>
+            <option value="Event">Event</option>
+            <option value="Business">Business</option>
+        </select><br> 
+        <label for="Amount">Amount:</label>
+        <input type="number" style="width: 150px;" id="amount" name="Number"  placeholder="Available Fund Amount" min="1"> <br> 
+        <label for="Count">Number of bursaries:</label>
+        <input type="number" style="width: 150px;" id="count" name="Number"  placeholder="Available spots in fund" min="1"> <br>
+        <label for="expiryDate">Offer until:</label>
+        <input type="date" id="expiryDate" name="expiryDate"> <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Your Message..." rows="5" cols="55">
+            This is an example description
+        </textarea>
+        <br>
+        <button class="sendButton" type= "button"> Send Advert for Review</button>
+    </section>
+
+    <section class="containerImage">
+        <h1>Advert</h1>
+        <!-- placeholder image -->
+        <img id="output" class="output" src="../images/business-funding.jpg" alt="Funding ad"> <br> 
+        <input type="file" id="picture">
+    </section>
+</body>
+</html>
