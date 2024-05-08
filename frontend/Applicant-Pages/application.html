@@ -1,0 +1,57 @@
+<!-- THIS IS A TEMPORARY PAGE TO TEST UPLOADING OF DOCUMENT -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="Applicant-Pages/css/home-page.css">
+
+    <script src="External_Modules/axios.min.js"></script>  
+
+    <script type="module" src="Applicant-Pages/js/application.js" defer></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funding Opportunities</title>
+</head>
+<body>
+    <header>
+        <img id="logo" src="../images/hexaFundLogoNoBack.png" alt="logo">
+        <h1>hexafund</h1> 
+        <nav>
+            <article>
+                <button class="nav-button" id="AboutBut" >About Us</button>
+                <button class="nav-button" id="SerBut">Services</button>
+                <button class="nav-button" id="ConBut">Contacts Us</button>
+                <button class="nav-button" id="Profile"><a href="../profile.html">My Profile</a></button>
+            </article>
+        </nav>
+    </header>
+
+
+    <h1>Select a File</h1>
+    <input type="file" id="fileInput">
+    <button id="submitButton">Submit File</button>
+    <div id="output"></div>
+
+    <br>
+    <br>
+    
+
+    <button id="viewFile">View File</button>
+
+    <br>
+    <br>
+    <iframe id="pdfIframe" src="data:application/pdf;base64,YourBase64StringHere" width="100%" height="500px"></iframe>
+
+
+
+
+
+</body>
+
+
+<footer>
+    <p>©2024 HexaFund. All rights reserved.</p>
+</footer>
+</html>

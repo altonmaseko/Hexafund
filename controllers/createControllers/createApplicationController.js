@@ -3,15 +3,17 @@ const { Application } = require("../../models");
 const { asyncWrapper } = require("../../middleware");
 
 const createApplication = asyncWrapper(async (req, res) => {
-    console.log("create funding opportunity");
+    console.log("CREATE APPLICATION");
 
     const { applicant_email,
         funding_opportunity_id,
         reason,
-        contact_number
+        contact_number,
+        cv_data,
+        application_form_data
     } = req.body;
 
-    if (!applicant_email || !funding_opportunity_id || !reason || !contact_number) {
+    if (!applicant_email || !reason || !contact_number) {
         res.status(400).json({ message: "Please ensure you have entered the Applicant Email, Funding Opportunity ID, Reason, and Contact Number.", status: 400 });
         return;
     }
@@ -28,7 +30,9 @@ const createApplication = asyncWrapper(async (req, res) => {
         applicant_email,
         funding_opportunity_id,
         reason,
-        contact_number
+        contact_number,
+        cv_data,
+        application_form_data
     });
 
     res.status(201).json({ message: `Application successfully submitted.`, status: 201 });

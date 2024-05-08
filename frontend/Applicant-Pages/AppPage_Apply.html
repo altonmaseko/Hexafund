@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Applicant-Pages/css/AppPage_Apply.css">
+    <script src="Applicant-Pages/js/AppPage_Apply.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applying for Oppurtunity</title>
+</head>
+<body>
+    <header>
+        <img id="logo" src="hexaFundLogoNoBack.png" alt="logo">
+        <h1>hexafund</h1> 
+        <nav>
+            <article>
+                <button id="AboutBut" >About Us</button>
+                <button id="SerBut">Services</button>
+                <button id="ConBut">Contacts Us</button>
+            </article>
+        </nav>
+    </header>
+    
+</body>
+<main>
+    <section class="container">
+        <section id="pdfViewer" class="pdf-viewer">
+            <h2>Your Documents:</h2>
+            <embed id="pdfEmbed" src="" type="application/pdf" width="100%" height="600px">
+        </section>
+
+        <form id="applicationForm" class="application-form">
+            <h1>Apply for Funding Opportunity</h1>
+            <section class="input-fields">
+                
+                <section class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </section>
+                <section class="form-group">
+                    <label for="contact">Contact:</label>
+                    <input type="text" id="contact" name="contact" required>
+                </section>
+                <section class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </section>
+                <section class="form-group">
+                    <label for="category">Choose type of Funding:</label>
+                    <select id="category" name="category" required>
+                        <option value="edCat">Education</option>
+                        <option value="busCt">Business</option>
+                        <option value="eventCat">Event</option>
+                    </select>
+                </section>
+                <section class="form-group">
+                    <label for="message">Why do you want this opportunity?</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <p id="wordCount">Word count: 0/100</p>
+                </section>
+                <section class="form-group">
+                    <label for="file">Upload Documnets (PDF):</label>
+                    <input type="file" id="file" name="file" accept=".pdf" required>
+                </section>
+            </section>
+            <button type="submit">Submit Application</button>
+        </form>
+    </section>
+</main>
+<footer>
+    <p>©2024 HexaFund. All rights reserved.</p>
+</footer>
+</html>
