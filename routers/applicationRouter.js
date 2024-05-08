@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { getApplicationsController, 
+const { getApplicationsController,
     createApplicationController,
-    updateApplicationController, 
+    updateApplicationController,
     deleteApplicationController } = require("../controllers");
 
 // GET
 router.get([
-    "/applications",
-    "/application"], getApplicationsController);
+    "/applications/:application_id",
+    "/application/:application_id"], getApplicationsController);
 
 // UPDATE
 router.put([
@@ -24,5 +24,9 @@ router.delete([
 router.post([
     "/applications",
     "/application"], createApplicationController);
+
+
+
+
 
 module.exports = router;

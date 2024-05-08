@@ -23,6 +23,7 @@ const deleteUsersController = require("./deleteControllers/deleteUsersController
 const deleteFundingController = require("./deleteControllers/deleteFundingController");
 const deleteApplicationController = require("./deleteControllers/deleteApplicationController")
 
+
 module.exports = {
     // Auth
     loginController,
@@ -43,5 +44,8 @@ module.exports = {
     // Delete
     deleteUsersController,
     deleteFundingController,
-    deleteApplicationController
+    deleteApplicationController,
+
+
+
 };
