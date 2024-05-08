@@ -1,0 +1,56 @@
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 850px;
+    margin-top: -20px;
+    margin-bottom: -10px;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin-top: 100px;
+    background-color: white;
+  }
+
+  .Reject{
+    transform: translate(120%);
+    position: absolute;
+    bottom: 62px;
+  }
+
+  body {
+    /* padding-top:100px; */
+    background-image: linear-gradient(#00111b, #336380);
+  }
+  
+  .containerImage img {
+    max-width: 100%;
+    /* Ensures the image doesn't exceed the width of its container */
+    /* Maintains the aspect ratio of the image */
+    border: 1px solid black;
+    border-radius: 1rem;
+  }
+  
+  .containerImage {
+    width: 550px;
+    height: 400px;
+    padding: 30px;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin-top: -450px;
+    margin-left: 100px;
+    background-color: white;
+  }
+  
+  .containerImage h1 {
+    text-align: center;
+  }
+
+  .ViewAttachment {
+    width: 150px;
+    height: 35px;
+    position: absolute;
+    bottom: 15px;
+    left: 50%; 
+    transform: translateX(-200%); 
+}
