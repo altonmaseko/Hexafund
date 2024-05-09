@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/view-individual-applications.css">
+    <script type="module" src="js/view-individual-applicants.js" defer></script>
+
     <title>Hexafund Applications</title>
+    <style>
+        body.fullscreen {
+            overflow: hidden;
+        }
+        .fullscreen iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body>
     <section class="containerInfo">
@@ -26,8 +41,38 @@
     <section class="containerImage">
         <h1>Funding Application</h1>
         <!-- NB placeholder image -->
-        <img id="output" class="output" src="../images/business-funding.jpg" alt="Funding ad"> <br> <br>
+        <!-- <img id="output" class="output" src="../images/business-funding.jpg" alt="Funding ad"> <br> <br> -->
+
+        <!-- placeholder pdf  -->
+        <iframe class="pdf" 
+                src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf"
+            width="800" height="500">
+        </iframe>
         <button class="ViewAttachment" type="button"> View Attachment </button>
     </section>
+
+    <footer>
+        <p>©2024 Hexafund. All rights reserved.</p>
+    </footer>
+
+    <!-- When the view attachment button is clicked, the pdf is enlarged for better viewing
+         Click anywhere on page to return -->
+<script>
+    document.querySelector('.ViewAttachment').addEventListener('click', function() {
+        document.body.classList.add('fullscreen');
+        var pdfFrame = document.querySelector('.pdf');
+        pdfFrame.style.width = '95%';
+        pdfFrame.style.height = '90vh';
+    });
+
+    document.body.addEventListener('click', function(event) {
+        if (!event.target.classList.contains('ViewAttachment')) {
+            document.body.classList.remove('fullscreen');
+            var pdfFrame = document.querySelector('.pdf');
+            pdfFrame.style.width = '800px'; 
+            pdfFrame.style.height = '500px'; 
+        }
+    });
+</script>
 </body>
 </html>
