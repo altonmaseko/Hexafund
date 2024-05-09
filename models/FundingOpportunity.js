@@ -16,7 +16,7 @@ const FundingOpportunitySchema = new mongoose.Schema({
     },
     admin_status: {
         type: String,
-        enum: [statuses.PENDING, statuses.ACCEPTED, statuses.REJECTED],
+        enum: [statuses.PENDING, statuses.ACCEPTED, statuses.REJECTED, statuses.APPROVED],
         default: statuses.PENDING
     },
     type: {
@@ -41,7 +41,7 @@ const FundingOpportunitySchema = new mongoose.Schema({
         default: "Apply for this funding Opportunity now! And start your journey of SUCCESS! You. Can. Do It."
     },
     image_data: {
-        type: String, // Use Buffer for storing binary data
+        type: String, 
     }
     
     //funding_amount history will be added later

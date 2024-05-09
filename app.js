@@ -60,7 +60,7 @@ app.get("/home", async (req, res) => {
 
     if (user?.role === roles.APPLICANT) {
         console.log("applicant home page");
-        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "application.html"));
+        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
     }
     else if (user?.role === roles.FUNDING_MANAGER) {
         const FundingManager = require("./models/FundingManager.js");

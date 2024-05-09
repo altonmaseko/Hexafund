@@ -6,10 +6,10 @@ const ApplicationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // funding_opportunity_id: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true
-    // },
+    funding_opportunity_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     status: {
         type: String,
         enum: [statuses.PENDING, statuses.ACCEPTED, statuses.REJECTED],
@@ -22,15 +22,15 @@ const ApplicationSchema = new mongoose.Schema({
     contact_number: {
         type: String
     },
-    document_data: {
-        type: String
-    },
     cv_data: {
         type: String
     },
     application_form_data: {
         type: String
-    }
+    },
+    other_data: {
+        type: String
+    },
     // array of documents will be added later
 });
 

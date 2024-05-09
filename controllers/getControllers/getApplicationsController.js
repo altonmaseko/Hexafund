@@ -6,38 +6,8 @@ const getApplications = async (req, res) => {
     const { application_id } = req.params;
 
     console.log(application_id);
-
-    if (application_id) {
-        let application = await Application.findOne({_id: application_id});
-
-        const document_data = application.document_data;
-        
-        if (!document_data)
-        {
-            console.log("SORRY NO DOCUMENT_DATA");
-            res.send("NO DOCUMENT");
-            return;
-        }
-
-        console.log(document_data);
-
-        try {
-          const pdfResponse = convertBase64ToPDF(document_data);
-    
-          // Set headers for download
-          res.setHeader('Content-Type', pdfResponse.contentType);
-          res.setHeader('Content-Disposition', pdfResponse.contentDisposition);
-    
-          // Send the PDF data
-          res.end(pdfResponse.data);
-        } catch (error) {
-          console.error(error);
-          res.status(500).send('Error converting base64 to PDF');
-        }
-    
-        return;
-      }
-
+    console.log("getApplications");
+   
     // GET APPLICATION DATA
 
     let applications = await Application.find({});
@@ -68,6 +38,38 @@ const getApplications = async (req, res) => {
     }
 
     res.status(200).json(applications);
+
+     // if (application_id) {
+    //     let application = await Application.findOne({_id: application_id});
+
+    //     const document_data = application.document_data;
+        
+    //     if (!document_data)
+    //     {
+    //         console.log("SORRY NO DOCUMENT_DATA");
+    //         res.send("NO DOCUMENT");
+    //         return;
+    //     }
+
+    //     console.log(document_data);
+
+    //     try {
+    //       const pdfResponse = convertBase64ToPDF(document_data);
+    
+    //       // Set headers for download
+    //       res.setHeader('Content-Type', pdfResponse.contentType);
+    //       res.setHeader('Content-Disposition', pdfResponse.contentDisposition);
+    
+    //       // Send the PDF data
+    //       res.end(pdfResponse.data);
+    //     } catch (error) {
+    //       console.error(error);
+    //       res.status(500).send('Error converting base64 to PDF');
+    //     }
+    
+    //     return;
+    //   }
+
 };
 
 const convertBase64ToPDF = (base64String) => {

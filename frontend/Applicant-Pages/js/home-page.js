@@ -26,7 +26,7 @@ const loadOpportunities = async (query_params) => {
             funding_manager_email,
             admin_status,
             type,
-            funding_opportunity_id,
+            _id,
             deadline,
             description,
             funding_amount,
@@ -66,13 +66,16 @@ const loadOpportunities = async (query_params) => {
         // APPLY FOR CURRENT BUTTON [still in forEach]
         const applyButton = requestCard.querySelector(".apply-btn")
 
-        applyButton.addEventListener("click", async (event) => {
-            alert(`Thanks for applying for ${title}`)
-            // Add logic here... 
 
+        applyButton.setAttribute("funding_opportunity_id", _id) //incase needed later
+
+        applyButton.addEventListener("click", async (event) => {
+            // Add logic here... 
+            document.cookie = `funding_opportunity_id=${applyButton.getAttribute("funding_opportunity_id")}; path=/`;
+
+            window.location.href = "Applicant-Pages/AppPage_Apply.html";
         })
 
-        applyButton.setAttribute("funding_opportunity_id", funding_opportunity_id) //incase needed later
 
         // requestSection.appendChild(document.createElement("br"))
     }) //END: ForEach
