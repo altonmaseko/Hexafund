@@ -1,0 +1,142 @@
+  /* Styling for the body */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+  }
+
+  #page-title{
+    text-align: center;
+  }
+
+  #title-buttons
+  {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #vo-btn
+  {
+    margin: 15px;
+  }
+
+  #vaf-btn
+  {
+    margin: 15px;
+  }
+
+  #vcv-btn
+  {
+    margin: 15px;
+  }
+
+  /* Styling for the container of sections */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Styling for each section */
+  .section {
+    width: calc(33.33% - 20px); /* 33.33% width for each section, considering margin */
+    margin: 0 10px 20px 0; /* Margin between sections */
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box; 
+    display: inline-block; 
+    vertical-align: top; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  /* Styling for section titles */
+  .section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* Styling for images within sections */
+  img {
+    max-width: 100%; 
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Styling for subtitles */
+  .subtitle {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* Styling for text inputs */
+  input[type="text"] {
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Styling for buttons */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Hover effect for buttons */
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* Styling for delete buttons */
+  .delete-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  header {
+    background-color: rgba(0, 62, 64, 255);
+    color: white;
+    display: flex;
+    padding: 0%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px; 
+}
+
+footer {
+    background-color: rgba(0, 62, 64, 255);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+}
+.nav-button:hover {
+    transform: scale(1.04);
+}
