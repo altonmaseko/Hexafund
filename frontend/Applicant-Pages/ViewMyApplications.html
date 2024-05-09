@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Image and Text</title>
+<link rel="stylesheet" href="css/ViewMyApplications.css"> <!-- Linking an external stylesheet -->
+<style>
+  /* Styling for the body */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+  }
+
+  #page-title{
+    text-align: center;
+  }
+
+  #title-buttons
+  {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #vo-btn
+  {
+    margin: 15px;
+  }
+
+  #vaf-btn
+  {
+    margin: 15px;
+  }
+
+  #vcv-btn
+  {
+    margin: 15px;
+  }
+
+  /* Styling for the container of sections */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Styling for each section */
+  .section {
+    width: calc(33.33% - 20px); /* 33.33% width for each section, considering margin */
+    margin: 0 10px 20px 0; /* Margin between sections */
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box; 
+    display: inline-block; 
+    vertical-align: top; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  /* Styling for section titles */
+  .section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* Styling for images within sections */
+  img {
+    max-width: 100%; 
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Styling for subtitles */
+  .subtitle {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* Styling for text inputs */
+  input[type="text"] {
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Styling for buttons */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Hover effect for buttons */
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* Styling for delete buttons */
+  .delete-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  header {
+    background-color: rgba(0, 62, 64, 255);
+    color: white;
+    display: flex;
+    padding: 0%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px; 
+}
+
+footer {
+    background-color: rgba(0, 62, 64, 255);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+}
+.nav-button:hover {
+    transform: scale(1.04);
+}
+
+</style>
+</head>
+<body>
+  <header>
+    <img id="logo" src="../images/hexaFundLogoNoBack2.png" alt="logo">
+    <h1>hexafund</h1> 
+    <nav>
+        <article>
+            <button class="nav-button" id="AboutBut" >About Us</button>
+            <button class="nav-button" id="SerBut">Services</button>
+            <button class="nav-button" id="ConBut">Contacts Us</button>
+            <button class="nav-button" id="Profile"><a href="../profile.html">My Profile</a></button>
+        </article>
+    </nav>
+</header>
+  <h1 id="page-title">
+    My Applications <!-- Main title -->
+  </h1>
+  <section id="title-buttons">
+    <!-- Buttons to view different sections -->
+    <button type="button" id="vcv-btn">View CV</button> 
+    <button type="button" id="vaf-btn">View Application Form</button> 
+    <button type="button" id="vo-btn">View Other</button> 
+  </section>
+  <!-- Using embed tag -->
+  <center>
+    <iframe class="pdf" 
+    src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf"
+    width="800" height="500">
+    </iframe>
+  </center>
+  
+  <div class="container">
+    <!-- Inputs for adding new sections -->
+
+    <!-- <input type="file" id="imageInput" accept="image/*">
+    <input type="text" id="titleInput" placeholder="Enter section title">
+    <input type="text" id="fundNameInput" placeholder="Enter fund name">
+    <input type="text" id="amountInput" placeholder="Enter amount">
+    <input type="text" id="reasonInput" placeholder="Enter reason">
+    <button onclick="addSection()">Add Section</button> -->
+
+    <div id="sectionsContainer" style="display: flex; flex-wrap: wrap;"></div>
+  </div>
+
+  <script>
+    // JavaScript function to add a new section
+    function addSection() {
+      var imageInput = document.getElementById('imageInput');
+      var titleInput = document.getElementById('titleInput');
+      var fundNameInput = document.getElementById('fundNameInput');
+      var amountInput = document.getElementById('amountInput');
+      var reasonInput = document.getElementById('reasonInput');
+      var sectionsContainer = document.getElementById('sectionsContainer');
+
+      // Getting input values
+      var imageFile = imageInput.files[0];
+      var titleValue = titleInput.value;
+      var fundNameValue = fundNameInput.value;
+      var amountValue = amountInput.value;
+      var reasonValue = reasonInput.value;
+
+      // Validating input fields
+      if (!imageFile || !titleValue || !fundNameValue || !amountValue || !reasonValue) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      // Creating a FileReader object to read the image file
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        var imgSrc = event.target.result;
+
+        // Creating elements for the new section
+        var section = document.createElement('div');
+        section.classList.add('section');
+
+        var title = document.createElement('h2');
+        title.textContent = titleValue;
+
+        var image = document.createElement('img');
+        image.src = imgSrc;
+
+        var fundNameSubtitle = document.createElement('p');
+        fundNameSubtitle.classList.add('subtitle');
+        fundNameSubtitle.textContent = 'Fund Name:';
+        var fundNameText = document.createElement('p');
+        fundNameText.textContent = fundNameValue;
+
+        var amountSubtitle = document.createElement('p');
+        amountSubtitle.classList.add('subtitle');
+        amountSubtitle.textContent = 'Amount:';
+        var amountText = document.createElement('p');
+        amountText.textContent = amountValue;
+
+        var reasonSubtitle = document.createElement('p');
+        reasonSubtitle.classList.add('subtitle');
+        reasonSubtitle.textContent = 'Reason:';
+        var reasonText = document.createElement('p');
+        reasonText.textContent = reasonValue;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+          section.remove();
+        };
+
+        // Appending elements to the section
+        section.appendChild(title);
+        section.appendChild(image);
+        section.appendChild(fundNameSubtitle);
+        section.appendChild(fundNameText);
+        section.appendChild(amountSubtitle);
+        section.appendChild(amountText);
+        section.appendChild(reasonSubtitle);
+        section.appendChild(reasonText);
+        section.appendChild(deleteButton);
+
+        // Appending the section to the container
+        sectionsContainer.appendChild(section);
+      };
+
+      // Reading the image file as a data URL
+      reader.readAsDataURL(imageFile);
+      
+      // Clearing input fields after adding section
+      imageInput.value = '';
+      titleInput.value = '';
+      fundNameInput.value = '';
+      amountInput.value = '';
+      reasonInput.value = '';
+    }
+  </script>
+  <section>
+    </section>
+  <!-- <footer>
+    <p>©2024 HexaFund. All rights reserved.</p>
+  </footer> -->
+
+  <script src="External_Modules/axios.min.js"></script>
+  <script src="External_Modules/crypto-js.min.js"></script>
+  <script type="module" defer src="js/ViewMyApplications.js"></script>
+</body>
+
+</html>
