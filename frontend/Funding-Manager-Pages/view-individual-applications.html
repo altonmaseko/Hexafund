@@ -40,15 +40,13 @@
 
     <section class="containerImage">
         <h1>Funding Application</h1>
-        <!-- NB placeholder image -->
-        <!-- <img id="output" class="output" src="../images/business-funding.jpg" alt="Funding ad"> <br> <br> -->
-
-        <!-- placeholder pdf  -->
         <iframe class="pdf" 
                 src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf"
             width="800" height="500">
         </iframe>
-        <button class="ViewAttachment" type="button"> View Attachment </button>
+        <button class="ViewApplication" type="button"> View Application </button>
+        <button class="viewCV" type="button"> View CV </button>
+        <button class="viewOther" type="button"> View Other </button>
     </section>
 
     <footer>
@@ -57,8 +55,8 @@
 
     <!-- When the view attachment button is clicked, the pdf is enlarged for better viewing
          Click anywhere on page to return -->
-<script>
-    document.querySelector('.ViewAttachment').addEventListener('click', function() {
+<!-- <script>
+    document.querySelector('.ViewApplication').addEventListener('click', function() {
         document.body.classList.add('fullscreen');
         var pdfFrame = document.querySelector('.pdf');
         pdfFrame.style.width = '95%';
@@ -66,13 +64,13 @@
     });
 
     document.body.addEventListener('click', function(event) {
-        if (!event.target.classList.contains('ViewAttachment')) {
+        if (!event.target.classList.contains('ViewApplication')) {
             document.body.classList.remove('fullscreen');
             var pdfFrame = document.querySelector('.pdf');
             pdfFrame.style.width = '800px'; 
             pdfFrame.style.height = '500px'; 
         }
     });
-</script>
+</script> -->
 </body>
 </html>

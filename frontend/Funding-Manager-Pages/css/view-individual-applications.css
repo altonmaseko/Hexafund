@@ -11,12 +11,12 @@
     margin-top: 100px;
     background-color: white;
   }
-
+/* 
   .Reject{
     transform: translate(120%);
     position: absolute;
     bottom: 96px;
-  }
+  } */
 
   body {
     /* padding-top:100px; */
@@ -55,19 +55,23 @@
     margin-top: -5px;
   }
 
+  .containerImage button {
+    margin-left: 65px;
+    padding: 3px;
+  }
   
   .containerImage h1 {
     text-align: center;
   }
 
-  .ViewAttachment {
+  /* .ViewAttachment {
     width: 150px;
     height: 35px;
     position: absolute;
     bottom: 50px;
     left: 50%; 
     transform: translateX(-200%); 
-}
+} */
 
 footer {
   background-color:#001e30; 
@@ -75,11 +79,13 @@ footer {
   text-align: center;
   color: white;
   height: 40px;
-  margin-top: 1%;
+  margin-top: 1%; 
 }
 
-.ViewAttachment:hover {
-    background-color: #4CAF50; 
+.ViewApplication:hover,
+.viewCV:hover,
+.viewOther:hover {
+    background-color: #8398db; 
     color: white; 
 }
 
