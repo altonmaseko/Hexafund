@@ -5,10 +5,11 @@ const { getApplicationsController,
     updateApplicationController,
     deleteApplicationController } = require("../controllers");
 
+
 // GET
 router.get([
-    "/applications/:application_id",
-    "/application/:application_id"], getApplicationsController);
+    "/applications",
+    "/application"], getApplicationsController);
 
 // UPDATE
 router.put([
