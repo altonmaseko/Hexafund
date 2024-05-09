@@ -29,6 +29,7 @@ for (const cookie of cookieArray) {
 }
 
 let application;
+let fundingOpportunity;
 const flow = async () => {
     try {
         const response = await axios.get(`api/v1/application?_id=${application_id}`)
@@ -52,7 +53,6 @@ const flow = async () => {
         return;
     }
 
-    let fundingOpportunity;
     try {
         console.log("funding opportunity ID")
         console.log(application.funding_opportunity_id)
@@ -64,6 +64,8 @@ const flow = async () => {
         alert("Could not get funding opportunity details")
         return;
     }
+    document.querySelector(".funding-opportunity-title").textContent = fundingOpportunity.title;
+
 
     applicantName.value = user.name;
     contact.value = application.contact_number;
@@ -80,16 +82,26 @@ Accept.addEventListener("click", async (event) => {
         await axios.put(`api/v1/application/${application._id}`, {
             status: "Accepted"
         })
+        await axios.put(`api/v1/funding-opportunity/${fundingOpportunity._id}`, {
+            available_slots: fundingOpportunity.available_slots - 1
+        })
     } catch (error) {
         console.log(error)
         alert("Sorry, could not accept application")
     }
 })
 Reject.addEventListener("click", async (event) => {
-    if (application.status === "Accepted")
-    {
-        if (!confirm("Are you sure you want to remove your acceptance of this applicant?")){
+    if (application.status === "Accepted") {
+        if (!confirm("Are you sure you want to remove your acceptance of this applicant?")) {
             return
+        }
+        try {
+            await axios.put(`api/v1/funding-opportunity/${fundingOpportunity._id}`, {
+                available_slots: fundingOpportunity.available_slots + 1 //Undo the decrease
+            })
+        } catch (error) {
+            alert("Sorry an error has occured. Please try again later")
+            console.log(error)
         }
     }
 
