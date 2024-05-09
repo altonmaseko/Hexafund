@@ -119,3 +119,8 @@ button[type="submit"]:hover {
 #pdfIframe {
   display: none;
 }
+
+.remove-span:hover{
+  cursor: pointer;
+  color: green;
+}

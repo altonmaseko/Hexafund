@@ -194,7 +194,8 @@ footer {
     <div id="sectionsContainer" style="display: flex; flex-wrap: wrap;"></div>
   </div>
 
-  <script>
+  <script src="../External_Modules/axios.min.js"></script>
+  <script defer>
     // JavaScript function to add a new section
     function addSection() {
       var imageInput = document.getElementById('imageInput');
@@ -210,6 +211,7 @@ footer {
       var fundNameValue = fundNameInput.value;
       var amountValue = amountInput.value;
       var reasonValue = reasonInput.value;
+ 
 
       // Validating input fields
       if (!imageFile || !titleValue || !fundNameValue || !amountValue || !reasonValue) {
