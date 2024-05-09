@@ -4,6 +4,7 @@ const logoutRouter = require("./logoutRouter");
 const refreshRouter = require("./refreshRouter");
 const userRouter = require("./userRouter");
 const fundingOpportunityRouter = require("./fundingOpportunityRouter")
+const applicationRouter = require("./applicationRouter")
 
 module.exports = {
     loginRouter,
@@ -11,5 +12,6 @@ module.exports = {
     logoutRouter,
     refreshRouter,
     userRouter,
-    fundingOpportunityRouter
+    fundingOpportunityRouter,
+    applicationRouter
 };

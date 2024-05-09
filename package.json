@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@azure/storage-blob": "^12.23.0-alpha.20240507.1",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
@@ -24,7 +25,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.3.2"
+    "mongoose": "^8.3.2",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-babel": "^3.0.0",

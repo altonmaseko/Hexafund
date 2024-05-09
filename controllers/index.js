@@ -3,30 +3,49 @@ const loginController = require("./loginController");
 const registerController = require("./registerController");
 const logoutController = require("./logoutController");
 const refreshController = require("./refreshController");
-const createFundingController = require("./createFundingController");
+
+// create controllers
+const createFundingController = require("./createControllers/createFundingController");
+const createApplicationController = require("./createControllers/createApplicationController")
 
 // get controllers
-const getUsersController = require("./getUsersController");
-const getFundingController = require("./getFundingController");
+const getUsersController = require("./getControllers/getUsersController");
+const getFundingController = require("./getControllers/getFundingController");
+const getApplicationsController = require("./getControllers/getApplicationsController")
 
 // update controllers
-const updateUsersController = require("./updateUsersController");
-const updateFundingController = require("./updateFundingController");
+const updateUsersController = require("./updateControllers/updateUsersController");
+const updateFundingController = require("./updateControllers/updateFundingController");
+const updateApplicationController = require("./updateControllers/updateApplicationController")
 
 // delete controllers
-const deleteUsersController = require("./deleteUsersController");
-const deleteFundingController = require("./deleteFundingController");
+const deleteUsersController = require("./deleteControllers/deleteUsersController");
+const deleteFundingController = require("./deleteControllers/deleteFundingController");
+const deleteApplicationController = require("./deleteControllers/deleteApplicationController")
+
 
 module.exports = {
+    // Auth
     loginController,
-    registerController,
     logoutController,
     refreshController,
+    registerController,
+    // Create
     createFundingController,
+    createApplicationController,
+    // Get
     getUsersController,
     getFundingController,
+    getApplicationsController,
+    // Update
     updateUsersController,
     updateFundingController,
+    updateApplicationController,
+    // Delete
     deleteUsersController,
-    deleteFundingController
+    deleteFundingController,
+    deleteApplicationController,
+
+
+
 };

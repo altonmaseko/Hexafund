@@ -1,7 +1,8 @@
 // imports
 const express = require("express");
 const router = express.Router();
-const { getUsersController, updateUsersController, deleteUsersController } = require("../controllers");
+const { getUsersController, 
+    updateUsersController, deleteUsersController } = require("../controllers");
 
 const { getAdmins, getApplicants, getFundingManagers, getUsers } = getUsersController;
 const { updateApplicants, updateFundingManagers } = updateUsersController;

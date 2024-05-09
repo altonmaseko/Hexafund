@@ -1,0 +1,98 @@
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 850px;
+    margin-top: -20px;
+    margin-bottom: -10px;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin-top: 100px;
+    background-color: white;
+  }
+/* 
+  .Reject{
+    transform: translate(120%);
+    position: absolute;
+    bottom: 96px;
+  } */
+
+  body {
+    /* padding-top:100px; */
+    background-image: linear-gradient(#00111b, #336380);
+  }
+  
+  
+  .containerImage {
+    width: 550px;
+    height: 400px;
+    padding: 30px;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin-top: -450px;
+    margin-left: 100px;
+    background-color: white;
+  }
+
+  /* .containerImage img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: cover;
+    border: 1px solid black;
+    border-radius: 1rem;
+    margin-left: 50px;
+    margin-top: 30px;
+  } */
+
+  .containerImage .pdf{
+     max-width: 80%; 
+    max-height: 80%; 
+    object-fit: cover;
+    border: 1px solid black;
+    border-radius: 1rem;
+    margin-left: 50px;
+    margin-top: -5px;
+  }
+
+  .containerImage button {
+    margin-left: 65px;
+    padding: 3px;
+  }
+  
+  .containerImage h1 {
+    text-align: center;
+  }
+
+  /* .ViewAttachment {
+    width: 150px;
+    height: 35px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%; 
+    transform: translateX(-200%); 
+} */
+
+footer {
+  background-color:#001e30; 
+  padding: 10px;
+  text-align: center;
+  color: white;
+  height: 40px;
+  margin-top: 1%; 
+}
+
+.ViewApplication:hover,
+.viewCV:hover,
+.viewOther:hover {
+    background-color: #8398db; 
+    color: white; 
+}
+
+.Accept:hover{
+  background-color: #70c573;
+}
+
+.Reject:hover{
+  background-color: #d11a1a;
+}

@@ -11,12 +11,13 @@ const { User } = require("./models");
 const { roles } = require("./constants");
 
 // Routers
-const { registerRouter, 
-    loginRouter, 
-    refreshRouter, 
-    logoutRouter, 
+const { registerRouter,
+    loginRouter,
+    refreshRouter,
+    logoutRouter,
     userRouter,
-    fundingOpportunityRouter
+    fundingOpportunityRouter,
+    applicationRouter
 } = require("./routers");
 // END: Routers
 
@@ -24,7 +25,8 @@ const app = express();
 
 app.use(cors());
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 app.use(express.static("./frontend")); //serve the front end
 
@@ -34,7 +36,7 @@ app.use("/login", loginRouter);
 app.use("/refresh", refreshRouter); //Need a refresh token to create new access token. If no refresh token, wont continue.
 app.use("/logout", logoutRouter);
 
-app.use("/api/v1", [userRouter, fundingOpportunityRouter]); //handle getting, updating users request
+app.use("/api/v1", [userRouter, fundingOpportunityRouter, applicationRouter]);
 
 
 // -----------------------------------
@@ -49,49 +51,40 @@ app.get("/home", async (req, res) => {
 
     const user = await User.findOne({ email: email });
 
-    if(!user) {
+    if (!user) {
         alert("Please login to continue.");
         return res.status(401).json({ message: "Please login to continue" });
     }
 
     console.log(`applicant? ${user?.role}`);
 
-    if (user?.role === roles.APPLICANT) 
-    {
+    if (user?.role === roles.APPLICANT) {
         console.log("applicant home page");
-        // res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
-        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-View-Ads", "Applicant_View_Ads.html"));
-    } 
-    else if (user?.role === roles.FUNDING_MANAGER) 
-    {
+        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
+    }
+    else if (user?.role === roles.FUNDING_MANAGER) {
         const FundingManager = require("./models/FundingManager.js");
         const fundingManager = await FundingManager.findOne({ email: email });
 
-        if (fundingManager?.account_details.account_active) 
-        {
+        if (fundingManager?.account_details.account_active) {
             console.log("funding manager home page");
-            // res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "home-page.html"));
-            res.status(200).sendFile(path.join(__dirname, "frontend", "Home-Pages", "FundingHome.html"));
-        } 
-        else 
-        {
-            if(fundingManager?.account_details.reason === "Account Request Denied")
-            {
+            res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "home-page.html"));
+        }
+        else {
+            if (fundingManager?.account_details.reason === "Account Request Denied") {
                 console.log("funding manager request-denied page");
                 res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "request-denied.html"));;
             }
-            else
-            {
+            else {
                 console.log("funding manager awaiting approval page");
                 res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "awaiting-approval.html"));
             }
         }
-    } 
-    else if ((user?.role === roles.PLATFORM_ADMIN) )
-    {
+    }
+    else if ((user?.role === roles.PLATFORM_ADMIN)) {
         console.log("admin page");
-        res.status(200).sendFile(path.join(__dirname, "frontend", "Home-Pages", "AdminHome.html"));
-    } 
+        res.status(200).sendFile(path.join(__dirname, "frontend", "Platform-Admin-Pages", "home-page.html"));
+    }
 });
 // END: PLACE HOLDER
 

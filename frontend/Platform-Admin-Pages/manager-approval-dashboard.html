@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awaiting Approval</title>
+    <title>Manager Approval Dashboard</title>
 
-    <!--  WHEN NAVIGATING FROM BACKEND, THIS WORKS:  -->
-    <link rel="stylesheet" href="Funding-Manager-Pages/css/awaiting-approval.css">
+    <!-- WHEN NAVIGATING FROM HTML PAGES, THIS WORKS: -->
+    <link rel="stylesheet" href="css/manager-approval-dashboard.css">
     <script src="../External_Modules/axios.min.js"></script>
+    <script type="module" src="js/manager-approval-dashboard.js" defer></script>
     <script type="module" src="../js/logout.js" defer></script>
 </head>
-
 <body>
     <header>
         <img id="logo" src="../images/hexaFundLogo.png" alt="Flag">
@@ -22,10 +22,16 @@
             <button id="logout_button">Log Out</button>
         </nav>
     </header>
-    <section class="center-container">
-        <img id="logo" src="images/clock.png" alt="clock">
-        <p>Your account is under review and needs to be approved by a Platform Admin and this may take a while. You will recieve an email when verified.</p>
-    </section>
+
+    <main>
+        <div class="scrollable-container">
+            <h2>Funding Manager Requests</h2>
+            <button id="refresh-btn">Load Requests</button>
+
+            <section id="requests">
+            </section>
+        </div>
+    </main>
     <footer>
         <p>©2024 HexaFund. All rights reserved.</p>
     </footer>

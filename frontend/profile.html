@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/profile.css">
+    <script defer src="js/logout.js"></script>
+    <script src="External_Modules/axios.min.js"></script>
+    <script defer src="js/profile.js"></script>
+    <title>Hexafund Profile</title>
+</head>
+
+<body>
+
+    <section class="container">
+        <nav>
+            <div class="nav__logo">
+                <a href="#" class="nav__logo">
+                    <img src="../images/hexa2.png" alt="logo" />
+                    <span>hexafund</span>
+                </a>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li id="aboutUs"><a href="#">About Us</a></li>
+                <li id="services"><a href="#">Services</a></li>
+                <li id="contactUs"><a href="#">Contact Us</a></li>
+                <li id="logout_button"><a href="#">Log Out</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="main">
+        <section class="userInfo">
+            <img src="../images/hexa2.png" alt="userDP">
+            <!-- <label for="Name">Name: </label>
+            <input type="text" style="width: 150px;" id="userName" name="Name" placeholder="Your Name" ><br>
+            <label for="userEmail">Email:</label>
+            <input type="text" style="width: 150px;" id="userEmail" name="userEmail" placeholder="mail@example.com" ><br>   -->
+            <label for="about">About:</label>
+            <textarea id="about" name="about" placeholder="Why are you deleting your account?" rows="5"
+                cols="55"></textarea>
+            <br>
+            <button class="deleteProfile" type="button">Delete Profile</button>
+        </section>
+    </section>
+
+
+
+    <footer>
+        <p>©2024 HexaFund. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

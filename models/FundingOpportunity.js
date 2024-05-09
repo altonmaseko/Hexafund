@@ -16,20 +16,14 @@ const FundingOpportunitySchema = new mongoose.Schema({
     },
     admin_status: {
         type: String,
-        enum: [statuses.PENDING, statuses.ACCEPTED, statuses.REJECTED],
+        enum: [statuses.PENDING, statuses.ACCEPTED, statuses.REJECTED, statuses.APPROVED],
         default: statuses.PENDING
     },
     type: {
         type: String,
-        enum: [fund_types.EDUCATIONAL, fund_types.BUSINESS, fund_types.EVENT],
+        enum: [fund_types.EDUCATIONAL, fund_types.BUSINESS, fund_types.EVENT], //Values: Educational, Business or Event
         required: true
     },
-    funding_opportunity_id: {
-        type: mongoose.Schema.Types.ObjectId, // Use ObjectId type
-        index: true, // Optional: Add an index for faster lookups
-        auto: true // Automatically generate an ObjectId
-    },
-    // Features to be added later
     funding_amount: {
         type: Number,
         required: true
@@ -42,19 +36,13 @@ const FundingOpportunitySchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    
     description: {
         type: String,
         default: "Apply for this funding Opportunity now! And start your journey of SUCCESS! You. Can. Do It."
     },
     image_data: {
-        type: String, // Use Buffer for storing binary data
+        type: String, 
     }
-    // status: {
-    //     type: String,
-    //     enum: [statuses.ACTIVE, statuses.INACTIVE],
-    //     default: statuses.ACTIVE
-    // },
     
     //funding_amount history will be added later
 });
