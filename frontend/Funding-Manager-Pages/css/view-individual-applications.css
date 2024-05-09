@@ -15,7 +15,7 @@
   .Reject{
     transform: translate(120%);
     position: absolute;
-    bottom: 62px;
+    bottom: 96px;
   }
 
   body {
@@ -50,7 +50,16 @@
     width: 150px;
     height: 35px;
     position: absolute;
-    bottom: 15px;
+    bottom: 50px;
     left: 50%; 
     transform: translateX(-200%); 
+}
+
+footer {
+  background-color:#001e30; 
+  padding: 10px;
+  text-align: center;
+  color: white;
+  height: 40px;
+  margin-top: 1%;
 }
