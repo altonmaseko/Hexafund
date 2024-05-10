@@ -7,7 +7,7 @@ const connectDB = require("./config/connectDB");
 require("dotenv").config();
 const { verifyAccessToken, errorHandler } = require("./middleware");
 const cors = require("cors");
-const { User } = require("./models");
+const { User, Applicant } = require("./models");
 const { roles } = require("./constants");
 
 // Routers
@@ -102,6 +102,7 @@ mongoose.connection.on("connected", async () => {
     app.listen(PORT, () => {
         console.log(`server listening on port: ${PORT}...`)
     });
+
 });
 mongoose.connection.on("disconnected", () => {
     console.log("Lost connection to database")
