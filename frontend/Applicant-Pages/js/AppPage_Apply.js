@@ -132,6 +132,7 @@ submitButton.addEventListener("click", async (event) => {
     contact_number: contact.value,
     cv_data,
     application_form_data,
+    other_data,
     funding_opportunity_id
   }
 

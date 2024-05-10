@@ -20,7 +20,7 @@ const loadOpportunities = async (query_params) => {
         return
     }
 
-    fundingOpportunities.forEach((fundingOpportunity) => {
+    fundingOpportunities.forEach(async (fundingOpportunity) => {
         let { title,
             company_name,
             funding_manager_email,
@@ -30,9 +30,28 @@ const loadOpportunities = async (query_params) => {
             deadline,
             description,
             funding_amount,
-            available_slots,image_data } = fundingOpportunity
+            available_slots, image_data } = fundingOpportunity
 
         deadline = deadline.slice(0, deadline.indexOf("T")) // Just get the day, month, year and skip the time
+
+        // Check if application already exists
+        let response
+        let applications = []
+        let applyButtonMessage = "Apply";
+        console.log("DETAILS")
+        console.log(_id)
+        console.log(userEmail)
+        try {
+            response = await axios.get(`api/v1/application?funding_opportunity_id=${_id}&applicant_email=${userEmail}`)
+            applications = response.data
+            if (applications.length > 0) {
+                applyButtonMessage = "Already Applied ✔"
+            } else {
+                applyButtonMessage = "Apply"
+            }
+        } catch (error) {
+        }
+       
 
         const requestCard = document.createElement("div")
         requestCard.classList.add("request-card")
@@ -48,10 +67,15 @@ const loadOpportunities = async (query_params) => {
                     </h3>
                     <p id="amount">Amount: R${funding_amount} [${available_slots} available]</p>
                     <p id="description">Description: ${description} </p>
-                    <button class="apply-btn">Apply</button>
+                    <button class="apply-btn">${applyButtonMessage}</button>
                 </div>`
 
         requestCard.innerHTML = requestCardInnerHTML
+
+        // Disable apply button if already applied
+        if (applications.length > 0) {
+            requestCard.querySelector(".apply-btn").disabled = true;
+        }
 
         let adImage = requestCard.querySelector(".ad-image");
         if (!image_data) {
@@ -71,8 +95,8 @@ const loadOpportunities = async (query_params) => {
 
         applyButton.addEventListener("click", async (event) => {
             // Add logic here... 
-            document.cookie = `funding_opportunity_id=${applyButton.getAttribute("funding_opportunity_id")}; path=/`;
 
+            document.cookie = `funding_opportunity_id=${applyButton.getAttribute("funding_opportunity_id")}; path=/`;
             window.location.href = "Applicant-Pages/AppPage_Apply.html";
         })
 
@@ -105,11 +129,15 @@ loadOpportunities(query_params)
 const cookies = document.cookie; // Get all cookies as a single string
 const cookieArray = cookies.split('; '); // Split into an array of individual cookies
 let userName;
+let userEmail;
 for (const cookie of cookieArray) {
     const [name, value] = cookie.split('=');
     console.log(value)
     if (name === 'name') {
         userName = value
+    }
+    if (name === 'email') {
+        userEmail = value
     }
 }
 

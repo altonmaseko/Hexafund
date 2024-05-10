@@ -10,7 +10,8 @@ const createApplication = asyncWrapper(async (req, res) => {
         reason,
         contact_number,
         cv_data,
-        application_form_data
+        application_form_data,
+        other_data
     } = req.body;
 
     if (!applicant_email || !reason || !contact_number) {
@@ -32,7 +33,8 @@ const createApplication = asyncWrapper(async (req, res) => {
         reason,
         contact_number,
         cv_data,
-        application_form_data
+        application_form_data,
+        other_data
     });
 
     res.status(201).json({ message: `Application successfully submitted.`, status: 201 });
