@@ -6,16 +6,21 @@ const getFundingController = asyncWrapper(async (req, res) => {
     let fundingOpportunities = await FundingOpportunity.find({});
 
     const query = req.query; // when browser url is ...?property=value&property2=value
-    
+
     console.log(query);
 
     if (Object.values(query).length <= 0) {
-        res.status(200).json( fundingOpportunities );
+        res.status(200).json(fundingOpportunities);
         return;
     }
 
-    for(let key in query) {
+    for (let key in query) {
         fundingOpportunities = fundingOpportunities.filter((fundingOpportunity) => {
+
+            if (fundingOpportunity.available_slots <= 0) {
+                return
+            }
+
             if (key.includes(".")) {
                 const keys = key.split(".");
                 console.log(keys);
@@ -30,7 +35,7 @@ const getFundingController = asyncWrapper(async (req, res) => {
         });
     }
 
-    res.status(200).json( fundingOpportunities );
+    res.status(200).json(fundingOpportunities);
 });
 
 module.exports = getFundingController;
