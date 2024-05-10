@@ -204,6 +204,10 @@ const flow = async () => {
     })
     // Delete application from database
     deleteFullApplication.addEventListener("click", async event => {
+      if (application.status !== "Pending") {
+        alert("Can only delete pending applications.")
+        return
+      }
       if (!confirm("Are you sure you want to DELETE this application?")) {
         return
       }
