@@ -1,7 +1,5 @@
-// imports
 const { registerController } = require("../../../controllers");
-const { User, Applicant, FundingManager } = require("../../../models");
-const { SHA256 } = require("crypto-js");
+const { User, Applicant, FundingManager, Company } = require("../../../models");
 
 const res = {
     status: jest.fn(() => res),
@@ -94,9 +92,8 @@ describe("Testing the register controller", () => {
         expect(res.status).toHaveBeenCalledWith(409);
         expect(res.json).toHaveBeenCalledWith(expected_response);
     });
-    
-    /*
-    // TEST 3
+
+    /*TEST 3*/
     const json_test_3 = (email) => {
         return {
             message: `${email} has been successfully registered.`,
@@ -104,7 +101,7 @@ describe("Testing the register controller", () => {
         };
     };
   
-    it("should return status 201 when a new user (applicant) is created", async () => {
+    /*it("should return status 201 when a new user (applicant) is created", async () => {
         const req = {
             body: {
                 name: "name",
@@ -130,9 +127,6 @@ describe("Testing the register controller", () => {
         });
 
         jest.spyOn(Applicant, "create").mockImplementation(applicantCreateMock);
-        
-        const encryptedPassword = 'encryptedPassword';
-        jest.spyOn(bcrypt, 'hash').mockResolvedValue(encryptedPassword);
     
         const expectedResponse = json_test_3(req.body.email);
     
@@ -141,7 +135,7 @@ describe("Testing the register controller", () => {
         expect(userCreateMock).toHaveBeenCalledWith({
             name: req.body.name,
             email: req.body.email,
-            password: encryptedPassword,
+            password: req.body.password,
         });
 
         expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
@@ -183,8 +177,6 @@ describe("Testing the register controller", () => {
         });
         jest.spyOn(FundingManager, "create").mockImplementation(fundingManagerCreateMock);
     
-        const encryptedPassword = 'encryptedPassword';
-        jest.spyOn(bcrypt, 'hash').mockResolvedValue(encryptedPassword);
         const expectedResponse = json_test_3(req.body.email);
     
         await registerController(req, res);
@@ -192,7 +184,7 @@ describe("Testing the register controller", () => {
         expect(userCreateMock).toHaveBeenCalledWith({
             name: req.body.name,
             email: req.body.email,
-            password: encryptedPassword,
+            password: req.body.password,
             role: req.body.role
         });
         expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
@@ -204,6 +196,5 @@ describe("Testing the register controller", () => {
         });
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith(expectedResponse);
-    });
-    */
+    });*/
 });

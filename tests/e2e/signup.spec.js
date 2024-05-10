@@ -1,3 +1,4 @@
+import { assert } from "console";
 import { test, expect } from "../e2e/_shared/app-fixtures";
 const { v4: uuidv4 } = require('uuid');
 
@@ -67,3 +68,35 @@ test.describe("Funding manager pending",()=>{
         await expect(page).toHaveURL("home");
     });
 })
+
+
+test.describe("Testing validation", () => {
+    test("Empty email", async ({ page }) => {
+        // Initialize flag to check if the alert with the expected message is displayed
+        let alertDisplayed = false;
+
+        // Event listener for 'dialog' events
+        page.on('dialog', async dialog => {
+            if (dialog.type() === 'alert') {
+                const dialogMessage = dialog.message();
+                // Check if the alert message matches the expected message
+                if (dialogMessage === "Please enter your email") {
+                    alertDisplayed = true;
+                } else {
+                    console.error(`Unexpected alert message: ${dialogMessage}`);
+                }
+                // Accept the alert dialog
+                await dialog.accept();
+            }
+        });
+
+        // Navigate to the page
+        await page.goto("signup.html");
+
+        // Trigger the action that should display the alert dialog
+        await page.click('#submit_button');
+
+        // Assert that the expected alert was displayed
+        expect(alertDisplayed).toBe(true);
+    });
+});
