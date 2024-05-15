@@ -63,6 +63,7 @@ const flow = async () => {
     // Display the applications
     applications.forEach((application) => {
         let {
+            _id,
             applicant_email,
             status,
             contact_number,
@@ -75,11 +76,12 @@ const flow = async () => {
             <img src="https://thumbs.dreamstime.com/b/education-study-books-high-school-university-16383080.jpg" alt="Applicant 1">
             <section>
                 <p>Email: ${applicant_email}</p>
+                <p>Satus: ${status}</p>
                 <p>Reason: ${reason}</p>
             </section>
         </section>
         <button class="btn-view">
-            <a href="view-individual-applications.html">View Full Application</a>
+            View Full Application
         </button>`;
 
         const columnSection = document.createElement("section");
@@ -88,20 +90,11 @@ const flow = async () => {
 
         container.appendChild(columnSection);
 
-        // CV, APPLICATION FORM AND OTHER BUTTONS
-        const cvButton = columnSection.querySelector(".cv-button");
-        const applicationFormButton = columnSection.querySelector(".application-form-button");
-        const otherButton = columnSection.querySelector(".other-button");
-
-        // cvButton.addEventListener("click", (event) => {
-        //     pdfIframe.src = cv_data
-        // })
-        // applicationFormButton.addEventListener("click", (event) => {
-        //     pdfIframe.src = application_form_data
-        // })
-        // otherButton.addEventListener("click", (event) => {
-
-        // })
+        const btnView = columnSection.querySelector(".btn-view");
+        btnView.addEventListener("click", (event) => {
+            document.cookie = `application_id=${_id}; path=/`;
+            window.location.href = "/Funding-Manager-Pages/view-individual-applications.html";
+        })
 
     }) // END: applications.forEach
 

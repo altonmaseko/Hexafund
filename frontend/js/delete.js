@@ -7,6 +7,9 @@ document.getElementById("delete_acc_button").addEventListener("click", async (ev
     
     event.preventDefault();
     
+    if (!confirm("Are you sure you want to delete your Acount? This action is not reversable?")){
+        return
+    }
     try {
         const response = await axios.delete("/api/v1/delete");
         console.log(response.data);

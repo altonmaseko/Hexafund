@@ -1,6 +1,10 @@
 
 
 document.querySelector(".deleteProfile").addEventListener("click", async ()=>{
+    if (!confirm("Are you sure you want to delete your Acount? This action is not reversable?")){
+        return
+    }
+
     window.location.href = "/"
     try {
         console.log("delete request")

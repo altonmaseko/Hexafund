@@ -1,5 +1,9 @@
 body {
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    padding-bottom: 0px;
+    box-sizing: border-box;
 }
 
 /*nav bar things*/ 
@@ -138,6 +142,9 @@ footer {
     text-align: center;
     color: white;
     height: 40px;
+    position: sticky;
+    bottom: 0px;
+    margin-bottom: 0px;
 }
 
 a:visited{

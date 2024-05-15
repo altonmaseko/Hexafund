@@ -132,6 +132,7 @@ submitButton.addEventListener("click", async (event) => {
     contact_number: contact.value,
     cv_data,
     application_form_data,
+    other_data,
     funding_opportunity_id
   }
 
@@ -146,7 +147,18 @@ submitButton.addEventListener("click", async (event) => {
 
 })
 
-
+document.querySelector(".remove-cv-span").addEventListener("click", (event) =>{
+  cv_file.value = "";
+  cv_data = "";
+})
+document.querySelector(".remove-application-span").addEventListener("click", (event) =>{
+  application_form_file.value = "";
+  application_form_data = "";
+})
+document.querySelector(".remove-other-span").addEventListener("click", (event) =>{
+  other_file.value = "";
+  other_data = "";
+})
 
 
 // WORD COUNT STUFF:
