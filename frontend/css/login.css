@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
 body {
     margin: 0px;
     padding: 0px;
     height: 100vh;
     padding-bottom: 0px;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 /*nav bar things*/ 
@@ -26,7 +29,7 @@ body {
     align-items: center;
     text-decoration: none;
     color: white;
-    margin-right: 700px;
+    margin-right: 600px;
 }
 
 .nav__logo img {
