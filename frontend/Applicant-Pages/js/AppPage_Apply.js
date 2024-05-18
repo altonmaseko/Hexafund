@@ -1,3 +1,6 @@
+document.getElementById("checkStatusBtn").addEventListener("click", function() {
+    alert("Notification: Your status is pending.");
+});
 
 const cv_file = document.getElementById('cv_file');
 const application_form_file = document.getElementById('application_form_file');
