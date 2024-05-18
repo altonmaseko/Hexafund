@@ -1,3 +1,6 @@
+document.getElementById("checkStatusBtn").addEventListener("click", function() {
+    alert("Notification: Your status is pending.");
+});
 
 const sectionsContainer = document.querySelector(".sectionsContainer")
 const pdfIframe = document.querySelector(".pdf");
