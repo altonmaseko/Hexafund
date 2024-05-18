@@ -1,4 +1,6 @@
-
+document.getElementById("checkStatusBtn").addEventListener("click", function() {
+    alert("Notification: Your status is pending.");
+});
 
 
 const submitButton = document.getElementById('submitButton');
