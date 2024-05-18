@@ -2,17 +2,16 @@
 
 body {
     margin: 0px;
-    padding: 0px;
+    font-family: "Poppins", sans-serif;
+    background-image: linear-gradient(#00111b, #336380);
+    /* padding: 0px;
     height: 100vh;
     padding-bottom: 0px;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    box-sizing: border-box; */
 }
 
 /*nav bar things*/ 
 .container {
-    background-image: none;
-    background-color: #00111b;
     overflow: hidden;
 }
 
@@ -76,7 +75,6 @@ body {
 
 section {
     color: white;
-    background-image: linear-gradient(#00111b, #336380);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -140,7 +138,7 @@ article {
 }
 
 footer {
-    background-color:#001e30; 
+    /* background-color:#001e30;  */
     padding: 10px;
     text-align: center;
     color: white;

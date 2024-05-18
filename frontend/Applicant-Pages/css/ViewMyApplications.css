@@ -127,6 +127,11 @@
     height: 80px;
   }
 
+  header h1{
+    margin-left: -350px;
+    margin-bottom: 3px;
+  }
+
   footer {
     background-color: rgba(0, 62, 64, 255);
     color: #fff;
