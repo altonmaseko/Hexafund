@@ -10,6 +10,8 @@ const cors = require("cors");
 const { User, Applicant } = require("./models");
 const { roles } = require("./constants");
 
+// test
+
 // Routers
 const { registerRouter,
     loginRouter,
