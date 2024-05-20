@@ -1,6 +1,4 @@
-document.getElementById("checkStatusBtn").addEventListener("click", function() {
-    alert("Notification: Your status is pending.");
-});
+
 
 const cv_file = document.getElementById('cv_file');
 const application_form_file = document.getElementById('application_form_file');
@@ -150,15 +148,15 @@ submitButton.addEventListener("click", async (event) => {
 
 })
 
-document.querySelector(".remove-cv-span").addEventListener("click", (event) =>{
+document.querySelector(".remove-cv-span").addEventListener("click", (event) => {
   cv_file.value = "";
   cv_data = "";
 })
-document.querySelector(".remove-application-span").addEventListener("click", (event) =>{
+document.querySelector(".remove-application-span").addEventListener("click", (event) => {
   application_form_file.value = "";
   application_form_data = "";
 })
-document.querySelector(".remove-other-span").addEventListener("click", (event) =>{
+document.querySelector(".remove-other-span").addEventListener("click", (event) => {
   other_file.value = "";
   other_data = "";
 })
