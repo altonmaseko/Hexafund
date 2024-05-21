@@ -6,8 +6,7 @@
   "scripts": {
     "jest": "jest --verbose ./tests/jest-tests",
     "dev": "nodemon app.js",
-    "start": "node app.js",
-    "deploy": "git init && git add . && git commit ",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
