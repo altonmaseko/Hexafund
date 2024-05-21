@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(140, 187, 186, 255);
+}
+
+nav {
+    margin-right: 10px;
+}
+
+#logo {
+    width: 150px;
+    height: auto;
+    background-color: rgba(150, 187, 186, 255);
+}
+
+header {
+    background-color: rgba(0, 62, 64, 255);
+    color: white;
+    display: flex;
+    padding: 0%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px; 
+}
+
+main {
+    padding: 20px;
+}
+
+.scrollable-container {
+    max-height: 400px; /* Set the desired height for the scrollable container */
+    overflow-y: auto; /* Enable vertical scroll */
+}
+
+#users {
+    margin-top: 20px;
+}
+
+.user-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.user-card h3 {
+    margin-top: 0;
+}
+
+.action-buttons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.block-btn, .delete-btn {
+    background-color: rgba(0, 62, 64, 255);
+    color: white;
+    border: none;
+}
+
+footer {
+    background-color: rgba(0, 62, 64, 255);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+}
+.nav-button:hover {
+    transform: scale(1.04);
+}

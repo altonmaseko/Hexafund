@@ -36,12 +36,10 @@ main {
 
 footer {
     background-color: rgba(0, 62, 64, 255);
-    color: #fff;
-    text-align: center;
     padding: 10px;
-    position: sticky;
-    bottom: 0;
-    width: 100%;
+    text-align: center;
+    color: white;
+    height: 40px;
 }
 
 .iframe-container {
