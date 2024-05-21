@@ -8,8 +8,6 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "deploy": "git init && git add . && git commit ",
-    "playwright-server": "node playwright-local-server.js",
-    "playwright": "npx playwright test"
   },
   "author": "",
   "license": "ISC",
