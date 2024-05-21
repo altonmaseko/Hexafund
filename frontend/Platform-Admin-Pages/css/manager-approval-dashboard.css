@@ -8,6 +8,10 @@ body {
 nav {
     margin-right: 10px;
 }
+a:any-link{
+    text-decoration: none;
+    color: black;
+}
 
 #logo {
     width: 150px;
