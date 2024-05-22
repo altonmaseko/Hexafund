@@ -1,5 +1,5 @@
 /**
- * @module controllers/deleteUsersController
+ * @module deleteControllers/deleteUsersController
  * @description This module is responsible for deleting users from the database
  * @todo add function that is used when an admin deletes a user from the databse
  */
@@ -10,10 +10,20 @@ const { roles } = require("../../constants");
 const { asyncWrapper } = require("../../middleware");
 
 /**
- * @function: Deletes the user from the database and clears the jwt cookie
+ * function: Deletes the user from the database and clears the jwt cookie
  * 
  * @todo: notify applicants of the deletion of the funding manager as all funding opportunities managed by the funding manager will be deleted
  * and all applications made to those funding opportunities will be deleted
+ */
+
+
+/**
+ * Deletes the user's account and associated data.
+ * 
+ * @function selfDeleteUser
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves once the user's account and data have been deleted.
  */
 const selfDeleteUser = asyncWrapper(async (req, res) => {
     const refreshToken = req.cookies.jwt; // will always have value as this function will only be called if the user is logged in

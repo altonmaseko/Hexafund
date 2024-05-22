@@ -1,7 +1,17 @@
-
+/**
+ * @module createControllers/createFundingController
+ **/
 const { FundingOpportunity } = require("../../models");
 const { asyncWrapper } = require("../../middleware");
 
+/**
+ * Controller function to create a new funding opportunity.
+ * 
+ * @function createFundingController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the funding opportunity is created.
+ */
 const createFundingController = asyncWrapper(async (req, res) => {
     console.log("create funding opportunity");
 

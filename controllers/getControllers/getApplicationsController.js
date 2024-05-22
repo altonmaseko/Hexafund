@@ -1,7 +1,19 @@
+/**
+ * @module getControllers/getApplicationsController
+ **/
 const { application } = require("express");
 const { asyncWrapper } = require("../../middleware");
 const { Application } = require("../../models");
 
+/**
+ * Retrieves applications based on the provided query parameters.
+ * If no query parameters are provided, returns all applications.
+ * If query parameters are provided, filters applications based on the parameters.
+ * @function getApplications
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the applications are retrieved and sent as a response.
+ */
 const getApplications = async (req, res) => {
     const { application_id } = req.params;
 

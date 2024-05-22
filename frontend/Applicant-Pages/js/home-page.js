@@ -1,4 +1,5 @@
 
+const checkStatusButton = document.getElementById("checkStatusBtn");
 
 const requestSection = document.querySelector(".requests")
 
@@ -51,7 +52,7 @@ const loadOpportunities = async (query_params) => {
             }
         } catch (error) {
         }
-       
+
 
         const requestCard = document.createElement("div")
         requestCard.classList.add("request-card")
@@ -142,4 +143,42 @@ for (const cookie of cookieArray) {
 }
 
 document.querySelector(".welcome-h2").textContent = `Welcome, ${userName} :)`
+
+
+// CHECKING STATUS BUTTON
+let applications;
+let fundingOpportunities;
+const getApplications = async () => {
+    try {
+        let response = await axios.get(`api/v1/applications?applicant_email=${userEmail}`);
+        applications = response.data;
+        response = await axios.get(`api/v1/funding-opportunities`);
+        fundingOpportunities = response.data;
+    } catch (error) {
+        alert("Could not get your applications statuses, please try again later.");
+        return;
+    }
+}
+getApplications();
+
+checkStatusButton.addEventListener("click", event => {
+
+    if (applications.length <= 0) {
+        alert("You have no applications at the moment.");
+        return;
+    }
+
+    let status = "Statuses for your applications: \n";
+
+    applications.forEach(application => {
+        let fundingOpportunity = fundingOpportunities.find(funding => {
+            return funding._id == application.funding_opportunity_id;
+        })
+        fundingOpportunity = fundingOpportunity;
+        status += fundingOpportunity.title + ": " + application.status + "  \n";
+    })
+
+    alert(status);
+
+})
 

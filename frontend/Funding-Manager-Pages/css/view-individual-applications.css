@@ -1,16 +1,4 @@
-.containerInfo {
-    display: flex;
-    flex-direction: column;
-    margin-left: 850px;
-    margin-top: -20px;
-    margin-bottom: -10px;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid grey;
-    border-radius: 1rem;
-    margin-top: 100px;
-    background-color: white;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 /* 
   .Reject{
     transform: translate(120%);
@@ -21,9 +9,79 @@
   body {
     /* padding-top:100px; */
     background-image: linear-gradient(#00111b, #336380);
+    font-family: "Poppins", sans-serif;
   }
+
+  /*nav bar things*/ 
+.container {
+  overflow: hidden;
+}
+
+.nav__logo {
+  float: left;
+}
+
+.nav__logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin-right: 700px;
+}
+
+.nav__logo img {
+  width: 90px; 
+  height: 50px; 
+  border-radius: 50%;
+  /* margin-right: 10px; */
+}
+
+.nav__logo span {
+  /* font-weight: bold;
+  font-size: 20px; */
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  margin-left: -20px;
+  margin-top: 10px;
+}
+
+.nav__links {
+  float: right;
+  margin: 20px; 
+  padding: 0;
+  list-style-type: none;
+}
+
+.nav__links li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.nav__links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.nav__links li a:hover {
+  color: #3e8485;
+}
+
+.containerInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 850px;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  margin-top: 40px;
+  background-color: white;
+}  
   
-  
+
   .containerImage {
     width: 550px;
     height: 400px;
@@ -74,7 +132,7 @@
 } */
 
 footer {
-  background-color:#001e30; 
+  /* background-color:#001e30;  */
   padding: 10px;
   text-align: center;
   color: white;

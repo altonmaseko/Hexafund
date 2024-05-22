@@ -1,11 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
 body {
     margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-image: linear-gradient(#00111b, #336380);
 }
 
 /*nav bar things*/ 
 .container {
-    background-image: none;
-    background-color: #00111b;
     overflow: hidden;
 }
 
@@ -76,7 +78,6 @@ body {
 section {
     color: white;
     /* background-color: rgba(150,187,186,255); */
-    background-image: linear-gradient(#00111b, #336380);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -84,6 +85,7 @@ section {
     align-items: center;
     /* min-height: 100vh; */
     text-align: center;
+    padding-bottom: 10px;
 }
 
 article {
@@ -107,8 +109,7 @@ article {
     height: 444.4px;
 }
 
-#name_input, #email_input, #password_input, 
-#confirm_password_input, #company_input {
+.sign-up-input {
     border-radius: 20px;
     width: 500px;
     height: 60px;
@@ -145,7 +146,7 @@ article {
 }
 
 footer {
-    background-color:#001e30; 
+    /* background-color:#001e30;  */
     padding: 10px;
     text-align: center;
     color: white;

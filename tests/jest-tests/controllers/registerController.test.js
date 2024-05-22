@@ -101,7 +101,7 @@ describe("Testing the register controller", () => {
         };
     };
   
-    /*it("should return status 201 when a new user (applicant) is created", async () => {
+    it("should return status 201 when a new user (applicant) is created", async () => {
         const req = {
             body: {
                 name: "name",
@@ -141,7 +141,6 @@ describe("Testing the register controller", () => {
         expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
 
         expect(applicantCreateMock).toHaveBeenCalledWith({
-            user_id: expect.any(String), 
             name: req.body.name,
             email: req.body.email
         });
@@ -150,6 +149,7 @@ describe("Testing the register controller", () => {
         expect(res.json).toHaveBeenCalledWith(expectedResponse);
     });
 
+    /*TEST 4*/
     it("should return status 201 when a new user (funding manager) is created", async () => {
         const req = {
             body: {
@@ -160,13 +160,13 @@ describe("Testing the register controller", () => {
                 role: "Funding Manager"
             }
         };
-    
+
         // Mock the necessary functions and models
         const userCreateMock = jest.fn().mockResolvedValueOnce({
             _id: "user_id",
         });
         jest.spyOn(User, "create").mockImplementation(userCreateMock);
-        
+
         const userFindOneMock = jest.fn().mockReturnValue({
             exec: jest.fn().mockResolvedValue(null),
         });
@@ -176,11 +176,22 @@ describe("Testing the register controller", () => {
             _id: "funding_manager_id",
         });
         jest.spyOn(FundingManager, "create").mockImplementation(fundingManagerCreateMock);
-    
-        const expectedResponse = json_test_3(req.body.email);
-    
+
+        const companyFindOneMock = jest.fn().mockReturnValue({
+            exec: jest.fn().mockResolvedValue(null),
+        });
+        jest.spyOn(Company, "findOne").mockImplementation(companyFindOneMock);
+
+        const companyCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "company_id",
+        });
+        jest.spyOn(Company, "create").mockImplementation(companyCreateMock);
+
+        const companyUpdateOneMock = jest.fn().mockResolvedValueOnce({});
+        jest.spyOn(Company, "updateOne").mockImplementation(companyUpdateOneMock);
+
         await registerController(req, res);
-        
+
         expect(userCreateMock).toHaveBeenCalledWith({
             name: req.body.name,
             email: req.body.email,
@@ -189,12 +200,87 @@ describe("Testing the register controller", () => {
         });
         expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
         expect(fundingManagerCreateMock).toHaveBeenCalledWith({
-            user_id: expect.any(String),
             name: req.body.name,
             email: req.body.email,
             company: req.body.company
         });
+        expect(companyFindOneMock).toHaveBeenCalledWith({ name: req.body.company });
+        expect(companyCreateMock).toHaveBeenCalledWith({ name: req.body.company });
+        expect(companyUpdateOneMock).toHaveBeenCalledWith(
+            { name: req.body.company },
+            { $push: { funding_managers: req.body.email } }
+        );
         expect(res.status).toHaveBeenCalledWith(201);
-        expect(res.json).toHaveBeenCalledWith(expectedResponse);
-    });*/
+        expect(res.json).toHaveBeenCalledWith({
+            message: `${req.body.email} has been successfully registered.`,
+            status: 201
+        });
+    });
+
+    it("should create a new company if the company does not exist", async () => {
+        const req = {
+            body: {
+                name: "name",
+                email: "example@gmail.com",
+                password: "password123",
+                company: "company132321312",
+                role: "Funding Manager"
+            }
+        };
+    
+        // Mock the necessary functions and models
+        const userCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "user_id",
+        });
+        jest.spyOn(User, "create").mockImplementation(userCreateMock);
+    
+        const userFindOneMock = jest.fn().mockReturnValue({
+            exec: jest.fn().mockResolvedValue(null),
+        });
+        jest.spyOn(User, "findOne").mockImplementation(userFindOneMock);
+    
+        const fundingManagerCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "funding_manager_id",
+        });
+        jest.spyOn(FundingManager, "create").mockImplementation(fundingManagerCreateMock);
+    
+        const companyFindOneMock = jest.fn().mockReturnValue({
+            exec: jest.fn().mockResolvedValue(null),
+        });
+        jest.spyOn(Company, "findOne").mockImplementation(companyFindOneMock);
+    
+        const companyCreateMock = jest.fn().mockResolvedValueOnce({
+            _id: "company_id",
+        });
+        jest.spyOn(Company, "create").mockImplementation(companyCreateMock);
+    
+        const companyUpdateOneMock = jest.fn().mockResolvedValueOnce({});
+        jest.spyOn(Company, "updateOne").mockImplementation(companyUpdateOneMock);
+    
+        await registerController(req, res);
+    
+        expect(userCreateMock).toHaveBeenCalledWith({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            role: req.body.role
+        });
+        expect(userFindOneMock).toHaveBeenCalledWith({ email: req.body.email });
+        expect(fundingManagerCreateMock).toHaveBeenCalledWith({
+            name: req.body.name,
+            email: req.body.email,
+            company: req.body.company
+        });
+        expect(companyFindOneMock).toHaveBeenCalledWith({ name: req.body.company });
+        expect(companyCreateMock).toHaveBeenCalledWith({ name: req.body.company });
+        expect(companyUpdateOneMock).toHaveBeenCalledWith(
+            { name: req.body.company },
+            { $push: { funding_managers: req.body.email } }
+        );
+        expect(res.status).toHaveBeenCalledWith(201);
+        expect(res.json).toHaveBeenCalledWith({
+            message: `${req.body.email} has been successfully registered.`,
+            status: 201
+        });
+    });
 });

@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(#00111b, #2d5872);
+}
+
+
+/*nav bar things*/ 
+.container {
+    background-image: none;
+    overflow: hidden;
+}
+
+.nav__logo {
+    float: left;
+}
+
+.nav__logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    margin-right: 700px;
+}
+
+.nav__logo img {
+    width: 110px; 
+    height: 50px; 
+    border-radius: 50%;
+    /* margin-right: 10px; */
+}
+
+.nav__logo span {
+    /* font-weight: bold;
+    font-size: 20px; */
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    margin-left: -20px;
+    margin-top: 10px;
+}
+
+.nav__links {
+    float: right;
+    margin: 20px; 
+    padding: 0;
+    list-style-type: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav__links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.nav__links li a:hover {
+    color: #3e8485;
+}
+
+
+ /* .header {
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    align-items: center; 
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 26px;
+    color: white; 
+    padding: 10px 20px;
+    margin-left: -50px;
+    margin-top: 12px;
+
+}
+
+.header img {
+    height: 60px;
+    margin-right: 5px; 
+}  */
+
+.content {
+    position: relative;
+    text-align: center;
+}
+
+.content img {
+    max-width: 80%; 
+    height: auto;
+    display: block; /* Ensures the image is centered */
+    margin: 0 auto; /* Centers the image horizontally */
+    padding-bottom: 5px;
+}
+
+.left-box,
+.right-box {
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    background-color: #f2f2f2f3;
+    padding: 20px;
+}
+
+.left-box {
+    top: 80%;
+    left: 20px;
+    margin-top: -110px;
+    transform: translateY(-50%);
+}
+
+.right-box {
+    top: 65%;
+    right: 30px;
+    margin-top: -110px;
+    transform: translateY(-50%);
+}
+
+.left-box h2,
+.right-box h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+footer {
+    background-image: none;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    height: 30px;
+}

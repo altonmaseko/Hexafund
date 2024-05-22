@@ -3,6 +3,10 @@ body {
     margin: 0px;
 }
 
+nav a:any-link {
+    text-decoration: none;
+    color: white;
+}
 a:any-link {
     text-decoration: none;
     color: black;

@@ -1,6 +1,5 @@
 
 
-
 const submitButton = document.getElementById('submitButton');
 const viewFile = document.getElementById('viewFile');
 const fileUpload = document.getElementById('fileInput');

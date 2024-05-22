@@ -7,8 +7,10 @@ const connectDB = require("./config/connectDB");
 require("dotenv").config();
 const { verifyAccessToken, errorHandler } = require("./middleware");
 const cors = require("cors");
-const { User, Applicant } = require("./models");
+const { User } = require("./models");
 const { roles } = require("./constants");
+
+// test
 
 // Routers
 const { registerRouter,
@@ -59,8 +61,17 @@ app.get("/home", async (req, res) => {
     console.log(`applicant? ${user?.role}`);
 
     if (user?.role === roles.APPLICANT) {
-        console.log("applicant home page");
-        res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
+        const Applicant = require("./models/Applicant.js");
+        const applicant = await Applicant.findOne({ email: email });
+
+        if(applicant?.account_details.account_active) {
+            console.log("applicant home page");
+            res.status(200).sendFile(path.join(__dirname, "frontend", "Applicant-Pages", "home-page.html"));
+        }
+        else {
+            console.log("applicant blocked page");
+            res.status(200).sendFile(path.join(__dirname, "frontend", "blocked.html"));
+        }
     }
     else if (user?.role === roles.FUNDING_MANAGER) {
         const FundingManager = require("./models/FundingManager.js");
@@ -74,6 +85,10 @@ app.get("/home", async (req, res) => {
             if (fundingManager?.account_details.reason === "Account Request Denied") {
                 console.log("funding manager request-denied page");
                 res.status(200).sendFile(path.join(__dirname, "frontend", "Funding-Manager-Pages", "request-denied.html"));;
+            }
+            else if (fundingManager?.account_details.reason === "Account Blocked by Platform Admin") {
+                console.log("funding manager blocked page");
+                res.status(200).sendFile(path.join(__dirname, "frontend", "blocked.html"));
             }
             else {
                 console.log("funding manager awaiting approval page");

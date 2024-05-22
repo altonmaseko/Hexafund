@@ -58,7 +58,7 @@ document.querySelector(".sendButton").addEventListener("click", async () => {
     const type = document.querySelector("#category").value;
     const funding_amount = document.querySelector("#amount").value;
     const available_slots = document.querySelector("#count").value;
-    const description = document.querySelector("#description").textContent;
+    const description = document.querySelector("#description").value;
     const funding_manager_email = userEmail
     let deadline = document.getElementById("expiryDate").value
     deadline = new Date(deadline)
@@ -99,7 +99,7 @@ const clearForm = () => {
     document.querySelector("#category").value = "";
     document.querySelector("#amount").value = "";
     document.querySelector("#count").value = "";
-    document.querySelector("#description").textContent = "";
+    document.querySelector("#description").value = "";
     document.getElementById("expiryDate").value = ""
 }
 
