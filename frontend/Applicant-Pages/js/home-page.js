@@ -83,6 +83,7 @@ const loadOpportunities = async (query_params) => {
             adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"
         } else {
             adImage.src = image_data
+
         }
 
         requestSection.appendChild(requestCard);
