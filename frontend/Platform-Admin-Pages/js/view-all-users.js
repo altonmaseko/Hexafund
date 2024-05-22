@@ -6,7 +6,7 @@ const generate_FM_CSV = async () => {
         response = await axios.get("api/v1/funding-managers");
         opportunities = (await axios.get("api/v1/funding-opportunities")).data;
     } catch (error) {
-        console.log(error.message); 
+        console.log(error.message);
         return;
     }
 
@@ -82,7 +82,7 @@ const generate_Applicant_CSV = async () => {
 
 const download = (filename, csv) => {
     const element = document.createElement("a");
-    
+
     element.setAttribute("href", `data:text/csv;charset=utf-8,${csv}`);
     element.setAttribute("download", filename);
 
@@ -115,21 +115,21 @@ download_Applicant_CSV.addEventListener("click", async () => {
 });
 
 //loading the data 
+let users_section = document.getElementById("users");
 const refresh = () => {
-    let users_section = document.getElementById("users");
     let drop_down = document.getElementById("drop_down");
 
     users.innerHTML = ''; //clear the section
 
-        if (drop_down.value == "funding_managers" /*drop_down.tabIndex === 1*/) {
-            axios.get("/api/v1/funding-managers").then((fundingManagers) => {
-                fundingManagers.data.forEach((manager) => {
-                    let user_card = document.createElement("section");
-                    user_card.classList.add("user-card");
+    if (drop_down.value == "funding_managers" /*drop_down.tabIndex === 1*/) {
+        axios.get("/api/v1/funding-managers").then((fundingManagers) => {
+            fundingManagers.data.forEach((manager) => {
+                let user_card = document.createElement("section");
+                user_card.classList.add("user-card");
 
-                    const btn_text = manager.account_details.account_active ? "Block Account" : "Unblock Account";
+                const btn_text = manager.account_details.account_active ? "Block Account" : "Unblock Account";
 
-                    user_card.innerHTML = `
+                user_card.innerHTML = `
                         <h3>${manager.name}</h3>
                         <p>Email: ${manager.email}</p>
                         <p>Company: ${manager.company}</p>
@@ -139,133 +139,133 @@ const refresh = () => {
                         </div>
                     `;
 
-                    let block_btn = user_card.querySelector(".block-btn");
-                    let delete_btn = user_card.querySelector(".delete-btn");
+                let block_btn = user_card.querySelector(".block-btn");
+                let delete_btn = user_card.querySelector(".delete-btn");
 
-                    block_btn.addEventListener("click", () => {
-                        if(block_btn.textContent == "Block Account") {
-                            axios.put("/api/v1/funding-managers/" + manager.email, {
-                                account_details: {
-                                    account_active: false,
-                                    reason: "Account Blocked by Platform Admin"
-                                }
-                            }).then((response) => {
-                                //add email sending functionality here
-                                console.log(response.data);
-                            }).catch((error) => {
-                                console.log(error)
-                            });
-                            block_btn.textContent = "Unblock Account";
-                        }
-                        else {
-                            axios.put("/api/v1/funding-managers/" + manager.email, {
-                                account_details: {
-                                    account_active: true,
-                                    reason: "Account Unblocked by Platform Admin",
-                                }
-                            }).then((response) => {
-                                //add email sending functionality here
-                                console.log(response.data);
-                            }).catch((error) => {
-                                console.log(error)
-                            });
-                            block_btn.textContent = "Block Account";
-                        }
-                    });
-
-                    delete_btn.addEventListener("click", () => {
-                        axios.delete("/api/v1/funding-managers/" + manager.email).then((response) => {
-                            refresh();
-                            //add sending email functionality here
+                block_btn.addEventListener("click", () => {
+                    if (block_btn.textContent == "Block Account") {
+                        axios.put("/api/v1/funding-managers/" + manager.email, {
+                            account_details: {
+                                account_active: false,
+                                reason: "Account Blocked by Platform Admin"
+                            }
+                        }).then((response) => {
+                            //add email sending functionality here
                             console.log(response.data);
                         }).catch((error) => {
-                            console.log(error);
+                            console.log(error)
                         });
-                    });
-
-                    users_section.appendChild(user_card);
+                        block_btn.textContent = "Unblock Account";
+                    }
+                    else {
+                        axios.put("/api/v1/funding-managers/" + manager.email, {
+                            account_details: {
+                                account_active: true,
+                                reason: "Account Unblocked by Platform Admin",
+                            }
+                        }).then((response) => {
+                            //add email sending functionality here
+                            console.log(response.data);
+                        }).catch((error) => {
+                            console.log(error)
+                        });
+                        block_btn.textContent = "Block Account";
+                    }
                 });
+
+                delete_btn.addEventListener("click", () => {
+                    axios.delete("/api/v1/funding-managers/" + manager.email).then((response) => {
+                        refresh();
+                        //add sending email functionality here
+                        console.log(response.data);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                });
+
+                users_section.appendChild(user_card);
             });
-        } else if (drop_down.value == "applicants" /*drop_down.tabIndex === 2*/) {
-            axios.get("/api/v1/applicants").then((applicants) => {
-                applicants.data.forEach((applicant) => {
-                    let user_card = document.createElement("section");
-                    user_card.classList.add("user-card");
+        });
+    } else if (drop_down.value == "applicants" /*drop_down.tabIndex === 2*/) {
+        axios.get("/api/v1/applicants").then((applicants) => {
+            applicants.data.forEach((applicant) => {
+                let user_card = document.createElement("section");
+                user_card.classList.add("user-card");
 
-                    const btn_text = applicant.account_details.account_active ? "Block Account" : "Unblock Account";
+                const btn_text = applicant.account_details.account_active ? "Block Account" : "Unblock Account";
 
-                    user_card.innerHTML = `
+                user_card.innerHTML = `
                         <h3>${applicant.name}</h3>
                         <p>Email: ${applicant.email}</p>
                         <div class="action-buttons">
-                            <button class="block-btn">Block Account</button>
+                            <button class="block-btn">${btn_text}</button>
                             <button class="delete-btn">Delete Account</button>
                         </div>
                     `;
 
-                    let block_btn = user_card.querySelector(".block-btn");
-                    let delete_btn = user_card.querySelector(".delete-btn");
+                let block_btn = user_card.querySelector(".block-btn");
+                let delete_btn = user_card.querySelector(".delete-btn");
 
-                    block_btn.addEventListener("click", () => {
-                        if(block_btn.textContent == "Block Account") {
-                            axios.put("/api/v1/applicant/" + applicant.email, {
-                                account_details: {
-                                    account_active: false,
-                                    reason: "Account Blocked by Platform Admin"
-                                }
-                            }).then((response) => {
-                                //add email sending functionality here
-                                console.log(response.data);
-                            }).catch((error) => {
-                                console.log(error)
-                            });
-                            block_btn.textContent = "Unblock Account"
-                        }
-                        else {
-                            axios.put("/api/v1/applicant/" + applicant.email, {
-                                account_details: {
-                                    account_active: true,
-                                    reason: "Account Unblocked by Platform Admin"
-                                }
-                            }).then((response) => {
-                                //add email sending functionality here
-                                console.log(response.data);
-                            }).catch((error) => {
-                                console.log(error)
-                            });
-                            block_btn.textContent = "Block Account";
-                        }
-                    });
-
-                    delete_btn.addEventListener("click", () => {
-                        axios.delete("/api/v1/applicant/" + manager.email).then((response) => {
-                            refresh();
-                            //add sending email functionality here
+                block_btn.addEventListener("click", () => {
+                    if (block_btn.textContent == "Block Account") {
+                        axios.put("/api/v1/applicant/" + applicant.email, {
+                            account_details: {
+                                account_active: false,
+                                reason: "Account Blocked by Platform Admin"
+                            }
+                        }).then((response) => {
+                            //add email sending functionality here
                             console.log(response.data);
                         }).catch((error) => {
-                            console.log(error);
+                            console.log(error)
                         });
-                    });
-
-                    users_section.appendChild(user_card);
+                        block_btn.textContent = "Unblock Account"
+                    }
+                    else {
+                        axios.put("/api/v1/applicant/" + applicant.email, {
+                            account_details: {
+                                account_active: true,
+                                reason: "Account Unblocked by Platform Admin"
+                            }
+                        }).then((response) => {
+                            //add email sending functionality here
+                            console.log(response.data);
+                        }).catch((error) => {
+                            console.log(error)
+                        });
+                        block_btn.textContent = "Block Account";
+                    }
                 });
-            });
-        } else {
-            axios.get("/api/v1/users").then((users) => {
-                users.data.forEach((user) => {
-                    let user_card = document.createElement("section");
-                    user_card.classList.add("user-card");
 
-                    user_card.innerHTML = `
+                delete_btn.addEventListener("click", () => {
+                    axios.delete("/api/v1/applicant/" + manager.email).then((response) => {
+                        refresh();
+                        //add sending email functionality here
+                        console.log(response.data);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                });
+
+                users_section.appendChild(user_card);
+            });
+        });
+    } else {
+        axios.get("/api/v1/users").then((users) => {
+            users.data.forEach((user) => {
+                let user_card = document.createElement("section");
+                user_card.classList.add("user-card");
+
+                user_card.innerHTML = `
                         <h3>${user.name}</h3>
                         <p>Email: ${user.email}</p>
                         <p>Role: ${user.role}</p>
                     `;
 
-                    users_section.appendChild(user_card);
-                });
+                users_section.appendChild(user_card);
             });
-        }
+        });
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -273,3 +273,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     drop_down.addEventListener("change", refresh);
 })
+
+
+// At the beginning, list all users:
+axios.get("/api/v1/users").then((users) => {
+    users.data.forEach((user) => {
+        let user_card = document.createElement("section");
+        user_card.classList.add("user-card");
+
+        user_card.innerHTML = `
+                <h3>${user.name}</h3>
+                <p>Email: ${user.email}</p>
+                <p>Role: ${user.role}</p>
+            `;
+
+        users_section.appendChild(user_card);
+    });
+});
