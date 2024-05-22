@@ -1,7 +1,17 @@
-
+/**
+ * @module createControllers/createApplicationController
+ **/
 const { Application } = require("../../models");
 const { asyncWrapper } = require("../../middleware");
 
+/**
+ * Create a new application.
+ * 
+ * @function createApplication
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the application is created.
+ */
 const createApplication = asyncWrapper(async (req, res) => {
     console.log("CREATE APPLICATION");
 

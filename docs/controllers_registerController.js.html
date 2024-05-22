@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/registerController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/registerController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Notes for user creation:
+ * 1. User creation requires a name, email and password.
+ * 2. The email must be unique.
+ * 3. Being a Funding Manager or an Applicant depends on whether a company name was provided
+ * 4. If a user wishes to be a funding manager, the front end will force them to provide a company name.
+ */
+
+// imports
+const { User, Applicant, FundingManager, Company } = require("../models");
+const { asyncWrapper } = require("../middleware");
+
+/**
+ * Handles the registration of a user.
+ * @function registerController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise&lt;void>} - A promise that resolves when the registration is complete.
+ */
+const registerController = asyncWrapper(async (req, res) => {
+    const { name, email, password, company, role } = req.body;
+
+    if (!name || !password || !email) {
+        res.status(400).json({ message: "Please ensure you have entered your Name, Email and Password", status: 400 });
+        return;
+    }
+
+    const duplicateUser = await User.findOne({ email: email }).exec();
+
+    //Check if email is already taken
+    if (duplicateUser) {
+        res.status(409).json({ message: `The email: '${duplicateUser.email}' is already taken :)`, status: 409 })
+        return
+    }
+
+    //Role of user depends on existence of company
+    if (company) {
+        await User.create({
+            name: name,
+            email: email,
+            password: password,
+            role: role
+        });
+        await FundingManager.create({
+            name: name,
+            email: email,
+            company: company
+        });
+
+        const newCompany = await Company.findOne({ name: company }).exec(); // all companies will have different names
+        if (!newCompany) { // if company does not exist, create it
+            await Company.create({
+                name: company
+            });
+        }
+        
+        await Company.updateOne({ name: company }, { $push: { funding_managers: email } });
+    } else {
+        await User.create({
+            name: name,
+            email: email,
+            password: password
+        });
+        await Applicant.create({
+            name: name,
+            email: email
+        });
+    }
+
+    res.status(201).json({ message: `${email} has been successfully registered.`, status: 201 });
+});
+
+module.exports = registerController;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#registerController">registerController</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed May 22 2024 10:56:01 GMT+0200 (South Africa Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

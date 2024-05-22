@@ -1,6 +1,17 @@
+/**
+ * @module deleteControllers/deleteFundingController
+ **/
 const { asyncWrapper } = require("../../middleware");
 const { FundingOpportunity } = require("../../models");
 
+/**
+ * Controller function to delete a funding opportunity.
+ * 
+ * @function deleteFundingController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the funding opportunity is deleted.
+ */
 const deleteFundingController = asyncWrapper(async (req, res) => {
 
     const { funding_opportunity_id } = req.params;

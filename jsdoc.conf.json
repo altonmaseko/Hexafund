@@ -1,0 +1,13 @@
+{
+    "tags": {
+      "allowUnknownTags": true
+    },
+    "source": {
+      "include": ["controllers","models","constants"],
+      "exclude": ["node_modules"]
+    },
+    "opts": {
+      "destination": "./docs",
+      "recurse": true
+    }
+  }

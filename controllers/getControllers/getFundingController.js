@@ -1,6 +1,17 @@
+/**
+ * @module getControllers/getFundingController
+ * 
+ */
 const { asyncWrapper } = require("../../middleware");
 const { FundingOpportunity } = require("../../models");
 
+/**
+ * Retrieves funding opportunities based on the provided query parameters.
+ * @function getFundingController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the response is sent.
+ */
 const getFundingController = asyncWrapper(async (req, res) => {
 
     let fundingOpportunities = await FundingOpportunity.find({});

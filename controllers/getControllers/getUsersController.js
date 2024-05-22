@@ -1,7 +1,17 @@
+/**
+ * @module getControllers/getUsersController
+ **/
 const { asyncWrapper } = require("../../middleware");
 const { roles } = require("../../constants");
 const { Applicant, FundingManager, User } = require("../../models");
 
+/**
+ * Retrieves applicants based on the provided query parameters.
+ * @function getApplicants
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the response is sent.
+ */
 const getApplicants = asyncWrapper(async (req, res) => {
 
     let applicants = await Applicant.find({});
@@ -34,6 +44,13 @@ const getApplicants = asyncWrapper(async (req, res) => {
 });
 
 
+/**
+ * Retrieves funding managers based on the provided query parameters.
+ * @function getFundingManagers
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the response is sent.
+ */
 const getFundingManagers = asyncWrapper(async (req, res) => {
 
     let fundingManagers = await FundingManager.find({});
@@ -65,6 +82,15 @@ const getFundingManagers = asyncWrapper(async (req, res) => {
     res.status(200).json( fundingManagers );
 });
 
+/**
+ * Retrieves admins based on the provided query parameters.
+ * If no query parameters are provided, returns all admins.
+ *
+ * @function getAdmins
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves to the response object.
+ */
 const getAdmins = asyncWrapper(async (req, res) => {
 
     const admins = await User.find({ role: roles.PLATFORM_ADMIN });
@@ -96,6 +122,14 @@ const getAdmins = asyncWrapper(async (req, res) => {
     res.status(200).json( admins );
 });
 
+/**
+ * Get all users.
+ *
+ * @function getUsers
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the users are fetched.
+ */
 const getUsers = asyncWrapper(async (req, res) => {
 
     const users = await User.find({});

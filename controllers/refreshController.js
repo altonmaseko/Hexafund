@@ -3,6 +3,13 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 const { asyncWrapper } = require("../middleware");
 
+/**
+ * Handles the refresh token logic for authentication.
+ * @function refreshController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the refresh token logic is completed.
+ */
 const refreshController = asyncWrapper(async (req, res) => {
 
     const cookies = req.cookies;
