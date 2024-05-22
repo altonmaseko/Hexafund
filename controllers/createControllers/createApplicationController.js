@@ -1,4 +1,6 @@
-
+/**
+ * @module createControllers/createApplicationController
+ */
 const { Application, Applicant } = require("../../models");
 const { asyncWrapper } = require("../../middleware");
 
