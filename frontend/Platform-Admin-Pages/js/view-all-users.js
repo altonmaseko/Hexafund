@@ -14,8 +14,7 @@ const generate_FM_CSV = async () => {
     let csvData = [];
 
     funding_managers.forEach(manager => {
-        let temp = opportunities;
-        temp.filter(opportunity => opportunity.funding_manager_email === manager.email);
+        let temp = opportunities.filter(opportunity => opportunity.funding_manager_email === manager.email);
 
         const manager_obj = {
             name: manager.name,
@@ -50,9 +49,8 @@ const generate_Applicant_CSV = async () => {
     let csvData = [];
 
     applicants.forEach(applicant => {
-        let temp = applications;
+        let temp = applications.filter(application => application.applicant_email === applicant.email);
         let accepted = 0, rejected = 0, pending = 0;
-        temp.filter(application => application.applicant_email === applicant.email);
 
         temp.forEach(application => {
             if (application.status === "Accepted") {
