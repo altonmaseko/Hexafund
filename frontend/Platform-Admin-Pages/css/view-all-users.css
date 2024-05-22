@@ -8,10 +8,6 @@ body {
 nav {
     margin-right: 10px;
 }
-a:any-link{
-    text-decoration: none;
-    color: black;
-}
 
 #logo {
     width: 150px;
@@ -38,17 +34,17 @@ main {
     overflow-y: auto; /* Enable vertical scroll */
 }
 
-#requests {
+#users {
     margin-top: 20px;
 }
 
-.request-card {
+.user-card {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
 }
 
-.request-card h3 {
+.user-card h3 {
     margin-top: 0;
 }
 
@@ -58,21 +54,8 @@ main {
     cursor: pointer;
 }
 
-#refresh-btn {
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.approve-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-}
-
-.deny-btn {
-    background-color: #f44336;
+.block-btn, .delete-btn {
+    background-color: rgba(0, 62, 64, 255);
     color: white;
     border: none;
 }
@@ -85,4 +68,15 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+}
+.nav-button:hover {
+    transform: scale(1.04);
 }

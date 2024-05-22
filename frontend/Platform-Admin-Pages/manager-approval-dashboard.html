@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Manager Approval Dashboard</title>
 
     <!-- WHEN NAVIGATING FROM HTML PAGES, THIS WORKS: -->
     <link rel="stylesheet" href="css/manager-approval-dashboard.css">
+
     <script src="../External_Modules/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/json2csv"></script> <!-- for creating csv files -->
     <script type="module" src="js/manager-approval-dashboard.js" defer></script>
     <script type="module" src="../js/logout.js" defer></script>
 </head>
@@ -17,7 +20,6 @@
         <h1>hexafund</h1> 
         <nav>
             <button id="AboutBut" >About Us</button>
-            <button class="nav-button" id="fundManagerStats">Fund Manager Stats</button>
             <button id="ConBut">Contact Us</button>
             <button id="logout_button">Log Out</button>
         </nav>
@@ -26,8 +28,9 @@
     <main>
         <section class="scrollable-container">
             <h2>Funding Manager Requests</h2>
-            <button id="refresh-btn">Load Requests</button>
-
+            <button id="refresh-btn">
+                Load Requests
+            </button>
             <section id="requests">
             </section>
         </section>

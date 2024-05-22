@@ -19,6 +19,11 @@ h2 {
     align-items: center;
 }
 
+a:any-link {
+    text-decoration: none;
+    color: black;
+}
+
 /* Filter bar styles */
 .filter-bar {
     display: flex;

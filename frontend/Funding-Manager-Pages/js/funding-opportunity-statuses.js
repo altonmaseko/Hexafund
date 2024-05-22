@@ -94,7 +94,6 @@ categoryDropDown.addEventListener("input", async (event) => {
 
     const query_params = `?funding_manager_email=${userEmail}&type=${categoryDropDown.value}`
     await loadOpportunities(query_params)
-
 })
 
 
@@ -118,3 +117,63 @@ const query_params = `?funding_manager_email=${userEmail}`
 loadOpportunities(query_params)
 
 
+const generateCSV = async () => {
+    let response;
+
+    try {
+        response = await axios.get("api/v1/funding-opportunities");
+    } catch (error) {
+        console.log(error.message);
+        return;
+    }
+
+    const fundingOpportunities = response.data;
+    let csvData = [];
+
+    fundingOpportunities.forEach((fundingOpportunity) => {
+
+        let { deadline } = fundingOpportunity;
+        deadline = deadline.slice(0, deadline.indexOf("T")) // Just get the day, month, year and skip the time
+
+        const funding_opp_obj = { 
+            title: fundingOpportunity.title,
+            company_name: fundingOpportunity.company_name,
+            funding_manager_email: fundingOpportunity.funding_manager_email,
+            admin_status: fundingOpportunity.admin_status,
+            fund_type: fundingOpportunity.type,
+            deadline: deadline,
+            avail_amount: fundingOpportunity.funding_amount,
+            avail_slots: fundingOpportunity.available_slots 
+        };
+        
+        csvData.push(funding_opp_obj);
+    });
+
+    // Convert JSON to CSV
+    const csv = json2csv.parse(csvData);
+
+    return csv;
+};
+
+const downloadCSVButton = document.getElementById("fundDetails");
+const download = (filename, csv) => {
+    const element = document.createElement("a");
+    
+    element.setAttribute("href", `data:text/csv;charset=utf-8,${csv}`);
+    element.setAttribute("download", filename);
+
+    element.style.display = "none";
+
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+downloadCSVButton.addEventListener("click", async () => {
+    try {
+        const csv = await generateCSV();
+        download("funding_opportunities.csv", csv);
+    } catch (error) {
+        console.log(error.message);
+    }
+});

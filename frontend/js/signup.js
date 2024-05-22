@@ -83,6 +83,9 @@ element.addEventListener('change', function (event) {
             input.name = 'Company_Name';
             input.placeholder = 'Company name...';
 
+            //add class name
+            input.classList.add("sign-up-input");
+
             const refElement = document.getElementById("drop_down_label");
             const form = document.getElementById("login");
             //TODO add padding or smth

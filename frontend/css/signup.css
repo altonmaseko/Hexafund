@@ -109,8 +109,7 @@ article {
     height: 444.4px;
 }
 
-#name_input, #email_input, #password_input, 
-#confirm_password_input, #company_input {
+.sign-up-input {
     border-radius: 20px;
     width: 500px;
     height: 60px;

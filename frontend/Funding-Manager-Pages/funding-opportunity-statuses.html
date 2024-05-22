@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/funding-opportunity-statuses.css">
+
     <script src="../External_Modules/axios.min.js"></script>
     <script type="module" src="js/funding-opportunity-statuses.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/json2csv"></script> <!-- for creating csv files -->
+
     <title>FM View Ads</title>
 </head>
 <body>
@@ -15,7 +19,9 @@
         <nav>
             <article>
                 <button id="AboutBut" >About Us</button>
-                <button id="fundDetails">Fund details quote</button>
+                <button id="fundDetails">
+                    Fund details quote
+                </button>
                 <!-- <button id="ConBut">Contacts Us</button> -->
             </article>
         </nav>

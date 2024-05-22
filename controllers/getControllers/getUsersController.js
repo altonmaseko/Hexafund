@@ -132,7 +132,7 @@ const getAdmins = asyncWrapper(async (req, res) => {
  */
 const getUsers = asyncWrapper(async (req, res) => {
 
-    const users = await User.find({});
+    const users = await User.find({}).sort({ role: 1 });
     res.status(200).json( users );
 });
 

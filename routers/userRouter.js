@@ -21,7 +21,7 @@ router.get([
 
 router.get(["/applicant", "/applicants"], getApplicants);
 
-router.get("/user", getUsers) //get all users
+router.get(["/user", "/users"], getUsers) //get all users
 
 // UPDATE
 router.put([

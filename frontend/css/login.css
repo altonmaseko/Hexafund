@@ -143,9 +143,6 @@ footer {
     text-align: center;
     color: white;
     height: 40px;
-    position: sticky;
-    bottom: 0px;
-    margin-bottom: 0px;
 }
 
 a:visited{

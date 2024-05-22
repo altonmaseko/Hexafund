@@ -1,7 +1,5 @@
-/**
- * @module createControllers/createApplicationController
- **/
-const { Application } = require("../../models");
+
+const { Application, Applicant } = require("../../models");
 const { asyncWrapper } = require("../../middleware");
 
 /**
@@ -46,6 +44,12 @@ const createApplication = asyncWrapper(async (req, res) => {
         application_form_data,
         other_data
     });
+
+    const application = await Application.findOne({ applicant_email: applicant_email, funding_opportunity_id: funding_opportunity_id }).exec();
+
+    await Applicant.updateOne({ email: applicant_email }, {$push: {
+        Applications: application._id
+    }}); //add application id to applicant applications array
 
     res.status(201).json({ message: `Application successfully submitted.`, status: 201 });
 });
