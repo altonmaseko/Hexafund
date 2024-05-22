@@ -15,7 +15,7 @@ const generate_FM_CSV = async () => {
 
     funding_managers.forEach(manager => {
         let temp = opportunities;
-        temp.filter(opportunity => opportunity.funding_manager_email == manager.email);
+        temp.filter(opportunity => opportunity.funding_manager_email === manager.email);
 
         const manager_obj = {
             name: manager.name,
@@ -27,7 +27,9 @@ const generate_FM_CSV = async () => {
         csvData.push(manager_obj);
     });
 
-    const csv = json2csv.parse(csvData);
+    const csv = json2csv.parse(csvData, {
+        delimiter: ";"
+    });
     console.log(csv);
 
     return csv;
@@ -50,7 +52,7 @@ const generate_Applicant_CSV = async () => {
     applicants.forEach(applicant => {
         let temp = applications;
         let accepted = 0, rejected = 0, pending = 0;
-        temp.filter(application => application.applicant_email == applicant.email);
+        temp.filter(application => application.applicant_email === applicant.email);
 
         temp.forEach(application => {
             if (application.status === "Accepted") {
@@ -74,7 +76,9 @@ const generate_Applicant_CSV = async () => {
         csvData.push(applicant_obj);
     });
 
-    const csv = json2csv.parse(csvData);
+    const csv = json2csv.parse(csvData, {
+        delimiter: ";"
+    });
     console.log(csv);
 
     return csv;
