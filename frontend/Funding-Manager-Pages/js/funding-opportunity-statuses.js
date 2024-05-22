@@ -150,7 +150,9 @@ const generateCSV = async () => {
     });
 
     // Convert JSON to CSV
-    const csv = json2csv.parse(csvData);
+    const csv = json2csv.parse(csvData, {
+        delimiter: ';'
+    });
 
     return csv;
 };
