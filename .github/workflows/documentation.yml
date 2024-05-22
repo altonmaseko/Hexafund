@@ -3,7 +3,7 @@ name: Deploy JSDoc Documentation
 on:
   push:
     branches:
-      - docs
+      - main
 
 jobs:
   build-and-deploy:
@@ -22,11 +22,11 @@ jobs:
         run: npm install
 
       - name: Generate JSDoc
-        run: npx jsdoc -c jsdoc.conf.json
+        run: npx jsdoc -c jsdoc.conf.json -d ./out
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: docs
+          publish_dir: ./out
+          publish_branch: gh-pages
