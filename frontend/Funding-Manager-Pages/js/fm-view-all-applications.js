@@ -98,7 +98,7 @@ const flow = async () => {
         const btnView = columnSection.querySelector(".btn-view");
         btnView.addEventListener("click", (event) => {
             document.cookie = `application_id=${_id}; path=/`;
-            window.location.href = "/Funding-Manager-Pages/view-individual-applications.html";
+            window.location.href = "/applicant-application";
         })
 
     }) // END: applications.forEach

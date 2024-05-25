@@ -98,7 +98,7 @@ const loadOpportunities = async (query_params) => {
             // Add logic here... 
 
             document.cookie = `funding_opportunity_id=${applyButton.getAttribute("funding_opportunity_id")}; path=/`;
-            window.location.href = "Applicant-Pages/AppPage_Apply.html";
+            window.location.href = "/apply";
         })
 
 

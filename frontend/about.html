@@ -27,7 +27,7 @@
       </section>
       <ul class="nav__links" id="nav-links">
         <!-- <li id="aboutUs"><a href="#">About Us</a></li> -->
-        <li id="signUp"><a href="signup.html">Sign up</a></li>
+        <li id="signUp"><a href="/signup">Sign up</a></li>
         <!-- <li id="contactUs"><a href="#">Contact Us</a></li> -->
       </ul>
     </nav>
@@ -58,16 +58,19 @@
 
 
     const cookies = document.cookie; // Get all cookies as a single string
-    if (cookies) {
+    if (cookies) { // They are logged in.
       document.getElementById("logo").addEventListener("click", event => {
         console.log("LOGO CLICKED")
         window.location.href = "/home";
       })
-    } else {
+
+      document.getElementById("signUp").style.display = "none";
+    } else { // Not logged in.
       document.getElementById("logo").addEventListener("click", event => {
         window.location.href = "/";
-
       })
+
+      document.getElementById("signUp").style.display = "block";
     }
 
   </script>
