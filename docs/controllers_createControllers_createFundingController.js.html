@@ -28,8 +28,12 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * @module createControllers/createFundingController
- **/
+ */
+
+// Import the FundingOpportunity model from the models directory
 const { FundingOpportunity } = require("../../models");
+
+// Import the asyncWrapper middleware from the middleware directory
 const { asyncWrapper } = require("../../middleware");
 
 /**
@@ -43,6 +47,7 @@ const { asyncWrapper } = require("../../middleware");
 const createFundingController = asyncWrapper(async (req, res) => {
     console.log("create funding opportunity");
 
+    // Extract the necessary information from the request body
     const { title,
         company_name,
         funding_manager_email,
@@ -50,21 +55,24 @@ const createFundingController = asyncWrapper(async (req, res) => {
         funding_amount,
         available_slots,
         deadline,
-    description, image_data } = req.body;
+        description, image_data } = req.body;
 
+    // Validate that the required fields are provided
     if (!title || !company_name || !funding_manager_email || !type) {
+        // If not, send a 400 Bad Request response with a message
         res.status(400).json({ message: "Please ensure you have entered the Title, Company Name, Funding Manager Email and Type", status: 400 });
         return;
     }
 
+    // Check if a funding opportunity with the same title already exists
     const duplicateFundingOpportunity = await FundingOpportunity.findOne({ title: title }).exec();
-
-    //Check if funding opportunity already exists
     if (duplicateFundingOpportunity) {
+        // If a duplicate is found, send a 409 Conflict response with a message
         res.status(409).json({ message: `The Funding Opportunity: '${duplicateFundingOpportunity.title}' already exists`, status: 409 })
         return
     }
 
+    // Create a new funding opportunity record
     await FundingOpportunity.create({
         title: title,
         company_name: company_name,
@@ -78,9 +86,11 @@ const createFundingController = asyncWrapper(async (req, res) => {
         image_data: image_data
     });
 
+    // Send a 201 Created response with a success message
     res.status(201).json({ message: `${title} has been successfully created.`, status: 201 });
 });
 
+// Export the createFundingController as a module
 module.exports = createFundingController;</code></pre>
         </article>
     </section>
@@ -91,13 +101,13 @@ module.exports = createFundingController;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#registerController">registerController</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-controllers_loginController.html">controllers/loginController</a></li><li><a href="module-controllers_logoutController.html">controllers/logoutController</a></li><li><a href="module-controllers_refreshController.html">controllers/refreshController</a></li><li><a href="module-controllers_registerController.html">controllers/registerController</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-middleware.html">middleware</a></li><li><a href="module-middleware_asyncWrapper.html">middleware/asyncWrapper</a></li><li><a href="module-middleware_errorHandler.html">middleware/errorHandler</a></li><li><a href="module-middleware_verifyAccessToken.html">middleware/verifyAccessToken</a></li><li><a href="module-routers_applicationRouter.html">routers/applicationRouter</a></li><li><a href="module-routers_fundingOpportunityRouter.html">routers/fundingOpportunityRouter</a></li><li><a href="module-routers_loginRouter.html">routers/loginRouter</a></li><li><a href="module-routers_logoutRouter.html">routers/logoutRouter</a></li><li><a href="module-routers_refreshRouter.html">routers/refreshRouter</a></li><li><a href="module-routers_registerRouter.html">routers/registerRouter</a></li><li><a href="module-routers_userRouter.html">routers/userRouter</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#applicationRouter">applicationRouter</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createApplicationController">createApplicationController</a></li><li><a href="global.html#createFundingController">createFundingController</a></li><li><a href="global.html#deleteApplicationController">deleteApplicationController</a></li><li><a href="global.html#deleteFundingController">deleteFundingController</a></li><li><a href="global.html#deleteUsersController">deleteUsersController</a></li><li><a href="global.html#fund_types">fund_types</a></li><li><a href="global.html#fundingOpportunityRouter">fundingOpportunityRouter</a></li><li><a href="global.html#getApplicationsController">getApplicationsController</a></li><li><a href="global.html#getFundingController">getFundingController</a></li><li><a href="global.html#getUsersController">getUsersController</a></li><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#loginRouter">loginRouter</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#logoutRouter">logoutRouter</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#refreshRouter">refreshRouter</a></li><li><a href="global.html#registerController">registerController</a></li><li><a href="global.html#registerRouter">registerRouter</a></li><li><a href="global.html#roles">roles</a></li><li><a href="global.html#statuses">statuses</a></li><li><a href="global.html#updateApplicationController">updateApplicationController</a></li><li><a href="global.html#updateFundingController">updateFundingController</a></li><li><a href="global.html#updateUsersController">updateUsersController</a></li><li><a href="global.html#userRouter">userRouter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed May 22 2024 10:56:01 GMT+0200 (South Africa Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat May 25 2024 23:17:37 GMT+0200 (South Africa Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
