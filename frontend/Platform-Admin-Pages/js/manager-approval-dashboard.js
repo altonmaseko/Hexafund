@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fundingManagers.data.forEach((manager) => {
                 let request_card = document.createElement("section");
                 request_card.classList.add("request-card");
-        
+
                 request_card.innerHTML = `
                     <h3>${manager.name}</h3>
                     <p>Email: ${manager.email}</p>
@@ -51,9 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         console.log(error);
                     });
                 });
-        
+
                 requests_section.appendChild(request_card);
             });
         });
     });
 });
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

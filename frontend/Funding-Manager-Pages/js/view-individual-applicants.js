@@ -168,3 +168,8 @@ viewOther.addEventListener("click", event => {
     }
     pdf.src = application.other_data
 })
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

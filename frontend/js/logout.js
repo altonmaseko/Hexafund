@@ -23,3 +23,8 @@ document.getElementById("logout_button")?.addEventListener("click", async (event
         console.log(error);
     }
 });
+
+document.getElementById("logo")?.addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

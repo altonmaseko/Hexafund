@@ -36,9 +36,9 @@ const loadOpportunities = async (query_params) => {
                 </div>
                 <div class="card-right">
                     <h3>
-                        <span id="title">${title}</span>
-                        <span id="expDate">Expiry Date: ${deadline}</span>
-                        <span id="compName">Company: ${company_name}</span>
+                        <span id="title">${title}</span> <span> | </span>
+                        <span id="expDate">Expiry Date: ${deadline}</span><span> | </span>
+                        <span id="compName">Company: ${company_name}</span><span> | </span>
                         <span id="category">Category: ${type}</span>
                     </h3>
                     <p id="amount">Amount: R${funding_amount} [${available_slots} available]</p>
@@ -120,3 +120,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const query_params = "?admin_status=Pending";
     await loadOpportunities(query_params);
 });
+
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

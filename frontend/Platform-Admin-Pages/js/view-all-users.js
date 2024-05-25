@@ -312,3 +312,9 @@ axios.get("/api/v1/users").then((users) => {
         users_section.appendChild(user_card);
     });
 });
+
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

@@ -128,3 +128,8 @@ function handleFiles(e) {
 
     img.src = URL.createObjectURL(e.target.files[0]); // Load the selected image
 }
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})
