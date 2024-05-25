@@ -78,6 +78,18 @@ const flow = async () => {
 flow();
 
 Accept.addEventListener("click", async (event) => {
+
+    if (application.status === "Accepted") {
+        alert("Applicant already accepted!");
+        return;
+    }
+
+    if (!confirm("Are you sure you want to ACCEPT this applicant?")) {
+        return;
+    }
+
+
+
     try {
         await axios.put(`api/v1/application/${application._id}`, {
             status: "Accepted"
@@ -85,12 +97,22 @@ Accept.addEventListener("click", async (event) => {
         await axios.put(`api/v1/funding-opportunity/${fundingOpportunity._id}`, {
             available_slots: fundingOpportunity.available_slots - 1
         })
+
+        alert(`Applicant has been successfully accepted for the opportunity.`);
+        location.reload();
+
     } catch (error) {
         console.log(error)
         alert("Sorry, could not accept application")
     }
 })
 Reject.addEventListener("click", async (event) => {
+
+    if (application.status === "Rejected") {
+        alert("Applicant already rejected!");
+        return;
+    }
+
     if (application.status === "Accepted") {
         if (!confirm("Are you sure you want to remove your acceptance of this applicant?")) {
             return
@@ -103,12 +125,22 @@ Reject.addEventListener("click", async (event) => {
             alert("Sorry an error has occured. Please try again later")
             console.log(error)
         }
+
+
+    }
+
+    if (!confirm("Are you sure you want to REJECT this applicant?")) {
+        return;
     }
 
     try {
         await axios.put(`api/v1/application/${application._id}`, {
             status: "Rejected"
         })
+        alert(`Applicant has been successfully rejected for the opportunity.`);
+        location.reload();
+
+
     } catch (error) {
         console.log(error)
         alert("Sorry, could not reject application")

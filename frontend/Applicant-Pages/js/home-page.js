@@ -92,7 +92,6 @@ const loadOpportunities = async (query_params) => {
         // APPLY FOR CURRENT BUTTON [still in forEach]
         const applyButton = requestCard.querySelector(".apply-btn")
 
-
         applyButton.setAttribute("funding_opportunity_id", _id) //incase needed later
 
         applyButton.addEventListener("click", async (event) => {

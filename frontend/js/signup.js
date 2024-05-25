@@ -77,25 +77,31 @@ element.addEventListener('change', function (event) {
     if (selectedIndex == 1) {
         // If there's no company input field yet, create and append one
         if (!existingInput) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.id = 'company_input';
-            input.name = 'Company_Name';
-            input.placeholder = 'Company name...';
+            // const input = document.createElement('input');
+            // input.type = 'text';
+            // input.id = 'company_input';
+            // input.name = 'Company_Name';
+            // input.placeholder = 'Company name...';
 
-            //add class name
-            input.classList.add("sign-up-input");
+            // //add class name
+            // input.classList.add("sign-up-input");
 
-            const refElement = document.getElementById("drop_down_label");
-            const form = document.getElementById("login");
-            //TODO add padding or smth
-            form.insertBefore(input, refElement);
+            // const refElement = document.getElementById("drop_down_label");
+            // const form = document.getElementById("login");
+            // //TODO add padding or smth
+            // form.insertBefore(input, refElement);
+
+            const input = document.querySelector('#company-input');
+
+            input.style.display = "block";
+
         }
     } else {
         // If the role changes away from fund manager, remove the company input field
-        if (existingInput) {
-            existingInput.remove();
-        }
+        // if (existingInput) {
+        //     existingInput.remove();
+        // }
+        document.querySelector('#company-input').style.display = "none";
     }
 });
 
@@ -113,7 +119,7 @@ signUpBtn.addEventListener('click', async function (event) {
     const email = document.getElementById("email_input").value;
     const password = CryptoJS.SHA256(document.getElementById("password_input").value).toString();
     const role = document.getElementById("drop_down").value;
-    const company = document.getElementById("company_input")?.value;
+    const company = document.getElementById("company-input")?.value;
 
     // TRYING AXIOS
     const body = {

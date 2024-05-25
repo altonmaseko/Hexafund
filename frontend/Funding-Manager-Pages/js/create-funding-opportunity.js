@@ -113,6 +113,10 @@ function handleFiles(e) {
     let img = new Image();
 
     img.onload = function () {
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
         ctx.drawImage(img, 0, 0);
         base64 = canvas.toDataURL(); // Get the Base64 string
         console.log(base64); // Log it (you can use it as needed)
