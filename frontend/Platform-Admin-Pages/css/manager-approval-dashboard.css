@@ -8,7 +8,8 @@ body {
 nav {
     margin-right: 10px;
 }
-a:any-link{
+
+a:any-link {
     text-decoration: none;
     color: black;
 }
@@ -26,7 +27,7 @@ header {
     padding: 0%;
     justify-content: space-between;
     align-items: center;
-    font-size: 16px; 
+    font-size: 16px;
 }
 
 main {
@@ -34,8 +35,9 @@ main {
 }
 
 .scrollable-container {
-    max-height: 400px; /* Set the desired height for the scrollable container */
-    overflow-y: auto; /* Enable vertical scroll */
+    height: 60vh;
+    overflow-y: auto;
+    /* Enable vertical scroll */
 }
 
 #requests {

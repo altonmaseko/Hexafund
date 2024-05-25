@@ -59,7 +59,9 @@ const loadOpportunities = async (query_params) => {
 
         let adImage = requestCard.querySelector(".ad-image");
         if (!image_data) {
-            adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"
+            // adImage.src = "https://images.pexels.com/photos/210679/pexels-photo-210679.jpeg";
+            adImage.src = "https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg";
+            // adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"
         } else {
             adImage.src = image_data
         }
@@ -135,7 +137,7 @@ const generateCSV = async () => {
         let { deadline } = fundingOpportunity;
         deadline = deadline.slice(0, deadline.indexOf("T")) // Just get the day, month, year and skip the time
 
-        const funding_opp_obj = { 
+        const funding_opp_obj = {
             title: fundingOpportunity.title,
             company_name: fundingOpportunity.company_name,
             funding_manager_email: fundingOpportunity.funding_manager_email,
@@ -143,9 +145,9 @@ const generateCSV = async () => {
             fund_type: fundingOpportunity.type,
             deadline: deadline,
             avail_amount: fundingOpportunity.funding_amount,
-            avail_slots: fundingOpportunity.available_slots 
+            avail_slots: fundingOpportunity.available_slots
         };
-        
+
         csvData.push(funding_opp_obj);
     });
 
@@ -158,10 +160,14 @@ const generateCSV = async () => {
 };
 
 const downloadCSVButton = document.getElementById("fundDetails");
+
 const download = (filename, csv) => {
+    // Add end-of-line character after each row
+    csv = csv.replace(/,\n/g, ',\r\n');
+
     const element = document.createElement("a");
-    
-    element.setAttribute("href", `data:text/csv;charset=utf-8,${csv}`);
+
+    element.setAttribute("href", `data:text/csv;charset=utf-8,${encodeURIComponent(csv)}`);
     element.setAttribute("download", filename);
 
     element.style.display = "none";
@@ -171,6 +177,19 @@ const download = (filename, csv) => {
     document.body.removeChild(element);
 }
 
+// const download = (filename, csv) => {
+//     const element = document.createElement("a");
+
+//     element.setAttribute("href", `data:text/csv;charset=utf-8,${csv}`);
+//     element.setAttribute("download", filename);
+
+//     element.style.display = "none";
+
+//     document.body.appendChild(element);
+//     element.click();
+//     document.body.removeChild(element);
+// }
+
 downloadCSVButton.addEventListener("click", async () => {
     try {
         const csv = await generateCSV();
@@ -179,3 +198,8 @@ downloadCSVButton.addEventListener("click", async () => {
         console.log(error.message);
     }
 });
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

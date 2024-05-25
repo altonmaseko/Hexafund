@@ -39,9 +39,7 @@ const loadOpportunities = async (query_params) => {
         let response
         let applications = []
         let applyButtonMessage = "Apply";
-        console.log("DETAILS")
-        console.log(_id)
-        console.log(userEmail)
+
         try {
             response = await axios.get(`api/v1/application?funding_opportunity_id=${_id}&applicant_email=${userEmail}`)
             applications = response.data
@@ -80,7 +78,9 @@ const loadOpportunities = async (query_params) => {
 
         let adImage = requestCard.querySelector(".ad-image");
         if (!image_data) {
-            adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"
+            adImage.src = "https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg";
+
+            // adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"
         } else {
             adImage.src = image_data
 
@@ -92,14 +92,13 @@ const loadOpportunities = async (query_params) => {
         // APPLY FOR CURRENT BUTTON [still in forEach]
         const applyButton = requestCard.querySelector(".apply-btn")
 
-
         applyButton.setAttribute("funding_opportunity_id", _id) //incase needed later
 
         applyButton.addEventListener("click", async (event) => {
             // Add logic here... 
 
             document.cookie = `funding_opportunity_id=${applyButton.getAttribute("funding_opportunity_id")}; path=/`;
-            window.location.href = "Applicant-Pages/AppPage_Apply.html";
+            window.location.href = "/apply";
         })
 
 
@@ -183,3 +182,7 @@ checkStatusButton.addEventListener("click", event => {
 
 })
 
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

@@ -161,6 +161,11 @@ document.querySelector(".remove-other-span").addEventListener("click", (event) =
   other_data = "";
 })
 
+document.getElementById("logo").addEventListener("click", event => {
+  console.log("LOGO CLICKED")
+  window.location.href = "/home";
+})
+
 
 // WORD COUNT STUFF:
 // const wordCount = document.getElementById('wordCount');

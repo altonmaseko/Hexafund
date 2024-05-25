@@ -1,4 +1,4 @@
-//black magic for generating csv files
+// black magic for generating csv files
 const generate_FM_CSV = async () => {
     let response, opportunities;
 
@@ -27,12 +27,14 @@ const generate_FM_CSV = async () => {
     });
 
     const csv = json2csv.parse(csvData, {
-        delimiter: ";"
+        delimiter: ";",
+        eol: ",\n"
     });
     console.log(csv);
 
     return csv;
 }
+
 
 const generate_Applicant_CSV = async () => {
     let response, applications;
@@ -75,7 +77,8 @@ const generate_Applicant_CSV = async () => {
     });
 
     const csv = json2csv.parse(csvData, {
-        delimiter: ";"
+        delimiter: ";",
+        eol: ",\n"
     });
     console.log(csv);
 
@@ -83,9 +86,12 @@ const generate_Applicant_CSV = async () => {
 }
 
 const download = (filename, csv) => {
+    // Add end-of-line character after each row
+    csv = csv.replace(/,\n/g, ',\r\n');
+
     const element = document.createElement("a");
 
-    element.setAttribute("href", `data:text/csv;charset=utf-8,${csv}`);
+    element.setAttribute("href", `data:text/csv;charset=utf-8,${encodeURIComponent(csv)}`);
     element.setAttribute("download", filename);
 
     element.style.display = "none";
@@ -94,6 +100,20 @@ const download = (filename, csv) => {
     element.click();
     document.body.removeChild(element);
 }
+
+
+// const download = (filename, csv) => {
+//     const element = document.createElement("a");
+
+//     element.setAttribute("href", `data:text/csv;charset=utf-8,${csv}`);
+//     element.setAttribute("download", filename);
+
+//     element.style.display = "none";
+
+//     document.body.appendChild(element);
+//     element.click();
+//     document.body.removeChild(element);
+// }
 
 const download_FM_CSV = document.getElementById("fundManagerStats");
 const download_Applicant_CSV = document.getElementById("applicantStats");
@@ -292,3 +312,9 @@ axios.get("/api/v1/users").then((users) => {
         users_section.appendChild(user_card);
     });
 });
+
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})
