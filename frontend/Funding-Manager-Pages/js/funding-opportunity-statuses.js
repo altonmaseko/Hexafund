@@ -198,3 +198,8 @@ downloadCSVButton.addEventListener("click", async () => {
         console.log(error.message);
     }
 });
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

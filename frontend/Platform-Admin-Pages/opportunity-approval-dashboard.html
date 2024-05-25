@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    
+
     <!-- LOCAL -->
-    <link rel="stylesheet" href="css/opportunity-approval-dashboard.css">
-    <script src="../External_Modules/axios.min.js"></script>
-    <script type="module" src="js/opportunity-approval-dashboard.js" defer></script>
+    <link rel="stylesheet" href="Platform-Admin-Pages/css/opportunity-approval-dashboard.css">
+    <script src="External_Modules/axios.min.js"></script>
+    <script type="module" src="Platform-Admin-Pages/js/opportunity-approval-dashboard.js" defer></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opportunity Approval Dashboard</title>
 </head>
+
 <body>
     <header>
-        <img id="logo" src="../images/hexaFundLogoNoBack.png" alt="logo">
-        <h1>hexafund</h1> 
+        <img id="logo" src="images/hexaFundLogoNoBack.png" alt="logo">
+        <h1>hexafund</h1>
         <nav>
             <article>
                 <!-- <button class="nav-button" id="AboutBut" ><a href="../about.html">About Us</a></button> -->
@@ -33,7 +35,8 @@
             <option value="Business">Business</option>
             <option value="Event">Events</option>
         </select>
-        <input type="text" id="search-bar" placeholder="Search...">
+        <input type="text" id="search-bar" placeholder="FILTER FUNDING OPPORTUNITIES" readonly>
+
     </section>
     <section class="scrollable-container">
         <section class="requests">
@@ -43,4 +46,5 @@
 <footer>
     <p>©2024 HexaFund. All rights reserved.</p>
 </footer>
+
 </html>

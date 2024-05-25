@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/view-individual-applications.css">
-    <script src="../External_Modules/axios.min.js"></script>
-    <script type="module" src="js/view-individual-applicants.js" defer></script>
+    <link rel="stylesheet" href="Funding-Manager-Pages/css/view-individual-applications.css">
+    <script src="External_Modules/axios.min.js"></script>
+    <script type="module" src="Funding-Manager-Pages/js/view-individual-applicants.js" defer></script>
 
     <title>Hexafund Applications</title>
     <style>
         body.fullscreen {
             overflow: hidden;
         }
+
         .fullscreen iframe {
             position: fixed;
             top: 0;
@@ -23,49 +25,68 @@
     </style>
 </head>
 
-<section class="container">
-    <nav>
-        <section class="nav__logo">
-            <a href="#" class="nav__logo">
-                <img src="../images/hexa2.png" alt="logo" />
-                <span>hexafund</span>
-            </a>
-        </section>
-        <ul class="nav__links" id="nav-links">
-            <li id="aboutUs"><a href="about.html">About Us</a></li>
-            <!-- <li id="services"><a href="#">Services</a></li> -->
-            <!-- <li id="contactUs"><a href="#">Contact Us</a></li> -->
-        </ul>
-    </nav>
-</section>
+
 
 <body>
-    <section class="containerInfo">
-        <label for="Name">Name:</label>
-        <input type="text" style="width: 150px;" id="applicantName" name="Name" placeholder="Name" readonly><br> 
-        <label for="Contact">Contact:</label>
-        <input type="text" style="width: 150px;"  id="contact" name="contact"  placeholder="Contact" readonly> <br>
-        <label for="fundType">Fund Type:</label>
-        <input type="text" style="width: 150px;" id="fundType" name="fundType" placeholder="Fund Type" readonly><br> 
-        <label for="Email">Email:</label>
-        <input type="text" style="width: 150px;" id="email" name="email"  placeholder="Email" readonly> <br> 
-        <label for="description">Reason for application:</label>
-        <textarea id="description" name="description" placeholder="Your Message..." rows="5" cols="55" readonly></textarea>
-        <br>
-        <button class="Accept" type="button" style="width: 130px;">Accept</button> <br>
-        <button class="Reject" type="button" style="width: 130px;">Reject</button> 
+    <section class="container">
+        <nav>
+            <section class="nav__logo">
+                <a href="#" class="nav__logo">
+                    <img id="logo" src="images/hexa2.png" alt="logo" />
+                    <span>hexafund</span>
+                </a>
+            </section>
+            <ul class="nav__links" id="nav-links">
+                <li id="aboutUs"><a href="/about">About Us</a></li>
+                <!-- <li id="services"><a href="#">Services</a></li> -->
+                <!-- <li id="contactUs"><a href="#">Contact Us</a></li> -->
+            </ul>
+        </nav>
     </section>
 
-    <section class="containerImage">
-        <h1 class="funding-opportunity-title">Funding Application</h1>
-        <iframe class="pdf" 
-                src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf"
-            width="800" height="500">
-        </iframe>
-        <button class="viewApplication" type="button"> View Application </button>
-        <button class="viewCV" type="button"> View CV </button>
-        <button class="viewOther" type="button"> View Other </button>
+    <section class="main">
+
+
+
+        <section class="containerImage">
+            <h1 class="funding-opportunity-title">Funding Application</h1>
+            <iframe class="pdf" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf"
+                width="800" height="500">
+            </iframe>
+
+            <section class="buttons-container">
+                <button class="viewApplication" type="button"> View Application </button>
+                <button class="viewCV" type="button"> View CV </button>
+                <button class="viewOther" type="button"> View Other </button>
+            </section>
+
+        </section>
+
+        <section class="containerInfo">
+            <label for="Name">Name:</label>
+            <input type="text" style="width: 150px;" id="applicantName" name="Name" placeholder="Name" readonly><br>
+            <label for="Contact">Contact:</label>
+            <input type="text" style="width: 150px;" id="contact" name="contact" placeholder="Contact" readonly> <br>
+            <label for="fundType">Fund Type:</label>
+            <input type="text" style="width: 150px;" id="fundType" name="fundType" placeholder="Fund Type" readonly><br>
+            <label for="Email">Email:</label>
+            <input type="text" style="width: 150px;" id="email" name="email" placeholder="Email" readonly> <br>
+            <label for="description">Reason for application:</label>
+            <textarea id="description" name="description" placeholder="Your Message..." rows="5" cols="55"
+                readonly></textarea>
+            <br>
+            <br>
+            <section class="buttons-container">
+                <button class="Accept" type="button" style="width: 130px;">Accept</button>
+                <button class="Reject" type="button" style="width: 130px;">Reject</button>
+            </section>
+
+        </section>
+
     </section>
+
+
+
 
     <footer>
         <p>©2024 Hexafund. All rights reserved.</p>
@@ -73,7 +94,7 @@
 
     <!-- When the view attachment button is clicked, the pdf is enlarged for better viewing
          Click anywhere on page to return -->
-<!-- <script>
+    <!-- <script>
     document.querySelector('.ViewApplication').addEventListener('click', function() {
         document.body.classList.add('fullscreen');
         var pdfFrame = document.querySelector('.pdf');
@@ -91,4 +112,5 @@
     });
 </script> -->
 </body>
+
 </html>

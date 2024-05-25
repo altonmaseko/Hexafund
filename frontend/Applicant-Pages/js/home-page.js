@@ -92,14 +92,13 @@ const loadOpportunities = async (query_params) => {
         // APPLY FOR CURRENT BUTTON [still in forEach]
         const applyButton = requestCard.querySelector(".apply-btn")
 
-
         applyButton.setAttribute("funding_opportunity_id", _id) //incase needed later
 
         applyButton.addEventListener("click", async (event) => {
             // Add logic here... 
 
             document.cookie = `funding_opportunity_id=${applyButton.getAttribute("funding_opportunity_id")}; path=/`;
-            window.location.href = "Applicant-Pages/AppPage_Apply.html";
+            window.location.href = "/apply";
         })
 
 
@@ -183,3 +182,7 @@ checkStatusButton.addEventListener("click", event => {
 
 })
 
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

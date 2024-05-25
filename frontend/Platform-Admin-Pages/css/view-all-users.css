@@ -22,7 +22,7 @@ header {
     padding: 0%;
     justify-content: space-between;
     align-items: center;
-    font-size: 16px; 
+    font-size: 16px;
 }
 
 main {
@@ -30,8 +30,9 @@ main {
 }
 
 .scrollable-container {
-    max-height: 400px; /* Set the desired height for the scrollable container */
-    overflow-y: auto; /* Enable vertical scroll */
+    height: 60vh;
+    overflow-y: auto;
+    /* Enable vertical scroll */
 }
 
 #users {
@@ -54,7 +55,8 @@ main {
     cursor: pointer;
 }
 
-.block-btn, .delete-btn {
+.block-btn,
+.delete-btn {
     background-color: rgba(0, 62, 64, 255);
     color: white;
     border: none;
@@ -77,6 +79,7 @@ footer {
     color: white;
     margin-right: 0.5rem;
 }
+
 .nav-button:hover {
     transform: scale(1.04);
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,49 +8,81 @@
   <link rel="stylesheet" href="css/about.css">
   <title>About Us</title>
 </head>
+
 <body>
 
-<!-- <section class="header">
+  <!-- <section class="header">
     <img src="images/hexa2.png" alt="logo">
   <h1>Hexafund</h1>
 </section> -->
 
 
-<section class="container">
-  <nav>
+  <section class="container">
+    <nav>
       <section class="nav__logo">
-          <a href="#" class="nav__logo">
-              <img src="images/hexa2.png" alt="logo" />
-              <span>hexafund</span>
-          </a>
+        <a href="#" class="nav__logo">
+          <img id="logo" src="images/hexa2.png" alt="logo" />
+          <span>hexafund</span>
+        </a>
       </section>
       <ul class="nav__links" id="nav-links">
-          <li id="aboutUs"><a href="#">About Us</a></li>
-          <li id="signUp"><a href="signup.html">Sign up</a></li>
-          <!-- <li id="contactUs"><a href="#">Contact Us</a></li> -->
+        <!-- <li id="aboutUs"><a href="#">About Us</a></li> -->
+        <li id="signUp"><a href="/signup">Sign up</a></li>
+        <!-- <li id="contactUs"><a href="#">Contact Us</a></li> -->
       </ul>
-  </nav>
-</section>
-
-
-<section class="content">
-  <img src="images/pexels-fauxels-3183150.jpg" alt="Image">
-  <section class="left-box">
-    <h2>Why We Do This</h2>
-    <p>We believe anyone should be able to pursue their dreams, without money being an obstacle.</p>
+    </nav>
   </section>
 
-  <section class="right-box">
-    <h2>We Help Fund You</h2>
-    <p>We provide funds to entrepreneurs looking for opportunities to start 
-      their own businesses, young scholars who require the funds to excel in their 
-      field of studies and to our pioneers of the future looking to host events.</p>
-  </section>
-</section>
 
-<footer>
+  <section class="content">
+    <img class="about-image" src="images/pexels-fauxels-3183150.jpg" alt="Image">
+    <section class="left-box">
+      <h2>Why We Do This</h2>
+      <p>We believe anyone should be able to pursue their dreams, without money being an obstacle.</p>
+    </section>
+
+    <section class="right-box">
+      <h2>We Help Fund You</h2>
+      <p>We provide funds to entrepreneurs looking for opportunities to start
+        their own businesses, young scholars who require the funds to excel in their
+        field of studies and to our pioneers of the future looking to host events.</p>
+    </section>
+  </section>
+
+  <footer>
     <p>©2024 Hexafund. All rights reserved.</p>
-</footer>
+  </footer>
 
+
+  <script defer>
+
+
+    const cookies = document.cookie; // Get all cookies as a single string
+    if (cookies) { // They are logged in.
+      document.getElementById("logo").addEventListener("click", event => {
+        console.log("LOGO CLICKED")
+        window.location.href = "/home";
+      })
+
+      document.getElementById("signUp").style.display = "none";
+    } else { // Not logged in.
+      document.getElementById("logo").addEventListener("click", event => {
+        window.location.href = "/";
+      })
+
+      document.getElementById("signUp").style.display = "block";
+    }
+
+  </script>
 </body>
+
 </html>
+
+<!-- Developers:
+
+Alton Maseko
+Lucian Irsigler
+Prashan Rajaratnam
+Laaiqah Ravat
+Banzile Nhlebela
+Liam Brady -->

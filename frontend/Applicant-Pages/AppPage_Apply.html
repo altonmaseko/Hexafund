@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/AppPage_Apply.css">
-    <script src="../External_Modules/axios.min.js"></script>
-    <script defer src="js/AppPage_Apply.js"></script>
-    
+    <link rel="stylesheet" href="Applicant-Pages/css/AppPage_Apply.css">
+    <script src="External_Modules/axios.min.js"></script>
+    <script defer src="Applicant-Pages/js/AppPage_Apply.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Applying for Oppurtunity</title>
 </head>
 
 <body>
     <header>
-        <img id="logo" src="../images/hexaLogoNoBack2.png" alt="logo">
+        <img id="logo" src="images/hexaLogoNoBack2.png" alt="logo">
         <h1>hexafund</h1>
         <nav>
             <article>
@@ -29,7 +29,8 @@
         <section class="container">
             <section id="pdfViewer" class="pdf-viewer">
                 <h2>Your Documents:</h2>
-                <iframe id="pdfIframe" src="data:application/pdf;base64,YourBase64StringHere" width="100%" height="500px" allowfullscreen></iframe>
+                <iframe id="pdfIframe" src="data:application/pdf;base64,YourBase64StringHere" width="100%"
+                    height="500px" allowfullscreen></iframe>
 
                 <button id="view-cv-button">View CV</button>
                 <button id="view-application-form-button">View Application Form</button>
@@ -50,13 +51,16 @@
                         <!-- <p id="wordCount">Word count: 0/100</p> -->
                     </section>
                     <section class="form-group">
-                        <label for="file">Upload CV (PDF) | <span class="remove-cv-span remove-span">remove</span></label>
-                        <input type="file" id="cv_file" name="file" accept=".pdf"> 
+                        <label for="file">Upload CV (PDF) | <span
+                                class="remove-cv-span remove-span">remove</span></label>
+                        <input type="file" id="cv_file" name="file" accept=".pdf">
                         <br><br>
-                        <label for="file">Upload Application Form (PDF) | <span class="remove-application-span remove-span">remove</span></label>
-                        <input type="file" id="application_form_file" name="file" accept=".pdf"> 
+                        <label for="file">Upload Application Form (PDF) | <span
+                                class="remove-application-span remove-span">remove</span></label>
+                        <input type="file" id="application_form_file" name="file" accept=".pdf">
                         <br><br>
-                        <label for="file">Other (PDF): | <span class="remove-other-span remove-span">remove</span></label>
+                        <label for="file">Other (PDF): | <span
+                                class="remove-other-span remove-span">remove</span></label>
                         <input type="file" id="other_file" name="file" accept=".pdf">
                     </section>
                 </section>
