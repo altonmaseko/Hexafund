@@ -4,7 +4,7 @@ body {
     margin: 0;
     font-family: "Poppins", sans-serif;
     background-image: linear-gradient(#00111b, #336380);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /*nav bar things*/
@@ -148,15 +148,29 @@ article {
 }
 
 footer {
-    /* background-color:#001e30;  */
+    /* background-color: #001e30; */
     padding: 10px;
     text-align: center;
     color: white;
+
     height: 40px;
+
     width: 100%;
-    position: fixed;
+
+    /* position: fixed; */
+
     bottom: 0px;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
     z-index: -10;
+
+
 }
 
 #company-input {

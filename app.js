@@ -77,7 +77,7 @@ app.get(Object.keys(urlMap), (req, res) => {
 });
 
 
-// Dont need an access token to do these:
+// Dont need an access token to do these: 
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/refresh", refreshRouter); //Need a refresh token to create new access token. If no refresh token, wont continue.

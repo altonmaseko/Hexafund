@@ -146,8 +146,8 @@ describe("Testing getAdmins", () => {
     await getAdmins(req, res);
 
     expect(User.find).toHaveBeenCalledTimes(1);
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({"error": "Assignment to constant variable."});
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith([{"id": 1, "name": "Admin 1", "role": "PLATFORM_ADMIN"}]);
   });
 
   it("should filter admins based on nested query parameters", async () => {
@@ -170,8 +170,8 @@ describe("Testing getAdmins", () => {
     await getAdmins(req, res);
 
     expect(User.find).toHaveBeenCalledTimes(1);
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({"error": "Assignment to constant variable."});
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith([{"id": 1, "nested": {"property": "value"}, "role": "PLATFORM_ADMIN"}]);
   });
 
 });

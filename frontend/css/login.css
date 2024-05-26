@@ -4,7 +4,8 @@ body {
     margin: 0px;
     font-family: "Poppins", sans-serif;
     background-image: linear-gradient(#00111b, #336380);
-    height: 100vh;
+    /* height: 100vh; */
+    min-height: 100vh;
 }
 
 /*nav bar things*/
@@ -138,15 +139,19 @@ article {
 }
 
 footer {
-    /* background-color:#001e30;  */
+    /* background-color: #001e30; */
     padding-block: 40px;
     text-align: center;
     color: white;
-    height: 40px;
-    position: fixed;
+    height: 20px;
+    /* position: fixed; */
     bottom: 0px;
     width: 100%;
+    display: flex;
+    justify-content: center;
     z-index: -10;
+
+
 }
 
 a:visited {

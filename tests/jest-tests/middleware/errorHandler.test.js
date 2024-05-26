@@ -13,7 +13,7 @@ describe("Testing the errorHandler middleware", () => {
 
     errorHandler(err, {}, res, {});
 
-    expect(consoleSpy).toHaveBeenCalledWith("an error has occured: Test error");
+    expect(consoleSpy).toHaveBeenCalledWith("an error has occurred: Test error");
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ name: "Error", message: "Test error" });
 
