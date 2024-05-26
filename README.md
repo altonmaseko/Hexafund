@@ -34,7 +34,7 @@ This project aims to equip the organisations with a central place to advertise a
     - If URI displayed in mongoDB Compass app is different, change CONNECTION_URI in .env file to what you see, then follow with /FundingWebsite. However it shouldnt be.
 
 - In vs code terminal, type 'npm install' [This installs all modules needed. They are not pushed to github because they are large.]
-- From root of project, navigate to 'frontend' -> 'External_Modules' -> 'axios.min.js', go to end of file and uncomment the local baseURL for axios.
+- From root of project, navigate to 'frontend' -> 'External_Modules' -> 'axios.min.js', go to end of file, uncomment the local baseURL for axios and comment out the production URL line.
     - This determines where axios requests (get,post,put,delete) are sent in axios. If you use production baseURL, online mongodb database will be modified, instead of local one.
 - In vs code terminal, type 'npm start' or 'npm run dev' [This starts application on port 3000.]
 
