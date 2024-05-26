@@ -1,11 +1,15 @@
 /**
  * @module deleteControllers/deleteFundingController
- **/
+ */
+
+// Import the asyncWrapper middleware
 const { asyncWrapper } = require("../../middleware");
+
+// Import the FundingOpportunity model
 const { FundingOpportunity } = require("../../models");
 
 /**
- * Controller function to delete a funding opportunity.
+ * Deletes a funding opportunity by its ID.
  * 
  * @function deleteFundingController
  * @param {Object} req - The request object.
@@ -14,16 +18,22 @@ const { FundingOpportunity } = require("../../models");
  */
 const deleteFundingController = asyncWrapper(async (req, res) => {
 
+    // Extract the funding_opportunity_id from the request parameters
     const { funding_opportunity_id } = req.params;
 
+    // Check if the funding_opportunity_id is provided
     if (!funding_opportunity_id) {
+        // If not, return a 400 Bad Request response with an error message
         res.status(400).json({ message: "Please include funding_opportunity_id in url. e.g: api/v1/ad/example_id", status: 400 });
         return;
     }
 
+    // Delete the funding opportunity with the provided ID from the database
     await FundingOpportunity.deleteOne({ _id: funding_opportunity_id });
 
+    // Return a 200 OK response with a success message
     res.status(200).json({ message: "successfully deleted", success: true });
 });
 
+// Export the deleteFundingController function
 module.exports = deleteFundingController;
