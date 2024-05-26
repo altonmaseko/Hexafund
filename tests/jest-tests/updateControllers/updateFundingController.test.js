@@ -17,7 +17,9 @@ describe("Testing the updateFundingController", () => {
         funding_opportunity_id: "example_id",
       },
       body: {
-        // Add the properties you want to modify here
+        title: "example_title",
+        description: "example_description",
+        funding_amount: 1000,
       },
     };
 
@@ -60,7 +62,7 @@ describe("Testing the updateFundingController", () => {
 
     await updateFundingController(req, res);
 
-    /*expect(FundingOpportunity.updateOne).toHaveBeenCalledWith(
+    expect(FundingOpportunity.updateOne).toHaveBeenCalledWith(
       { _id: req.params.funding_opportunity_id },
       { $set: req.body }
     );
@@ -69,7 +71,7 @@ describe("Testing the updateFundingController", () => {
       message: "successfully updated",
       success: true,
       data: req.body,
-    });*/
+    });
   });
 
   it("should handle errors and return a 500 status code", async () => {
@@ -78,11 +80,11 @@ describe("Testing the updateFundingController", () => {
 
     await updateFundingController(req, res);
 
-    /*expect(FundingOpportunity.updateOne).toHaveBeenCalledWith(
+    expect(FundingOpportunity.updateOne).toHaveBeenCalledWith(
       { _id: req.params.funding_opportunity_id },
       { $set: req.body }
     );
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ error: errorMessage });*/
+    expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
   });
 });

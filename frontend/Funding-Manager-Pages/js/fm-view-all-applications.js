@@ -61,7 +61,7 @@ const flow = async () => {
     }
 
     // Display the applications
-    applications.forEach((application) => {
+    applications.forEach(async (application) => {
         let {
             _id,
             applicant_email,
@@ -69,14 +69,19 @@ const flow = async () => {
             contact_number,
             reason,
             cv_data,
-            application_form_data
+            application_form_data,
+            funding_opportunity_id
         } = application;
+
+        let response = await axios.get("api/v1/funding-opportunity?_id=" + funding_opportunity_id);
+        fundingOpportunity = response.data[0];
 
         const columnInnerHTML = `<section class="applicant-info">
             <img src="https://thumbs.dreamstime.com/b/education-study-books-high-school-university-16383080.jpg" alt="Applicant 1">
             <section>
                 <p>Email: ${applicant_email}</p>
                 <p>Satus: ${status}</p>
+                <p>Applied For: ${fundingOpportunity.title}</p>
                 <p>Reason: ${reason}</p>
             </section>
         </section>
@@ -93,7 +98,7 @@ const flow = async () => {
         const btnView = columnSection.querySelector(".btn-view");
         btnView.addEventListener("click", (event) => {
             document.cookie = `application_id=${_id}; path=/`;
-            window.location.href = "/Funding-Manager-Pages/view-individual-applications.html";
+            window.location.href = "/applicant-application";
         })
 
     }) // END: applications.forEach
@@ -103,6 +108,11 @@ const flow = async () => {
 } // END: FLOW
 flow();
 
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})
 
 
 

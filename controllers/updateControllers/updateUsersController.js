@@ -1,6 +1,17 @@
+/**
+ * @module  updateControllers/updateUsersController
+ **/
 const { asyncWrapper } = require("../../middleware");
 const { User, Applicant, FundingManager } = require("../../models");
 
+/**
+ * Update applicants controller.
+ * 
+ * @function updateApplicants
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves with the updated applicant data.
+ */
 const updateApplicants = asyncWrapper(async (req, res) => {
 
     const { email } = req.params;
@@ -33,6 +44,13 @@ const updateApplicants = asyncWrapper(async (req, res) => {
     res.status(200).json({ message: "successfully updated", success: true, data: body });
 });
 
+/**
+ * Update funding managers.
+ * @function updateFundingManagers
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the update is complete.
+ */
 const updateFundingManagers = asyncWrapper(async (req, res) => {
 
     const { email } = req.params;

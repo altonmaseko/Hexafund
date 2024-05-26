@@ -4,6 +4,13 @@ require("dotenv").config();
 const { asyncWrapper } = require("../middleware");
 const { User } = require("../models");
 
+/**
+ * Handles the login functionality.
+ * @function loginController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the login process is complete.
+ */
 const loginController = asyncWrapper(async (req, res) => {
 
     const { email, password } = req.body;

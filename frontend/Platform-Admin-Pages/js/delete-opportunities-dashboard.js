@@ -52,7 +52,9 @@ const loadOpportunities = async (query_params) => {
         let adImage = requestCard.querySelector(".ad-image");
         if (!image_data) {
             //TODO: Change the placeholder image
-            adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"; // Placeholder image
+            adImage.src = "https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg";
+
+            // adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"; // Placeholder image
         } else {
             adImage.src = image_data;
         }
@@ -96,3 +98,9 @@ categoryDropDown.addEventListener("input", async (event) => {
 
 // When page loads:
 loadOpportunities("");
+
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

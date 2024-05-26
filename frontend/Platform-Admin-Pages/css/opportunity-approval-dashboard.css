@@ -17,6 +17,11 @@ h2 {
     justify-content: space-between;
     align-items: center;
 }
+
+a:any-link{
+    text-decoration: none;
+    color: white;
+}
 /* Add styles for the buttons */
 .card-right .button-container {
     display: flex;

@@ -1,6 +1,16 @@
+/**
+ * @module updateControllers/updateApplicationController
+ **/
 const { asyncWrapper } = require("../../middleware");
 const { Application } = require("../../models");
 
+/**
+ * Updates an application by its ID.
+ * @function updateApplication
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the application is updated.
+ */
 const updateApplication = asyncWrapper(async (req, res) => {
 
     const { application_id } = req.params;

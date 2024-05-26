@@ -1,6 +1,16 @@
+/**
+ * @module updateControllers/updateFundingController
+ **/
 const { asyncWrapper } = require("../../middleware");
 const { FundingOpportunity } = require("../../models");
 
+/**
+ * Controller function to update a funding opportunity.
+ * @function updateFundingController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the update is complete.
+ */
 const updateFundingController = asyncWrapper(async (req, res) => {
 
     const { funding_opportunity_id } = req.params;

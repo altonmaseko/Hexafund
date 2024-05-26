@@ -82,12 +82,12 @@ h2 {
     overflow: hidden; /* Hide any content that exceeds the fixed dimensions */
 }
 
-.card-left img {
+/* .card-left img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 
-}
+} */
 #title{
     font-size:20 px;
     color: #333;
@@ -159,6 +159,17 @@ h2 {
     width: 150px;
     height: auto;
     background-color: rgba(150, 187, 186, 255);
+}
+
+.ad-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+
+
+    /* background-size: cover; */
+    /* opacity: 0; */
 }
 
 header {

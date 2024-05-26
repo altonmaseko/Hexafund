@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/getControllers/getApplicationsController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/getControllers/getApplicationsController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module getControllers/getApplicationsController
+ **/
+const { application } = require("express");
+const { asyncWrapper } = require("../../middleware");
+const { Application } = require("../../models");
+
+/**
+ * Retrieves applications based on the provided query parameters.
+ * If no query parameters are provided, returns all applications.
+ * If query parameters are provided, filters applications based on the parameters.
+ * @function getApplications
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise&lt;void>} - A promise that resolves when the applications are retrieved and sent as a response.
+ */
+const getApplications = async (req, res) => {
+    const { application_id } = req.params;
+
+    console.log(application_id);
+    console.log("getApplications");
+   
+    // GET APPLICATION DATA
+
+    let applications = await Application.find({});
+
+    const query = req.query; // when browser url is ...?property=value&amp;property2=value
+
+    console.log(query);
+
+    if (Object.values(query).length &lt;= 0) {
+        res.status(200).json(applications);
+        return;
+    }
+
+    for (let key in query) {
+        applications = applications.filter((application) => {
+            if (key.includes(".")) {
+                const keys = key.split(".");
+                console.log(keys);
+
+                if (application[keys[0]][keys[1]]?.toString() == query[key]) {
+                    return application;
+                }
+            }
+            if (application[key]?.toString() === query[key]) {
+                return application;
+            }
+        });
+    }
+
+    res.status(200).json(applications);
+
+     // if (application_id) {
+    //     let application = await Application.findOne({_id: application_id});
+
+    //     const document_data = application.document_data;
+        
+    //     if (!document_data)
+    //     {
+    //         console.log("SORRY NO DOCUMENT_DATA");
+    //         res.send("NO DOCUMENT");
+    //         return;
+    //     }
+
+    //     console.log(document_data);
+
+    //     try {
+    //       const pdfResponse = convertBase64ToPDF(document_data);
+    
+    //       // Set headers for download
+    //       res.setHeader('Content-Type', pdfResponse.contentType);
+    //       res.setHeader('Content-Disposition', pdfResponse.contentDisposition);
+    
+    //       // Send the PDF data
+    //       res.end(pdfResponse.data);
+    //     } catch (error) {
+    //       console.error(error);
+    //       res.status(500).send('Error converting base64 to PDF');
+    //     }
+    
+    //     return;
+    //   }
+
+};
+
+const convertBase64ToPDF = (base64String) => {
+    // Check if the base64 string is valid (optional)
+    const isBase64 = /^[A-Za-z0-9+\/]+=*$/i.test(base64String);
+    if (!isBase64) {
+        throw new Error('Invalid base64 string');
+    }
+
+    // Decode the base64 string into a Buffer
+    const decodedData = Buffer.from(base64String, 'base64');
+
+    // Optionally save the PDF to a file (comment out if not needed)
+    // fs.writeFileSync('output.pdf', decodedData); // Remove comment for saving
+
+    // Prepare the response for sending the PDF as a download to the frontend
+    const response = {
+        contentType: 'application/pdf',
+        contentDisposition: 'attachment; filename="output.pdf"', // Adjust filename as needed
+        data: decodedData, // Encode data back to base64 for transfer
+    };
+
+    return response;
+}
+
+
+module.exports =  getApplications;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#registerController">registerController</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed May 22 2024 10:56:01 GMT+0200 (South Africa Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -18,8 +18,13 @@ document.getElementById("logout_button")?.addEventListener("click", async (event
         deleteAllCookies()
         const response = await axios.get("/logout");
         console.log(response.data);
-        window.location.href = "../login.html";
+        window.location.href = "/login";
     } catch (error) {
         console.log(error);
     }
 });
+
+document.getElementById("logo")?.addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

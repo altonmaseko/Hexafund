@@ -12,49 +12,47 @@
 </head>
 
 <body>
-    <!-- <header>
-        <img id="logo" src="images/hexaFundLogo.png" alt="Flag">
-        <h1>hexafund</h1> 
-        <nav>
-            <button id="AboutBut" >About Us</button>
-            <button id="SerBut">Services</button>
-            <button id="ConBut">Contact Us</button>
-        </nav>
-    </header> -->
-
     <section class="container">
         <nav>
-            <div class="nav__logo">
+            <section class="nav__logo">
                 <a href="#" class="nav__logo">
                     <img src="images/hexa2.png" alt="logo" />
                     <span>hexafund</span>
                 </a>
-            </div>
+            </section>
             <ul class="nav__links" id="nav-links">
-                <li id="aboutUs"><a href="#">About Us</a></li>
-                <li id="services"><a href="#">Services</a></li>
-                <li id="contactUs"><a href="#">Contact Us</a></li>
+                <li id="aboutUs"><a href="/about">About Us</a></li>
+                <!-- <li id="services"><a href="#">Services</a></li> -->
+                <!-- <li id="contactUs"><a href="#">Contact Us</a></li> -->
             </ul>
         </nav>
     </section>
+
     <section class="main">
         <img id="logo_image" src="images/hexaLogoNoBack2.png" alt="logo" />
         <article>
             <form id="login">
                 <h1 id="login_title">Sign Up</h1>
-                <input type="text" id="name_input" name="Name" placeholder="Full Name" required><br><br>
-                <input type="text" id="email_input" name="Email" placeholder="Email" required><br><br>
-                <input type="password" id="password_input" name="Password" placeholder="Password" required><br><br>
-                <input type="password" id="confirm_password_input" name="Confirm_Password" placeholder="Confirm Password"
-                    required><br><br>
+                <input type="text" class="sign-up-input" id="name_input" name="Name" placeholder="Full Name"
+                    required><br>
+                <input type="text" class="sign-up-input" id="email_input" name="Email" placeholder="Email" required><br>
+                <input type="password" class="sign-up-input" id="password_input" name="Password" placeholder="Password"
+                    required><br>
+                <input type="password" class="sign-up-input" id="confirm_password_input" name="Confirm_Password"
+                    placeholder="Confirm Password" required><br>
+                <input class="sign-up-input" id="company-input" name="Company_Name" type="text"
+                    placeholder="Company name...">
 
                 <label id="drop_down_label" for="drop_down">Please choose your role:</label>
                 <select name="Drop_Down" id="drop_down">
                     <option value="Applicant">Applicant</option>
                     <option value="Funding Manager">Funding Manager</option>
                 </select><br><br>
-                <button type="submit" id="submit_button"> Submit</button><br><br>
-                <p>Have an account? <a href="login.html">Login here!</a></p>
+
+
+
+                <button type="submit" id="submit_button"> Submit</button><br>
+                <p>Have an account? <a href="/login">Login here!</a></p>
             </form>
         </article>
     </section>

@@ -2,6 +2,14 @@
 const { User } = require("../models");
 const { asyncWrapper } = require("../middleware");
 
+/**
+ * Logout controller function.
+ * Clears the JWT cookie and updates the refresh token for the user.
+ * @function logoutController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the logout process is complete.
+ */
 const logoutController = asyncWrapper(async (req, res) => {
 
     const cookies = req.cookies;

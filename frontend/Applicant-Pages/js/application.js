@@ -1,6 +1,5 @@
 
 
-
 const submitButton = document.getElementById('submitButton');
 const viewFile = document.getElementById('viewFile');
 const fileUpload = document.getElementById('fileInput');
@@ -64,4 +63,9 @@ viewFile.addEventListener("click", async (event) => {
     // } catch (error) {
     //     alert(`error: ${error.message}`);
     // }
+})
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
 })

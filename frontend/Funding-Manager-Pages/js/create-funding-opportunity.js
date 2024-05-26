@@ -58,7 +58,7 @@ document.querySelector(".sendButton").addEventListener("click", async () => {
     const type = document.querySelector("#category").value;
     const funding_amount = document.querySelector("#amount").value;
     const available_slots = document.querySelector("#count").value;
-    const description = document.querySelector("#description").textContent;
+    const description = document.querySelector("#description").value;
     const funding_manager_email = userEmail
     let deadline = document.getElementById("expiryDate").value
     deadline = new Date(deadline)
@@ -99,7 +99,7 @@ const clearForm = () => {
     document.querySelector("#category").value = "";
     document.querySelector("#amount").value = "";
     document.querySelector("#count").value = "";
-    document.querySelector("#description").textContent = "";
+    document.querySelector("#description").value = "";
     document.getElementById("expiryDate").value = ""
 }
 
@@ -113,6 +113,10 @@ function handleFiles(e) {
     let img = new Image();
 
     img.onload = function () {
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
         ctx.drawImage(img, 0, 0);
         base64 = canvas.toDataURL(); // Get the Base64 string
         console.log(base64); // Log it (you can use it as needed)
@@ -124,3 +128,8 @@ function handleFiles(e) {
 
     img.src = URL.createObjectURL(e.target.files[0]); // Load the selected image
 }
+
+document.getElementById("logo").addEventListener("click", event => {
+    console.log("LOGO CLICKED")
+    window.location.href = "/home";
+})

@@ -6,27 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Applications</title>
 
-  <script src="../External_Modules/axios.min.js"></script>
-  <script src="../External_Modules/boxicons.js"></script> 
-  <script defer src="js/ViewMyApplications.js"></script>
+  <script src="External_Modules/axios.min.js"></script>
+  <script src="External_Modules/boxicons.js"></script>
+  <script defer src="Applicant-Pages/js/ViewMyApplications.js"></script>
 
-  <link rel="stylesheet" href="css/ViewMyApplications.css"> <!-- Linking an external stylesheet -->
+  <link rel="stylesheet" href="Applicant-Pages/css/ViewMyApplications.css"> <!-- Linking an external stylesheet -->
 
 </head>
 
 <body>
   <header>
-    <img id="logo" src="../images/hexaLogoNoBack2.png" alt="logo">
+    <img id="logo" src="images/hexaFundLogoNoBack.png" alt="logo">
     <h1>hexafund</h1>
     <nav>
       <article>
-        <button class="nav-button" id="AboutBut">About Us</button>
-        <button class="nav-button" id="SerBut">Services</button>
-        <button class="nav-button" id="ConBut">Contacts Us</button>
-        <button class="nav-button" id="Profile"><a href="../profile.html">My Profile</a></button>
+        <button class="nav-button" id="AboutBut"><a href="/about">About Us</a></button>
+        <!-- <button class="nav-button" id="SerBut">Services</button> -->
+        <!-- <button class="nav-button" id="ConBut">Contacts Us</button> -->
+        <button class="nav-button" id="Profile"><a href="/profile">My Profile</a></button>
       </article>
     </nav>
   </header>
+
+
   <h3 id="page-title">
     My Applications <!-- Main title -->
   </h3>
@@ -38,10 +40,10 @@
   </section>
 
   <!-- Container for all the applications -->
-  <div class="sectionsContainer">
+  <section class="sectionsContainer">
 
     <!-- Example cards. They will be erased by js -->
-    <div class="card">
+    <section class="card">
       <img class="funding-opportunity-img" src="" alt="">
       <p class="title">Title Of Funding Opportunity</p>
       <p class="funding-amount">Amount: 40000</p>
@@ -50,14 +52,14 @@
         assumenda? Adipisci commodi optio dolorum.</p>
       <hr>
       <p class="status">Status: This is the status</p>
-      <div class="align-horizontally">
+      <section class="align-horizontally">
         <button class="cv-button">View CV</button>
         <button class="application-button">View Application Form</button>
         <button class="other-button">View Other</button>
-      </div>
-    </div>
+      </section>
+    </section>
 
-    <div class="card">
+    <section class="card">
       <img class="funding-opportunity-img" src="" alt="">
       <p class="title">Title Of Funding Opportunity</p>
       <p class="funding-amount">40000</p>
@@ -65,20 +67,20 @@
         quisquam vero, voluptate tempora numquam animi natus maxime dicta magnam amet quos repellendus repellat
         assumenda? Adipisci commodi optio dolorum.</p>
       <p class="status">This is the status</p>
-      <div class="align-horizontally">
+      <section class="align-horizontally">
         <button class="cv-button">View CV</button>
         <button class="application-button">View Application Form</button>
         <button class="other-button">View Other</button>
-      </div>
-    </div>
-
-    
+      </section>
+    </section>
 
 
-  </div>
 
 
-  
+  </section>
+
+
+
 
   <section>
   </section>

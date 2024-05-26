@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: rgb(6, 37, 50, 0.9);
+    /* padding: 0;
+    background-color: rgb(6, 37, 50, 0.9); */
+    background-image: linear-gradient(#00111b, #2d5872);
     max-height: 100vh;
     min-height: 100vh;
     position: relative;
@@ -10,7 +13,7 @@ body {
 }
 
 .container {
-    background-color: #00111b;
+    /* background-color: #00111b; */
     overflow: hidden;
 }
 
@@ -39,8 +42,8 @@ body {
     font-weight: 500;
     color: white;
     display: flex;
-    margin-left: -20px;
-    margin-top: -2px;
+    margin-left: -30px;
+    margin-top: -5px;
 }
 
 .nav__links {
@@ -68,7 +71,7 @@ body {
 .userInfo {
     width: 400px;
     margin: 50px;
-    margin-top: 100px;
+    margin-top: 10px;
     float: left;
     background-color: white;
     padding: 20px;
@@ -121,7 +124,6 @@ button:hover {
 }
 
 footer {
-    background-color: rgba(0, 62, 64, 255);
     color: white;
     display: flex;
     justify-content: center;

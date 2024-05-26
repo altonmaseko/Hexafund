@@ -6,10 +6,17 @@
     /* padding: 20px; */
   }
 
-  a:any-link{
+  #logo {
+    width: auto;
+    height: 100%;
+    background-color: rgba(150, 187, 186, 255);
+  }
+
+  a:any-link {
     text-decoration: none;
     color: white;
   }
+
   a:hover {
     cursor: pointer;
   }
@@ -65,12 +72,12 @@
   }
 
   /* Styling for images within sections */
-  img {
+  /* img {
     max-width: 100%;
     height: auto;
     display: block;
     margin-bottom: 10px;
-  }
+  } */
 
   /* Styling for subtitles */
   .subtitle {
@@ -127,6 +134,12 @@
     height: 80px;
   }
 
+  header h1 {
+    margin-left: -350px;
+    /* margin-bottom: 3px; */
+
+  }
+
   footer {
     background-color: rgba(0, 62, 64, 255);
     color: #fff;
@@ -152,64 +165,68 @@
   /*  ============= */
 
 
-.funding-opportunity-img{
-  max-width: 100%;
+  .funding-opportunity-img {
+    max-width: 100%;
 
-}
+  }
 
-.sectionsContainer {
-  margin-top: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 2rem;
+  .sectionsContainer {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem;
 
-}
+  }
 
-.card {
-  border: 1px solid black;
-  border-radius: 1rem;
-  min-width: 400px;
-  max-width: 500px;
-  padding: 1rem;
-  background-color: white;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
+  .card {
+    border: 1px solid black;
+    border-radius: 1rem;
+    min-width: 400px;
+    max-width: 500px;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
 
-.align-horizontally {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
+  .align-horizontally {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-.pdf {
-  margin-inline: auto;
-  border-radius: 1rem;
-  border: 1px solid black;
-}
+  .pdf {
+    margin-inline: auto;
+    border-radius: 1rem;
+    border: 1px solid black;
+  }
 
 
 
-.iframe-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
- 
-}
+  .iframe-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 
-.button-trash-container {
-  display: flex;
-}
+  }
 
-.delete-cv, .delete-application, .delete-other, .delete-full-application {
-  margin-block:auto;
-}
-:is(.delete-cv, .delete-application, .delete-other, .delete-full-application):hover {
-  cursor: pointer;
-  transform: scale(1.1);
-}
+  .button-trash-container {
+    display: flex;
+  }
 
-#logo {
-  max-height: 100%;
-  width: auto;
-}
+  .delete-cv,
+  .delete-application,
+  .delete-other,
+  .delete-full-application {
+    margin-block: auto;
+  }
+
+  :is(.delete-cv, .delete-application, .delete-other, .delete-full-application):hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  #logo {
+    max-height: 100%;
+    width: auto;
+  }

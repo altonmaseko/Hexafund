@@ -1,6 +1,17 @@
+/**
+ * @module deleteControllers/deleteApplicationController
+ **/
+
 const { asyncWrapper } = require("../../middleware");
 const { Application } = require("../../models");
 
+/**
+ * Deletes an application by its ID.
+ * @function deleteApplication
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the application is deleted.
+ */
 const deleteApplication = asyncWrapper(async (req, res) => {
 
     const { application_id } = req.params;

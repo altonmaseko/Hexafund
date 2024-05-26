@@ -10,6 +10,13 @@
 const { User, Applicant, FundingManager, Company } = require("../models");
 const { asyncWrapper } = require("../middleware");
 
+/**
+ * Handles the registration of a user.
+ * @function registerController
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the registration is complete.
+ */
 const registerController = asyncWrapper(async (req, res) => {
     const { name, email, password, company, role } = req.body;
 

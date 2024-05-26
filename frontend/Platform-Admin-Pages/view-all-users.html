@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Users Dashboard</title>
+
+    <!-- WHEN NAVIGATING FROM HTML PAGES, THIS WORKS: -->
+    <link rel="stylesheet" href="Platform-Admin-Pages/css/view-all-users.css">
+
+    <script src="External_Modules/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/json2csv"></script> <!-- for creating csv files -->
+    <script type="module" src="Platform-Admin-Pages/js/view-all-users.js" defer></script>
+    <script type="module" src="js/logout.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img id="logo" src="images/hexaFundLogo.png" alt="Flag">
+        <h1>hexafund</h1>
+        <nav>
+            <button class="nav-button" id="fundManagerStats">Fund Manager Data</button>
+            <button class="nav-button" id="applicantStats">Applicant Data</button>
+            <!-- <button class="nav-button" id="AboutBut" >About Us</button> -->
+            <!-- <button class="nav-button" id="ConBut">Contact Us</button> -->
+            <button class="nav-button" id="logout_button">Log Out</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="scrollable-container">
+            <h2>Load Users</h2>
+            <select name="Drop_Down" id="drop_down">
+                <option value="all">All</option>
+                <option value="applicants">Applicants</option>
+                <option value="funding_managers">Funding Managers</option>
+            </select>
+            <section id="users">
+            </section>
+        </section>
+    </main>
+    <footer>
+        <p>©2024 HexaFund. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
