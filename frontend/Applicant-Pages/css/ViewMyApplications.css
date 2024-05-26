@@ -204,10 +204,9 @@
 
 
   .iframe-container {
-    display: flex;
+    display: none;
     justify-content: center;
     width: 100%;
-
   }
 
   .button-trash-container {

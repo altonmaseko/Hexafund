@@ -1,5 +1,6 @@
 const sectionsContainer = document.querySelector(".sectionsContainer")
 const pdfIframe = document.querySelector(".pdf");
+const iframe_container = document.querySelector(".iframe-container");
 const pageTitle = document.querySelector("#page-title");
 
 let userEmail, userName;
@@ -44,6 +45,8 @@ const flow = async () => {
     alert("You have not made any application");
     return;
   }
+
+  iframe_container.style.display = "flex";
 
   // Loop through the user's applications and create a card for each
   applications.forEach(async application => {
