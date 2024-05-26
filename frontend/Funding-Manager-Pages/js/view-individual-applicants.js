@@ -1,7 +1,3 @@
-
-
-// =======================
-
 const applicantName = document.querySelector("#applicantName");
 const contact = document.querySelector("#contact");
 const fundType = document.querySelector("#fundType");
@@ -66,14 +62,11 @@ const flow = async () => {
     }
     document.querySelector(".funding-opportunity-title").textContent = fundingOpportunity.title;
 
-
     applicantName.value = user.name;
     contact.value = application.contact_number;
     fundType.value = fundingOpportunity.type;
     email.value = application.applicant_email;
     reason.value = application.reason;
-
-
 }
 flow();
 
@@ -83,12 +76,9 @@ Accept.addEventListener("click", async (event) => {
         alert("Applicant already accepted!");
         return;
     }
-
     if (!confirm("Are you sure you want to ACCEPT this applicant?")) {
         return;
     }
-
-
 
     try {
         await axios.put(`api/v1/application/${application._id}`, {
@@ -105,7 +95,8 @@ Accept.addEventListener("click", async (event) => {
         console.log(error)
         alert("Sorry, could not accept application")
     }
-})
+});
+
 Reject.addEventListener("click", async (event) => {
 
     if (application.status === "Rejected") {
@@ -125,8 +116,6 @@ Reject.addEventListener("click", async (event) => {
             alert("Sorry an error has occured. Please try again later")
             console.log(error)
         }
-
-
     }
 
     if (!confirm("Are you sure you want to REJECT this applicant?")) {
@@ -139,8 +128,6 @@ Reject.addEventListener("click", async (event) => {
         })
         alert(`Applicant has been successfully rejected for the opportunity.`);
         location.reload();
-
-
     } catch (error) {
         console.log(error)
         alert("Sorry, could not reject application")

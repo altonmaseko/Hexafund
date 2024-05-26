@@ -28,9 +28,14 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * @module getControllers/getApplicationsController
- **/
-const { application } = require("express");
+ */
+
+//imports
+
+// Import the asyncWrapper middleware from the middleware directory
 const { asyncWrapper } = require("../../middleware");
+
+// Import the Application model from the models directory
 const { Application } = require("../../models");
 
 /**
@@ -42,76 +47,91 @@ const { Application } = require("../../models");
  * @param {Object} res - The response object.
  * @returns {Promise&lt;void>} - A promise that resolves when the applications are retrieved and sent as a response.
  */
-const getApplications = async (req, res) => {
+const getApplications = asyncWrapper(async (req, res) => {
+    // Extract the application_id from the request parameters
     const { application_id } = req.params;
 
+    // Log the application_id for debugging purposes
     console.log(application_id);
     console.log("getApplications");
-   
+
     // GET APPLICATION DATA
 
+    // Fetch all applications from the database
     let applications = await Application.find({});
 
+    // Extract the query parameters from the request
     const query = req.query; // when browser url is ...?property=value&amp;property2=value
 
+    // Log the query parameters for debugging purposes
     console.log(query);
 
+    // If there are no query parameters, return all applications
     if (Object.values(query).length &lt;= 0) {
         res.status(200).json(applications);
         return;
     }
 
+    // For each query parameter
     for (let key in query) {
+        // Filter the applications based on the query parameter
         applications = applications.filter((application) => {
+            // If the key includes a ".", it means we're accessing a nested property
             if (key.includes(".")) {
+                // Split the key into its components
                 const keys = key.split(".");
                 console.log(keys);
 
+                // If the application's property matches the query parameter, return the application
                 if (application[keys[0]][keys[1]]?.toString() == query[key]) {
                     return application;
                 }
             }
+            // If the application's property matches the query parameter, return the application
             if (application[key]?.toString() === query[key]) {
                 return application;
             }
         });
     }
 
+    // Send a 200 OK response with the filtered applications
     res.status(200).json(applications);
 
-     // if (application_id) {
-    //     let application = await Application.findOne({_id: application_id});
+    /*
+    if (application_id) {
+        let application = await Application.findOne({_id: application_id});
 
-    //     const document_data = application.document_data;
+        const document_data = application.document_data;
         
-    //     if (!document_data)
-    //     {
-    //         console.log("SORRY NO DOCUMENT_DATA");
-    //         res.send("NO DOCUMENT");
-    //         return;
-    //     }
+        if (!document_data)
+        {
+            console.log("SORRY NO DOCUMENT_DATA");
+            res.send("NO DOCUMENT");
+            return;
+        }
 
-    //     console.log(document_data);
+        console.log(document_data);
 
-    //     try {
-    //       const pdfResponse = convertBase64ToPDF(document_data);
+        try {
+            const pdfResponse = convertBase64ToPDF(document_data);
     
-    //       // Set headers for download
-    //       res.setHeader('Content-Type', pdfResponse.contentType);
-    //       res.setHeader('Content-Disposition', pdfResponse.contentDisposition);
+            // Set headers for download
+            res.setHeader('Content-Type', pdfResponse.contentType);
+            res.setHeader('Content-Disposition', pdfResponse.contentDisposition);
+        
+            // Send the PDF data
+            res.end(pdfResponse.data);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error converting base64 to PDF');
+        }
     
-    //       // Send the PDF data
-    //       res.end(pdfResponse.data);
-    //     } catch (error) {
-    //       console.error(error);
-    //       res.status(500).send('Error converting base64 to PDF');
-    //     }
-    
-    //     return;
-    //   }
+        return;
+    }
+    */
+});
 
-};
-
+/*
 const convertBase64ToPDF = (base64String) => {
     // Check if the base64 string is valid (optional)
     const isBase64 = /^[A-Za-z0-9+\/]+=*$/i.test(base64String);
@@ -134,8 +154,9 @@ const convertBase64ToPDF = (base64String) => {
 
     return response;
 }
+*/
 
-
+// Export the getApplications controller as a module
 module.exports =  getApplications;</code></pre>
         </article>
     </section>
@@ -146,13 +167,13 @@ module.exports =  getApplications;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#registerController">registerController</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-controllers_loginController.html">controllers/loginController</a></li><li><a href="module-controllers_logoutController.html">controllers/logoutController</a></li><li><a href="module-controllers_refreshController.html">controllers/refreshController</a></li><li><a href="module-controllers_registerController.html">controllers/registerController</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-middleware.html">middleware</a></li><li><a href="module-middleware_asyncWrapper.html">middleware/asyncWrapper</a></li><li><a href="module-middleware_errorHandler.html">middleware/errorHandler</a></li><li><a href="module-middleware_verifyAccessToken.html">middleware/verifyAccessToken</a></li><li><a href="module-routers_applicationRouter.html">routers/applicationRouter</a></li><li><a href="module-routers_fundingOpportunityRouter.html">routers/fundingOpportunityRouter</a></li><li><a href="module-routers_loginRouter.html">routers/loginRouter</a></li><li><a href="module-routers_logoutRouter.html">routers/logoutRouter</a></li><li><a href="module-routers_refreshRouter.html">routers/refreshRouter</a></li><li><a href="module-routers_registerRouter.html">routers/registerRouter</a></li><li><a href="module-routers_userRouter.html">routers/userRouter</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#applicationRouter">applicationRouter</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createApplicationController">createApplicationController</a></li><li><a href="global.html#createFundingController">createFundingController</a></li><li><a href="global.html#deleteApplicationController">deleteApplicationController</a></li><li><a href="global.html#deleteFundingController">deleteFundingController</a></li><li><a href="global.html#deleteUsersController">deleteUsersController</a></li><li><a href="global.html#fund_types">fund_types</a></li><li><a href="global.html#fundingOpportunityRouter">fundingOpportunityRouter</a></li><li><a href="global.html#getApplicationsController">getApplicationsController</a></li><li><a href="global.html#getFundingController">getFundingController</a></li><li><a href="global.html#getUsersController">getUsersController</a></li><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#loginRouter">loginRouter</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#logoutRouter">logoutRouter</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#refreshRouter">refreshRouter</a></li><li><a href="global.html#registerController">registerController</a></li><li><a href="global.html#registerRouter">registerRouter</a></li><li><a href="global.html#roles">roles</a></li><li><a href="global.html#statuses">statuses</a></li><li><a href="global.html#updateApplicationController">updateApplicationController</a></li><li><a href="global.html#updateFundingController">updateFundingController</a></li><li><a href="global.html#updateUsersController">updateUsersController</a></li><li><a href="global.html#userRouter">userRouter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed May 22 2024 10:56:01 GMT+0200 (South Africa Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat May 25 2024 23:17:37 GMT+0200 (South Africa Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

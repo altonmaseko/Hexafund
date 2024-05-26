@@ -1,42 +1,51 @@
+// Get the request section element
+const requestSection = document.querySelector(".requests");
 
-
-const requestSection = document.querySelector(".requests")
-
+/**
+ * Asynchronous function to load the funding opportunities.
+ * @param {string} query_params - The query parameters to filter the funding opportunities.
+ */
 const loadOpportunities = async (query_params) => {
-    requestSection.textContent = "" // Clear it
+    // Clear the request section
+    requestSection.textContent = "";
 
-    let response
+    let response;
     try {
-        response = await axios.get("api/v1/funding-opportunities" + query_params)
+        // Fetch the funding opportunities from the API with the given query parameters
+        response = await axios.get("api/v1/funding-opportunities" + query_params);
     } catch (error) {
-        alert("Sorry, couldnt load the funding opportunities")
-        console.log(error.message)
-        return
+        // Display an alert and log the error message if there's an issue fetching the data
+        alert("Sorry, couldn't load the funding opportunities");
+        console.log(error.message);
+        return;
     }
-    const fundingOpportunities = response.data
+    const fundingOpportunities = response.data;
 
+    // Check if there are any funding opportunities
     if (fundingOpportunities.length <= 0) {
-        alert("You have no funding opportunities here :(")
-        return
+        alert("You have no funding opportunities here :(");
+        return;
     }
 
+    // Loop through the funding opportunities and create a request card for each one
     fundingOpportunities.forEach((fundingOpportunity) => {
         let { title,
             company_name,
-            funding_manager_email,
             admin_status,
             type,
-            funding_opportunity_id,
             deadline,
             description,
             funding_amount,
-            available_slots, image_data } = fundingOpportunity
+            available_slots, image_data } = fundingOpportunity;
 
-        deadline = deadline.slice(0, deadline.indexOf("T")) // Just get the day, month, year and skip the time
+        // Extract the date part from the deadline
+        deadline = deadline.slice(0, deadline.indexOf("T"));
 
-        const requestCard = document.createElement("div")
-        requestCard.classList.add("request-card")
+        // Create a new request card element
+        const requestCard = document.createElement("div");
+        requestCard.classList.add("request-card");
 
+        // Set the HTML content of the request card
         const requestCardInnerHTML = `<div class="card-left">
                     <img class="ad-image" src="https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549" alt="Image">
                 </div>
@@ -53,77 +62,84 @@ const loadOpportunities = async (query_params) => {
                         <div class="status-indicator"></div>
                         <span class="status-label">${admin_status}</span>
                     </div>
-                </div>`
+                </div>`;
 
-        requestCard.innerHTML = requestCardInnerHTML
+        requestCard.innerHTML = requestCardInnerHTML;
 
+        // Set the image source for the ad image
         let adImage = requestCard.querySelector(".ad-image");
         if (!image_data) {
-            // adImage.src = "https://images.pexels.com/photos/210679/pexels-photo-210679.jpeg";
             adImage.src = "https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg";
-            // adImage.src = "https://www.topgear.com/sites/default/files/2022/03/TopGear%20-%20Tesla%20Model%20Y%20-%20003.jpg?w=976&h=549"
         } else {
-            adImage.src = image_data
+            adImage.src = image_data;
         }
 
+        // Add the appropriate status class to the status indicator
         if (admin_status === "Approved") {
-            requestCard.querySelector(".status-indicator").classList.add("approved")
+            requestCard.querySelector(".status-indicator").classList.add("approved");
         } else if (admin_status === "Rejected") {
-            requestCard.querySelector(".status-indicator").classList.add("denied")
+            requestCard.querySelector(".status-indicator").classList.add("denied");
         } else if (admin_status === "Pending") {
-            requestCard.querySelector(".status-indicator").classList.add("pending")
+            requestCard.querySelector(".status-indicator").classList.add("pending");
         }
 
+        // Append the request card to the request section
         requestSection.appendChild(requestCard);
-
-        // requestSection.appendChild(document.createElement("br"))
-    }) //END: ForEach
-
-}
+    }); // END: forEach
+};
 
 let userEmail;
 
-const categoryDropDown = document.querySelector("#category-dropdown")
+// Get the category dropdown element
+const categoryDropDown = document.querySelector("#category-dropdown");
+
+// Add an event listener to the category dropdown
 categoryDropDown.addEventListener("input", async (event) => {
+    console.log(categoryDropDown.value);
 
-    console.log(categoryDropDown.value)
-
+    // Check if the selected option is "All Options"
     if (categoryDropDown.value === "All Options") {
-        const query_params = `?funding_manager_email=${userEmail}`
-        await loadOpportunities(query_params)
-        return
+        // Load the funding opportunities with the user's email as the query parameter
+        const query_params = `?funding_manager_email=${userEmail}`;
+        await loadOpportunities(query_params);
+        return;
     }
 
-    const query_params = `?funding_manager_email=${userEmail}&type=${categoryDropDown.value}`
-    await loadOpportunities(query_params)
-})
+    // Load the funding opportunities with the user's email and the selected category as query parameters
+    const query_params = `?funding_manager_email=${userEmail}&type=${categoryDropDown.value}`;
+    await loadOpportunities(query_params);
+});
 
-
-
+// Extract the user's email from the cookies
 const cookies = document.cookie; // Get all cookies as a single string
 const cookieArray = cookies.split('; '); // Split into an array of individual cookies
 for (const cookie of cookieArray) {
     const [name, value] = cookie.split('=');
-    console.log(value)
+    console.log(value);
     if (name === 'email') {
-        userEmail = value
+        userEmail = value;
     }
 }
 
+// Check if the user's email was found in the cookies
 if (!userEmail) {
-    alert("System has lost your details. This page will not work, sorry")
+    alert("System has lost your details. This page will not work, sorry");
 }
 
-// When page loads:
-const query_params = `?funding_manager_email=${userEmail}`
-loadOpportunities(query_params)
+// Load the funding opportunities with the user's email as the query parameter when the page loads
+const query_params = `?funding_manager_email=${userEmail}`;
+loadOpportunities(query_params);
 
-
+/**
+ * Asynchronous function to generate a CSV file containing funding opportunities.
+ * @returns {string} The CSV data.
+ */
 const generateCSV = async () => {
     let response;
 
     try {
-        response = await axios.get("api/v1/funding-opportunities");
+        // Fetch the funding opportunities from the API
+        response = await axios.get(`api/v1/funding-opportunities?funding_manager_email=${userEmail}`);
     } catch (error) {
         console.log(error.message);
         return;
@@ -132,10 +148,11 @@ const generateCSV = async () => {
     const fundingOpportunities = response.data;
     let csvData = [];
 
+    // Loop through the funding opportunities and create a CSV-friendly object for each one
     fundingOpportunities.forEach((fundingOpportunity) => {
-
         let { deadline } = fundingOpportunity;
-        deadline = deadline.slice(0, deadline.indexOf("T")) // Just get the day, month, year and skip the time
+        // Extract the date part from the deadline
+        deadline = deadline.slice(0, deadline.indexOf("T"));
 
         const funding_opp_obj = {
             title: fundingOpportunity.title,
@@ -151,55 +168,58 @@ const generateCSV = async () => {
         csvData.push(funding_opp_obj);
     });
 
-    // Convert JSON to CSV
+    // Convert the JavaScript object to a CSV string
     const csv = json2csv.parse(csvData, {
-        delimiter: ';'
+        delimiter: ',',
+        eol: "\n"
     });
 
     return csv;
-};
+}
 
+// Get the download CSV button element
 const downloadCSVButton = document.getElementById("fundDetails");
 
+/**
+ * Function to download the CSV file.
+ * @param {string} filename - The name of the CSV file.
+ * @param {string} csv - The CSV data.
+ */
 const download = (filename, csv) => {
     // Add end-of-line character after each row
     csv = csv.replace(/,\n/g, ',\r\n');
 
+    // Create a temporary anchor element to trigger the file download
     const element = document.createElement("a");
 
+    // Set the href and download attributes of the anchor element
     element.setAttribute("href", `data:text/csv;charset=utf-8,${encodeURIComponent(csv)}`);
     element.setAttribute("download", filename);
 
+    // Hide the anchor element
     element.style.display = "none";
 
+    // Add the anchor element to the document, click it, and then remove it
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
 }
 
-// const download = (filename, csv) => {
-//     const element = document.createElement("a");
-
-//     element.setAttribute("href", `data:text/csv;charset=utf-8,${csv}`);
-//     element.setAttribute("download", filename);
-
-//     element.style.display = "none";
-
-//     document.body.appendChild(element);
-//     element.click();
-//     document.body.removeChild(element);
-// }
-
+// Add a click event listener to the download CSV button
 downloadCSVButton.addEventListener("click", async () => {
     try {
+        // Generate the CSV data
         const csv = await generateCSV();
+        // Download the CSV file
         download("funding_opportunities.csv", csv);
     } catch (error) {
         console.log(error.message);
     }
 });
 
+// Add a click event listener to the logo element
 document.getElementById("logo").addEventListener("click", event => {
     console.log("LOGO CLICKED")
+    // Redirect the user to the home page when the logo is clicked
     window.location.href = "/home";
-})
+});

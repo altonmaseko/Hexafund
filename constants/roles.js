@@ -1,4 +1,5 @@
 /**
+ * This module contains constants representing the roles in the system.
  * @module constants/roles
  */
 

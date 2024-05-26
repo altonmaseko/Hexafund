@@ -1,4 +1,5 @@
 /**
+ * This module contains constants representing the statuses in the system.
  * @module constants/statuses
 */
 
@@ -25,6 +26,7 @@ const REJECTED = "Rejected";
  * @constant {string}
  */
 const APPROVED = "Approved";
+
 
 module.exports = {
     PENDING,

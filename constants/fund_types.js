@@ -1,4 +1,5 @@
 /**
+ * This module contains the fund types constants.
  * @module constants/fund_types
  */
 

@@ -27,12 +27,16 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
+ * @module controllers/registerController
+ */
+
+/**
  * Notes for user creation:
  * 1. User creation requires a name, email and password.
  * 2. The email must be unique.
  * 3. Being a Funding Manager or an Applicant depends on whether a company name was provided
  * 4. If a user wishes to be a funding manager, the front end will force them to provide a company name.
- */
+ **/
 
 // imports
 const { User, Applicant, FundingManager, Company } = require("../models");
@@ -46,58 +50,67 @@ const { asyncWrapper } = require("../middleware");
  * @returns {Promise&lt;void>} - A promise that resolves when the registration is complete.
  */
 const registerController = asyncWrapper(async (req, res) => {
+    // Extract the necessary information from the request body
     const { name, email, password, company, role } = req.body;
 
+    // Validate that the required fields are provided
     if (!name || !password || !email) {
         res.status(400).json({ message: "Please ensure you have entered your Name, Email and Password", status: 400 });
         return;
     }
 
+    // Check if the email is already registered
     const duplicateUser = await User.findOne({ email: email }).exec();
-
-    //Check if email is already taken
     if (duplicateUser) {
         res.status(409).json({ message: `The email: '${duplicateUser.email}' is already taken :)`, status: 409 })
         return
     }
 
-    //Role of user depends on existence of company
+    // Based on whether a company name is provided, the user is registered as a Funding Manager or an Applicant
     if (company) {
+        // Create a new user with the provided information and set the role to Funding Manager
         await User.create({
             name: name,
             email: email,
             password: password,
             role: role
         });
+        // Create a new Funding Manager record with the provided information
         await FundingManager.create({
             name: name,
             email: email,
             company: company
         });
 
-        const newCompany = await Company.findOne({ name: company }).exec(); // all companies will have different names
-        if (!newCompany) { // if company does not exist, create it
+        // Check if the company already exists in the database
+        const newCompany = await Company.findOne({ name: company }).exec();
+        if (!newCompany) {
+            // If the company does not exist, create a new company record
             await Company.create({
                 name: company
             });
         }
-        
+        // Add the funding manager's email to the list of funding managers for the company
         await Company.updateOne({ name: company }, { $push: { funding_managers: email } });
     } else {
+        // Create a new user with the provided information and set the role to Applicant
         await User.create({
             name: name,
             email: email,
             password: password
         });
+        // Create a new Applicant record with the provided information
         await Applicant.create({
             name: name,
             email: email
         });
     }
 
+    // Send a success response
     res.status(201).json({ message: `${email} has been successfully registered.`, status: 201 });
 });
 
+// Export the registerController as a module
 module.exports = registerController;</code></pre>
         </article>
     </section>
@@ -108,13 +121,13 @@ module.exports = registerController;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#registerController">registerController</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-constants_fund_types.html">constants/fund_types</a></li><li><a href="module-constants_roles.html">constants/roles</a></li><li><a href="module-constants_statuses.html">constants/statuses</a></li><li><a href="module-controllers_loginController.html">controllers/loginController</a></li><li><a href="module-controllers_logoutController.html">controllers/logoutController</a></li><li><a href="module-controllers_refreshController.html">controllers/refreshController</a></li><li><a href="module-controllers_registerController.html">controllers/registerController</a></li><li><a href="module-createControllers_createApplicationController.html">createControllers/createApplicationController</a></li><li><a href="module-createControllers_createFundingController.html">createControllers/createFundingController</a></li><li><a href="module-deleteControllers_deleteApplicationController.html">deleteControllers/deleteApplicationController</a></li><li><a href="module-deleteControllers_deleteFundingController.html">deleteControllers/deleteFundingController</a></li><li><a href="module-deleteControllers_deleteUsersController.html">deleteControllers/deleteUsersController</a></li><li><a href="module-getControllers_getApplicationsController.html">getControllers/getApplicationsController</a></li><li><a href="module-getControllers_getFundingController.html">getControllers/getFundingController</a></li><li><a href="module-getControllers_getUsersController.html">getControllers/getUsersController</a></li><li><a href="module-middleware.html">middleware</a></li><li><a href="module-middleware_asyncWrapper.html">middleware/asyncWrapper</a></li><li><a href="module-middleware_errorHandler.html">middleware/errorHandler</a></li><li><a href="module-middleware_verifyAccessToken.html">middleware/verifyAccessToken</a></li><li><a href="module-routers_applicationRouter.html">routers/applicationRouter</a></li><li><a href="module-routers_fundingOpportunityRouter.html">routers/fundingOpportunityRouter</a></li><li><a href="module-routers_loginRouter.html">routers/loginRouter</a></li><li><a href="module-routers_logoutRouter.html">routers/logoutRouter</a></li><li><a href="module-routers_refreshRouter.html">routers/refreshRouter</a></li><li><a href="module-routers_registerRouter.html">routers/registerRouter</a></li><li><a href="module-routers_userRouter.html">routers/userRouter</a></li><li><a href="module-updateControllers_updateApplicationController.html">updateControllers/updateApplicationController</a></li><li><a href="module-updateControllers_updateFundingController.html">updateControllers/updateFundingController</a></li><li><a href="module-updateControllers_updateUsersController.html">updateControllers/updateUsersController</a></li></ul><h3>Classes</h3><ul><li><a href="Applicant.html">Applicant</a></li><li><a href="Application.html">Application</a></li><li><a href="Company.html">Company</a></li><li><a href="FundingManager.html">FundingManager</a></li><li><a href="FundingOpportunitySchema.html">FundingOpportunitySchema</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#applicationRouter">applicationRouter</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createApplicationController">createApplicationController</a></li><li><a href="global.html#createFundingController">createFundingController</a></li><li><a href="global.html#deleteApplicationController">deleteApplicationController</a></li><li><a href="global.html#deleteFundingController">deleteFundingController</a></li><li><a href="global.html#deleteUsersController">deleteUsersController</a></li><li><a href="global.html#fund_types">fund_types</a></li><li><a href="global.html#fundingOpportunityRouter">fundingOpportunityRouter</a></li><li><a href="global.html#getApplicationsController">getApplicationsController</a></li><li><a href="global.html#getFundingController">getFundingController</a></li><li><a href="global.html#getUsersController">getUsersController</a></li><li><a href="global.html#loginController">loginController</a></li><li><a href="global.html#loginRouter">loginRouter</a></li><li><a href="global.html#logoutController">logoutController</a></li><li><a href="global.html#logoutRouter">logoutRouter</a></li><li><a href="global.html#refreshController">refreshController</a></li><li><a href="global.html#refreshRouter">refreshRouter</a></li><li><a href="global.html#registerController">registerController</a></li><li><a href="global.html#registerRouter">registerRouter</a></li><li><a href="global.html#roles">roles</a></li><li><a href="global.html#statuses">statuses</a></li><li><a href="global.html#updateApplicationController">updateApplicationController</a></li><li><a href="global.html#updateFundingController">updateFundingController</a></li><li><a href="global.html#updateUsersController">updateUsersController</a></li><li><a href="global.html#userRouter">userRouter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed May 22 2024 10:56:01 GMT+0200 (South Africa Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat May 25 2024 23:17:37 GMT+0200 (South Africa Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
