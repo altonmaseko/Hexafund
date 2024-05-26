@@ -139,7 +139,7 @@ const generateCSV = async () => {
 
     try {
         // Fetch the funding opportunities from the API
-        response = await axios.get("api/v1/funding-opportunities");
+        response = await axios.get(`api/v1/funding-opportunities?funding_manager_email=${userEmail}`);
     } catch (error) {
         console.log(error.message);
         return;
