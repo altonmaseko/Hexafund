@@ -54,3 +54,26 @@ footer {
     font-size: 14px;
     height: 50px;
 }
+
+.nav-button {
+    background-color: transparent;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  .nav-button:hover {
+    background-color: #001e30;
+    transform: scale(1.04);
+  }
+  
+  a:any-link {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+    cursor: pointer;
+  }
