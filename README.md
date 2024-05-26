@@ -35,19 +35,24 @@ This project aims to equip the organisations with a central place to advertise a
 
 - In vs code terminal, type 'npm install' [This installs all modules needed. They are not pushed to github because they are large.]
 - From root of project, navigate to 'frontend' -> 'External_Modules' -> 'axios.min.js', go to end of file and uncomment the local baseURL for axios.
+    - This determines where axios requests (get,post,put,delete) are sent in axios. If you use production baseURL, online mongodb database will be modified, instead of local one.
 - In vs code terminal, type 'npm start' or 'npm run dev' [This starts application on port 3000.]
 
 - Users of website cannot create an admin through website. To create an admin:
     - Install postman.
-    - Make sure website is running locally [type 'npm run dev' in terminal]. Send a Post request to http://localhost:3000/register with the following json data in correct json format:
+    - Make sure website is running locally [type 'npm run dev' in terminal of vs code]. In postman, send a POST request to http://localhost:3000/register with the following json data in body:
 "
-{"name": "admin",
+{
+"name": "admin",
 "password": "Admin123##",
 "email": "admin@gmail.com",
-"role": "Platform Admin"} "
+"role": "Platform Admin"
+}
+"
 
-    - You can use any name, password(validation done in frontend) or email, but role SHOULD be "Platform Admin".
-    - Now you can login with admin email and password, and you will be recognized as an admin and sent to Admin Home Page, where you can manage all Funding Managers, Applicants and opportunities posted.
+    - You can use any name, password or email, but role SHOULD be "Platform Admin".
+    - Now you can login with admin email and password through local running website, and you will be recognized as an admin and sent to Admin Home Page, where you can manage all Funding Managers, Applicants and opportunities posted.
+- Registering an admin is only thing you need to do in postman.
 
 - For other users, register normally as a Funding Manager or as an Applicant through locally running website.
 - To see database, run MongoDB Compass app and click green connect button. Then you will see FundingWebsite database.
