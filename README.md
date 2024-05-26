@@ -20,4 +20,34 @@ This project aims to equip the organisations with a central place to advertise a
 - Budgeting (Tracking/Changing the total amount of money available in a fund)
 - Reporting (Reports regarding application data and fund data can be generated and downloaded as .csv and .pdf files)
 
-src: Software Design Project Briefs.pdf
+# Running App Locally ***
+- Install npm, mongodb, MongoDB compass app on computer.
+- clone Github Repository.
+- Open the local folder in vs code.
+- Add a .env file in root, with the following variables (the variable values dont need quotes, and no semicolon is needed at end of line):
+    - PORT=3000
+    - ACCESS_TOKEN_SECRET=aca25f0df19dc5bae1a0b0a97d59381bc7b746e2cdc15545c6dcbc076009a6a6aa00ea31a0bdfc9a2b9a3b55773e58c80128
+    - REFRESH_TOKEN_SECRET=e86db6e7af9379d2ef5b88b108167f3da65e2cd49f1f1d16c8a93541cf63edddcbea34744e2365713692c1229c9acec5f331
+    - CONNECTION_URI=mongodb://localhost:27017/FundingWebsite
+
+- Make sure local mongodb service is running (it should start itself after install). When you run MongoDB Compass app, you should be met with a dialog to connect to local running mongodb at URI: mongodb://localhost:27017.
+    - If URI displayed in mongoDB Compass app is different, change CONNECTION_URI in .env file to what you see, then follow with /FundingWebsite. However it shouldnt be.
+
+- In vs code terminal, type 'npm install' [This installs all modules needed. They are not pushed to github because they are large.]
+- From root of project, navigate to 'frontend' -> 'External_Modules' -> 'axios.min.js', go to end of file and uncomment the local baseURL for axios.
+- In vs code terminal, type 'npm start' or 'npm run dev' [This starts application on port 3000.]
+
+- Users of website cannot create an admin through website. To create an admin:
+    - Install postman.
+    - Make sure website is running locally [type 'npm run dev' in terminal]. Send a Post request to http://localhost:3000/register with the following json data in correct json format:
+"
+{"name": "admin",
+"password": "Admin123##",
+"email": "admin@gmail.com",
+"role": "Platform Admin"} "
+
+    - You can use any name, password(validation done in frontend) or email, but role SHOULD be "Platform Admin".
+    - Now you can login with admin email and password, and you will be recognized as an admin and sent to Admin Home Page, where you can manage all Funding Managers, Applicants and opportunities posted.
+
+- For other users, register normally as a Funding Manager or as an Applicant through locally running website.
+- To see database, run MongoDB Compass app and click green connect button. Then you will see FundingWebsite database.
