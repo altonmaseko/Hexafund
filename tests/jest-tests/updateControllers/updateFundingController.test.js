@@ -40,7 +40,7 @@ describe("Testing the updateFundingController", () => {
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      message: "Please include funding_opportunity_id in url. e.g: api/v1/ad/example_id",
+      message: "Please include funding_opportunity_id in url. e.g: api/v1/fundingOpportunity/example_id",
       status: 400,
     });
   });
@@ -68,7 +68,7 @@ describe("Testing the updateFundingController", () => {
     );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      message: "successfully updated",
+      message: "Successfully updated",
       success: true,
       data: req.body,
     });
