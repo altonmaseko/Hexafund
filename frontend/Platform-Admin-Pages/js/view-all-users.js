@@ -33,8 +33,8 @@ const generate_FM_CSV = async () => {
 
     // Convert the CSV data to a CSV string
     const csv = json2csv.parse(csvData, {
-        delimiter: ";",
-        eol: ",\n"
+        delimiter: ",",
+        eol: "\n"
     });
     console.log(csv);
 
@@ -90,8 +90,8 @@ const generate_Applicant_CSV = async () => {
 
     // Convert the CSV data to a CSV string
     const csv = json2csv.parse(csvData, {
-        delimiter: ";",
-        eol: ",\n"
+        delimiter: ",",
+        eol: "\n"
     });
     console.log(csv);
 

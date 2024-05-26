@@ -170,7 +170,8 @@ const generateCSV = async () => {
 
     // Convert the JavaScript object to a CSV string
     const csv = json2csv.parse(csvData, {
-        delimiter: ';'
+        delimiter: ',',
+        eol: "\n"
     });
 
     return csv;
