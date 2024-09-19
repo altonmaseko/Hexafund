@@ -1,6 +1,6 @@
-# Funding Requests Management Website 
+# Hexafund
 
-Website best viewed on full screen desktop browser. Client specified that responsive design is not requirement.
+Website best viewed on full screen desktop browser. Client specified that responsive design is not a requirement.
 
 # About
 This project aims to equip the organisations with a central place to advertise all their funding opportunities and manage all the applications they get for funding. This project should cater for at least three types of funding opportunities, namely: Educational (bursaries and scholarships), business, and events.
