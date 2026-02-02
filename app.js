@@ -56,7 +56,9 @@ const urlMap = {
     '/all-opportunities': '/Platform-Admin-Pages/delete-opportunities-dashboard.html',
     '/manage-managers': '/Platform-Admin-Pages/manager-approval-dashboard.html',
     '/manage-opportunities': '/Platform-Admin-Pages/opportunity-approval-dashboard.html',
-    '/manage-users': '/Platform-Admin-Pages/view-all-users.html'
+    '/manage-users': '/Platform-Admin-Pages/view-all-users.html',
+
+    '/pleaseusedesktop': '/desktop-message.html'
 
 };
 
