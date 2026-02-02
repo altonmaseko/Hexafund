@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg-start: #00111b;
+  --bg-end: #2d5872;
+  --card-bg: rgba(242, 242, 242, 0.95);
+  --accent: #3e8485;
+  --white: #ffffff;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--bg-start), var(--bg-end));
+  z-index: 9999;
+  padding: 20px;
+}
+
+.mobile-message {
+  max-width: 520px;
+  width: 100%;
+  background: var(--card-bg);
+  color: #00111b;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.mobile-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.mobile-message h1 {
+  margin: 6px 0 8px;
+  font-size: 1.5rem;
+  color: #00111b;
+}
+
+.mobile-message p {
+  color: #00111b;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.mobile-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  color: #00111b;
+}
+
+@media (max-width: 420px) {
+  .mobile-message {
+    padding: 18px;
+    border-radius: 8px;
+  }
+
+  .mobile-message h1 {
+    font-size: 1.125rem;
+  }
+}
